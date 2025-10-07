@@ -1,0 +1,38 @@
+import {
+	Sheet,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/components/ui/sheet";
+import { IoSearch } from "react-icons/io5";
+import { Button } from "./ui/button";
+
+const SearchSheet = () => {
+	return (
+		<Sheet>
+			<SheetTrigger asChild>
+				<Button
+					variant="default"
+					size="icon"
+					className="size-11 lg:flex hidden"
+					data-search-toggle
+				>
+					<IoSearch className="size-4" />
+				</Button>
+			</SheetTrigger>
+			<SheetContent side="top">
+				<SheetHeader>
+					<SheetTitle>Are you absolutely sure?</SheetTitle>
+					<SheetDescription>
+						This action cannot be undone. This will permanently delete your
+						account and remove your data from our servers.
+					</SheetDescription>
+				</SheetHeader>
+			</SheetContent>
+		</Sheet>
+	);
+};
+
+export default SearchSheet;

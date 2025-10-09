@@ -106,7 +106,7 @@ const NavLinks = () => {
 					<NavigationMenu className="max-w-none *:w-full">
 						<NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
 							{navigationLinks.map((link, index) => (
-								<NavigationMenuItem key={link} className="w-full">
+								<NavigationMenuItem key={link.label} className="w-full">
 									{link.submenu ? (
 										<>
 											<div className="text-orange-600 px-2 py-1.5 text-xs font-medium">

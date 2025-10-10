@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+/* import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
 	NavigationMenu,
@@ -19,7 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { RxDividerVertical } from "react-icons/rx";
 
-const navigationLinks = [
+export const navigationLinks = [
 	{ href: "/", label: "Home" },
 	{ href: "/blog", label: "Our Blog" },
 	{
@@ -30,32 +30,26 @@ const navigationLinks = [
 			{
 				href: "/destinations",
 				label: "Destinations",
-				image: touristCarryingLuggage,
 			},
 			{
 				href: "/travel-tips",
 				label: "Travel Tips",
-				image: touristCarryingLuggage,
 			},
 			{
 				href: "/safety",
 				label: "Safety Guide",
-				image: touristCarryingLuggage,
 			},
 			{
 				href: "/budget-travel",
 				label: "Budget Travel",
-				image: touristCarryingLuggage,
 			},
 			{
 				href: "/tours",
 				label: "Tours & Experiences",
-				image: touristCarryingLuggage,
 			},
 			{
 				href: "/packing",
 				label: "Packing Guides",
-				image: touristCarryingLuggage,
 			},
 		],
 	},
@@ -66,7 +60,6 @@ const navigationLinks = [
 const NavLinks = () => {
 	return (
 		<div className="flex items-center gap-2">
-			{/* Mobile menu trigger */}
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button
@@ -110,11 +103,11 @@ const NavLinks = () => {
 									{link.submenu ? (
 										<>
 											<div className="text-orange-600 px-2 py-1.5 text-xs font-medium">
-												{link.label} sss
+												{link.label}
 											</div>
 											<ul>
 												{link.items.map((item, itemIndex) => (
-													<li key={itemIndex}>
+													<li key={item.label}>
 														<NavigationMenuLink
 															href={item.href}
 															className="py-1.5"
@@ -130,11 +123,7 @@ const NavLinks = () => {
 											{link.label}
 										</NavigationMenuLink>
 									)}
-									{/* Add separator between different types of items */}
 									{index < navigationLinks.length - 1 &&
-										// Show separator if:
-										// 1. One is submenu and one is simple link OR
-										// 2. Both are submenus but with different types
 										((!link.submenu && navigationLinks[index + 1].submenu) ||
 											(link.submenu && !navigationLinks[index + 1].submenu) ||
 											(link.submenu &&
@@ -152,15 +141,13 @@ const NavLinks = () => {
 				</PopoverContent>
 			</Popover>
 
-			{/* Main nav */}
-			{/* Navigation menu */}
 			<NavigationMenu viewport={false} className="max-md:hidden">
 				<NavigationMenuList className="gap-2">
 					{navigationLinks.map((link, index) => (
-						<NavigationMenuItem key={index}>
+						<NavigationMenuItem key={link.label}>
 							{link.submenu ? (
 								<>
-									<NavigationMenuTrigger className="text-foreground bg-transparent text-base hover:bg-soft-linen px-2 py-0 font-normal *:[svg]:-me-0.5 *:[svg]:size-3.5">
+									<NavigationMenuTrigger className="text-foreground bg-transparent text-[15px] hover:bg-soft-linen px-2 py-0 font-normal *:[svg]:-me-0.5 *:[svg]:size-3.5">
 										{link.label}
 									</NavigationMenuTrigger>
 									<NavigationMenuContent className="data-[motion=from-end]:slide-in-from-right-16! data-[motion=from-start]:slide-in-from-left-16! data-[motion=to-end]:slide-out-to-right-16! data-[motion=to-start]:slide-out-to-left-16! z-50 p-1">
@@ -217,14 +204,6 @@ const NavLinks = () => {
 														<div>
 															<div className="flex items-center gap-0 mt-4 mb-1">
 																<p className="text-[10px] font-semibold text-foreground">
-																	{/* <time
-									dateTime={format(
-										new Date(posts[0].publishedAt),
-										"MMMM d, yyyy",
-									)}
-								>
-									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
-								</time> */}
 																	FEBRUARY 12, 2025
 																</p>
 																<RxDividerVertical className="text-foreground font-bold rotate-12" />
@@ -262,14 +241,6 @@ const NavLinks = () => {
 														<div>
 															<div className="flex items-center gap-0 mt-4 mb-1">
 																<p className="text-[10px] font-semibold text-foreground">
-																	{/* <time
-									dateTime={format(
-										new Date(posts[0].publishedAt),
-										"MMMM d, yyyy",
-									)}
-								>
-									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
-								</time> */}
 																	FEBRUARY 12, 2025
 																</p>
 																<RxDividerVertical className="text-foreground font-bold rotate-12" />
@@ -307,14 +278,6 @@ const NavLinks = () => {
 														<div>
 															<div className="flex items-center gap-0 mt-4 mb-1">
 																<p className="text-[10px] font-semibold text-foreground">
-																	{/* <time
-									dateTime={format(
-										new Date(posts[0].publishedAt),
-										"MMMM d, yyyy",
-									)}
-								>
-									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
-								</time> */}
 																	FEBRUARY 12, 2025
 																</p>
 																<RxDividerVertical className="text-foreground font-bold rotate-12" />
@@ -352,7 +315,7 @@ const NavLinks = () => {
 							) : (
 								<NavigationMenuLink
 									href={link.href}
-									className="text-foreground hover:bg-soft-linen text-base py-1.5 px-3 font-normal"
+									className="text-foreground hover:bg-soft-linen text-[15px] py-1.5 px-3 font-normal"
 								>
 									{link.label}
 								</NavigationMenuLink>
@@ -366,3 +329,4 @@ const NavLinks = () => {
 };
 
 export default NavLinks;
+ */

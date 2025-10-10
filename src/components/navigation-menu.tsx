@@ -3,7 +3,6 @@ import { ArrowRightIcon, ChevronDownIcon } from "lucide-react";
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";
-import type { CATEGORY_LINKS } from "@/types/category";
 import { GridCard } from "./grid-card";
 
 type NavItems = {
@@ -170,7 +169,7 @@ function NavGridCard() {
 	);
 }
 
-function NavSmallItem({ item }: { item: CATEGORY_LINKS }) {
+function NavSmallItem({ item }: { item: NavItems }) {
 	return (
 		<NavigationMenuLink className="group relative h-max flex-row items-center cursor-pointer gap-x-3 px-2 py-2">
 			<p className="text-sm">{item.label}</p>

@@ -1,0 +1,65 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { LuSearch } from "react-icons/lu";
+import z from "zod";
+
+const formSchema = z.object({
+	email: z.string().min(1),
+});
+
+const Search = () => {
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+	});
+
+	function onSubmit(values: z.infer<typeof formSchema>) {
+		try {
+			console.log(values);
+		} catch (error) {
+			console.error("Form submission error", error);
+		}
+	}
+	return (
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="flex items-center bg-background rounded-full p-1 border"
+			>
+				<FormField
+					control={form.control}
+					name="email"
+					render={({ field }) => (
+						<FormItem className="flex-1">
+							<FormControl>
+								<Input
+									placeholder="Search"
+									type="text"
+									className="w-full bg-background border-none shadow-none outline-none focus-visible:ring-0"
+									{...field}
+								/>
+							</FormControl>
+
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<Button type="submit" size={"icon"} className="size-9 cursor-pointer">
+					<LuSearch className="size-4" />
+				</Button>
+			</form>
+		</Form>
+	);
+};
+
+export default Search;

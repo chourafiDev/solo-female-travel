@@ -16,7 +16,7 @@ const DesktopMenu = () => {
 				{NAVIGATION_MENU.map((item) =>
 					item.submenu ? (
 						<NavigationMenuItem key={item.label}>
-							<NavigationMenuTrigger className="hover:bg-soft-linen">
+							<NavigationMenuTrigger className="hover:bg-soft-linen font-bold text-sm">
 								{item.label}
 							</NavigationMenuTrigger>
 							<NavigationMenuContent>
@@ -44,7 +44,7 @@ const DesktopMenu = () => {
 						</NavigationMenuItem>
 					) : (
 						<NavigationMenuItem key={item.label}>
-							<NavigationMenuLink className="cursor-pointer font-medium text-[15px] hover:bg-soft-linen">
+							<NavigationMenuLink className="cursor-pointer font-bold text-sm hover:bg-soft-linen">
 								{item.label}
 							</NavigationMenuLink>
 						</NavigationMenuItem>

@@ -29,7 +29,7 @@ const Banner = () => {
 
 									<div className="absolute bottom-8 left-8 w-[60%] z-20">
 										<div className="flex items-center gap-5 mb-5">
-											<p className="text-sm font-medium text-background">
+											<p className="text-sm font-medium text-background dark:text-white">
 												{/* <time
 									dateTime={format(
 										new Date(posts[0].publishedAt),
@@ -40,20 +40,22 @@ const Banner = () => {
 								</time> */}
 												FEBRUARY 12, 2025
 											</p>
-											<RxDividerVertical className="text-background font-bold rotate-12" />
+											<RxDividerVertical className="text-background dark:text-white font-bold rotate-12" />
 											<Link
 												href="/author"
-												className="text-sm text-background font-medium"
+												className="text-sm text-background dark:text-white font-medium"
 											>
-												<span className="text-background">POST BY</span> MAYA
-												PENA
+												<span className="text-background dark:text-white">
+													POST BY
+												</span>{" "}
+												MAYA PENA
 											</Link>
 										</div>
 
-										<h2 className="text-background text-[44px] leading-12 font-semibold mb-6">
+										<h2 className="text-background dark:text-white text-[44px] leading-12 font-bold mb-4">
 											Safest countries for solo female travelers
 										</h2>
-										<p className="text-background/80">
+										<p className="text-background/80 dark:text-white/80">
 											Lorem ipsum dolor sit amet consectetur adipisicing elit.
 											Praesentium consequatur ipsum deserunt...
 										</p>

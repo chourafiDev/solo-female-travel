@@ -20,20 +20,20 @@ const index = () => {
 				</div>
 
 				<div className="border-t flex items-center justify-between py-3 px-12">
-					<p className="text-muted-foreground text-sm">
+					<p className="text-muted-foreground font-medium text-[13px]">
 						&copy; {new Date().getFullYear()} Brand, All Rights Reserved.
 					</p>
 
 					<div className="flex items-center gap-4">
-						<Link href="/" className="text-sm link">
+						<Link href="/" className="font-medium text-[13px] link">
 							Term Of Services
 						</Link>
 						<div className="h-3 w-[1px] bg-muted-foreground/30" />
-						<Link href="/" className="text-sm link">
+						<Link href="/" className="font-medium text-[13px] link">
 							Privacy Policy
 						</Link>
 						<div className="h-3 w-[1px] bg-muted-foreground/30" />
-						<Link href="/" className="text-sm link">
+						<Link href="/" className="font-medium text-[13px] link">
 							Cookie Policy
 						</Link>
 					</div>

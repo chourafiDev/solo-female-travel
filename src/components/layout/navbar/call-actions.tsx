@@ -2,16 +2,19 @@ import SearchSheet from "@/components/search-sheet";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "../../ui/button";
+import { Skiper } from "./theme-toggle-button";
 
 const CallActions = () => {
 	return (
 		<div className="flex items-center gap-1">
+			<Skiper />
 			<SearchSheet />
+			<div className="h-10 w-1 mx-3 bg-border" />
 			<Link
 				href="/"
 				className={cn(
 					buttonVariants({ variant: "default", size: "lg" }),
-					"h-11",
+					"h-10",
 				)}
 			>
 				Let&apos;s Talk

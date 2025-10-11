@@ -44,7 +44,7 @@ const Categories = () => {
 										</div>
 
 										<div>
-											<p className="text-foreground font-medium">{cat.title}</p>
+											<p className="text-foreground font-bold text-sm">{cat.title}</p>
 											<p className="text-muted-foreground text-xs">
 												{cat.posts}
 											</p>

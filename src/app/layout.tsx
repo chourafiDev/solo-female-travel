@@ -1,10 +1,15 @@
 import Footer from "@/components/layout/footer";
 import NavBar from "@/components/layout/navbar";
 import type { Metadata } from "next";
-import { Marcellus, Outfit } from "next/font/google";
+import { Manrope, Marcellus } from "next/font/google";
 import "../styles/globals.css";
+import { ThemeProvider } from "next-themes";
 
-const outfit = Outfit({
+/* Barlow */
+/* Manrope */
+
+const outfit = Manrope({
+	weight: ["300", "400", "500", "600", "700"],
 	variable: "--font-outfit",
 	subsets: ["latin"],
 });
@@ -26,11 +31,18 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body className={`${outfit.className} ${marcellus.variable} antialiased`}>
-				<NavBar />
-				{children}
-				<Footer />
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<NavBar />
+					{children}
+					<Footer />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

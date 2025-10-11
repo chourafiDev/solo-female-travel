@@ -44,7 +44,7 @@ const Subscribe = () => {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="flex items-center bg-white rounded-full p-1.5 border"
+						className="flex items-center bg-background rounded-full p-1.5 border"
 					>
 						<FormField
 							control={form.control}
@@ -55,7 +55,7 @@ const Subscribe = () => {
 										<Input
 											placeholder="E-mail"
 											type="email"
-											className="w-full border-none shadow-none outline-none focus-visible:ring-0"
+											className="w-full bg-background border-none shadow-none outline-none focus-visible:ring-0"
 											{...field}
 										/>
 									</FormControl>
@@ -74,7 +74,7 @@ const Subscribe = () => {
 					</form>
 				</Form>
 
-				<p className="text-muted-foreground text-sm mt-2">
+				<p className="text-muted-foreground text-xs mt-2">
 					We won&apos;t send you spam. Unsubscribe at any time.
 				</p>
 			</div>

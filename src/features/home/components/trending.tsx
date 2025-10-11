@@ -10,7 +10,7 @@ const Trending = () => {
 			className="grid gap-2 mb-10 mt-6"
 			style={{ gridTemplateColumns: "1fr 1px 1fr 1px 1fr 1px 1fr" }}
 		>
-			<article className="w-full flex items-center gap-2">
+			<article className="group w-full flex items-center gap-2">
 				<Link href="">
 					<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
 						<Image
@@ -18,7 +18,7 @@ const Trending = () => {
 							alt=""
 							fill
 							placeholder="blur"
-							className="absolute object-cover transition-all duration-300 hover:scale-110"
+							className="absolute object-cover transition-all duration-300 group-hover:scale-110"
 						/>
 					</div>
 				</Link>
@@ -42,7 +42,7 @@ const Trending = () => {
 						</Link>
 					</div>
 
-					<h3 className="text-foreground font-medium text-[15px] leading-[20px] hover:underline">
+					<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</div>
@@ -50,7 +50,7 @@ const Trending = () => {
 
 			<Separator orientation="vertical" className="h-full" />
 
-			<article className="w-full flex items-center gap-2">
+			<article className="group w-full flex items-center gap-2">
 				<Link href="">
 					<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
 						<Image
@@ -58,7 +58,7 @@ const Trending = () => {
 							alt=""
 							fill
 							placeholder="blur"
-							className="absolute object-cover transition-all duration-300 hover:scale-110"
+							className="absolute object-cover transition-all duration-300 group-hover:scale-110"
 						/>
 					</div>
 				</Link>
@@ -85,7 +85,7 @@ const Trending = () => {
 						</Link>
 					</div>
 
-					<h3 className="text-foreground font-medium text-[15px] leading-[20px] hover:underline">
+					<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</div>
@@ -93,7 +93,7 @@ const Trending = () => {
 
 			<Separator orientation="vertical" className="h-full" />
 
-			<article className="w-full flex items-center gap-2">
+			<article className="group w-full flex items-center gap-2">
 				<Link href="">
 					<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
 						<Image
@@ -101,7 +101,7 @@ const Trending = () => {
 							alt=""
 							fill
 							placeholder="blur"
-							className="absolute object-cover transition-all duration-300 hover:scale-110"
+							className="absolute object-cover transition-all duration-300 group-hover:scale-110"
 						/>
 					</div>
 				</Link>
@@ -128,7 +128,7 @@ const Trending = () => {
 						</Link>
 					</div>
 
-					<h3 className="text-foreground font-medium text-[15px] leading-[20px] hover:underline">
+					<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</div>
@@ -136,7 +136,7 @@ const Trending = () => {
 
 			<Separator orientation="vertical" className="h-full" />
 
-			<article className="w-full flex items-center gap-2">
+			<article className="group w-full flex items-center gap-2">
 				<Link href="">
 					<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
 						<Image
@@ -144,7 +144,7 @@ const Trending = () => {
 							alt=""
 							fill
 							placeholder="blur"
-							className="absolute object-cover transition-all duration-300 hover:scale-110"
+							className="absolute object-cover transition-all duration-300 group-hover:scale-110"
 						/>
 					</div>
 				</Link>
@@ -171,7 +171,7 @@ const Trending = () => {
 						</Link>
 					</div>
 
-					<h3 className="text-foreground font-medium text-[15px] leading-[20px] hover:underline">
+					<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</div>

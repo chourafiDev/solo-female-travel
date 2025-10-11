@@ -16,7 +16,7 @@ const SearchSheet = () => {
 				<Button
 					variant="default"
 					size="icon"
-					className="size-11 lg:flex hidden"
+					className="size-10 lg:flex hidden"
 					data-search-toggle
 				>
 					<IoSearch className="size-4" />

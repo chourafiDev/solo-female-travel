@@ -172,7 +172,7 @@ function NavGridCard() {
 function NavSmallItem({ item }: { item: NavItems }) {
 	return (
 		<NavigationMenuLink className="group relative h-max flex-row items-center cursor-pointer gap-x-3 px-2 py-2">
-			<p className="text-sm">{item.label}</p>
+			<p className="text-[13px] font-semibold">{item.label}</p>
 			<div className="relative ml-auto flex h-full w-4 items-center">
 				<ArrowRightIcon className="size-4 text-foreground -translate-x-2 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
 			</div>

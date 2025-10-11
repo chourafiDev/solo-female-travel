@@ -34,7 +34,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-medium uppercase">
+								<p className="text-[11px] text-background font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -62,7 +62,7 @@ const LatestPosts = () => {
 						</Link>
 					</div>
 
-					<h3 className="post-title text-lg">
+					<h3 className="post-title leading-6 text-lg">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</article>
@@ -81,7 +81,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-medium uppercase">
+								<p className="text-[11px] text-background font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -109,7 +109,7 @@ const LatestPosts = () => {
 						</Link>
 					</div>
 
-					<h3 className="post-title text-lg">
+					<h3 className="post-title leading-6 text-lg">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</article>
@@ -128,7 +128,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-medium uppercase">
+								<p className="text-[11px] text-background font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -156,7 +156,7 @@ const LatestPosts = () => {
 						</Link>
 					</div>
 
-					<h3 className="post-title text-lg">
+					<h3 className="post-title leading-6 text-lg">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</article>
@@ -175,7 +175,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-medium uppercase">
+								<p className="text-[11px] text-background font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -203,7 +203,7 @@ const LatestPosts = () => {
 						</Link>
 					</div>
 
-					<h3 className="post-title text-lg">
+					<h3 className="post-title leading-6 text-lg">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</article>
@@ -222,7 +222,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-medium uppercase">
+								<p className="text-[11px] text-background font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -250,7 +250,7 @@ const LatestPosts = () => {
 						</Link>
 					</div>
 
-					<h3 className="post-title text-lg">
+					<h3 className="post-title leading-6 text-lg">
 						<Link href="">Best places to travel solo female in us</Link>
 					</h3>
 				</article>

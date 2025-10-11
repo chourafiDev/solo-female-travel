@@ -34,7 +34,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-semibold uppercase">
+								<p className="text-[11px] text-white font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -81,7 +81,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-semibold uppercase">
+								<p className="text-[11px] text-white font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -128,7 +128,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-semibold uppercase">
+								<p className="text-[11px] text-white font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -175,7 +175,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-semibold uppercase">
+								<p className="text-[11px] text-white font-semibold uppercase">
 									Travel
 								</p>
 							</div>
@@ -222,7 +222,7 @@ const LatestPosts = () => {
 							/>
 
 							<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1.5 rounded-full z-20">
-								<p className="text-[11px] text-background font-semibold uppercase">
+								<p className="text-[11px] text-white font-semibold uppercase">
 									Travel
 								</p>
 							</div>

@@ -13,6 +13,9 @@ import { RxDividerVertical } from "react-icons/rx";
 const Banner = () => {
 	return (
 		<section className="section-bottom">
+			<h1 className="text-foreground text-[27px] font-semibold font-marcellus mb-5">
+				Solo Female Travel Guide: Safe Destinations, Tips & Inspiration
+			</h1>
 			<Carousel className="relative w-full">
 				<CarouselContent>
 					{Array.from({ length: 5 }).map((_, index) => (

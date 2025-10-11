@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { touristCarryingLuggage } from "@/lib/assets";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { RxDividerVertical } from "react-icons/rx";
@@ -7,13 +8,24 @@ import { RxDividerVertical } from "react-icons/rx";
 const MostPopular = () => {
 	return (
 		<section className="section-bottom">
-			<h2 className="title mb-4">Most Popular</h2>
+			<h2 className="title mb-6">Most Popular</h2>
 
 			<div
 				className="grid gap-4"
 				style={{ gridTemplateColumns: "1fr 1px 1fr 1px 1fr" }}
 			>
 				<div className="w-full">
+					<div className="flex items-center justify-between mb-4">
+						<h5 className="text-foreground font-semibold text-sm italic">
+							Destinations
+						</h5>
+						<Link
+							href="/"
+							className="text-sm text-foreground/60 font-semibold underline flex items-center gap-1"
+						>
+							View More <ArrowRight className="size-3 mt-1" />
+						</Link>
+					</div>
 					<article>
 						<Link href="" className="w-full h-full">
 							<div className="relative w-full h-[300px] rounded-xl overflow-hidden">
@@ -113,6 +125,17 @@ const MostPopular = () => {
 				<Separator orientation="vertical" className="h-full" />
 
 				<div className="w-full">
+					<div className="flex items-center justify-between mb-4">
+						<h5 className="text-foreground font-semibold text-sm italic">
+							Travel Tips
+						</h5>
+						<Link
+							href="/"
+							className="text-sm text-foreground/60 font-semibold underline flex items-center gap-1"
+						>
+							View More <ArrowRight className="size-3 mt-1" />
+						</Link>
+					</div>
 					<article>
 						<Link href="" className="w-full h-full">
 							<div className="relative w-full h-[300px] rounded-xl overflow-hidden">
@@ -212,6 +235,17 @@ const MostPopular = () => {
 				<Separator orientation="vertical" />
 
 				<div className="w-full">
+					<div className="flex items-center justify-between mb-4">
+						<h5 className="text-foreground font-semibold text-sm italic">
+							Safety Guide
+						</h5>
+						<Link
+							href="/"
+							className="text-sm text-foreground/60 font-semibold underline flex items-center gap-1"
+						>
+							View More <ArrowRight className="size-3 mt-1" />
+						</Link>
+					</div>
 					<article>
 						<Link href="" className="w-full h-full">
 							<div className="relative w-full h-[300px] rounded-xl overflow-hidden">

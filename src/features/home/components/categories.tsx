@@ -20,11 +20,11 @@ const Categories = () => {
 					<div className="space-x-1">
 						<CarouselPrevious
 							variant={"default"}
-							className="disabled:bg-white disabled:text-foreground disabled:opacity-100 disabled:border cursor-pointer"
+							className="disabled:bg-background disabled:text-foreground disabled:opacity-100 disabled:border cursor-pointer"
 						/>
 						<CarouselNext
 							variant={"default"}
-							className="disabled:bg-white disabled:text-foreground disabled:opacity-100 disabled:border cursor-pointer"
+							className="disabled:bg-background disabled:text-foreground disabled:opacity-100 disabled:border cursor-pointer"
 						/>
 					</div>
 				</div>
@@ -43,9 +43,11 @@ const Categories = () => {
 											/>
 										</div>
 
-										<div>
-											<p className="text-foreground font-bold text-sm">{cat.title}</p>
-											<p className="text-muted-foreground text-xs">
+										<div className="space-y-1">
+											<h3 className="text-foreground font-bold text-sm">
+												{cat.title}
+											</h3>
+											<p className="text-muted-foreground/80 text-xs">
 												{cat.posts}
 											</p>
 										</div>

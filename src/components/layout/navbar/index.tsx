@@ -2,7 +2,6 @@ import CallActions from "./call-actions";
 import DesktopMenu from "./desktop-menu";
 import Logo from "./logo";
 import MobileNav from "./mobile-nav";
-import { Skiper } from "./theme-toggle-button";
 
 export const NAVIGATION_MENU = [
 	{ href: "/", label: "Home" },
@@ -44,7 +43,7 @@ export const NAVIGATION_MENU = [
 
 export default function NavBar() {
 	return (
-		<header className="custom-container sticky top-0 bg-background z-50 flex items-center justify-between border-b py-2.5">
+		<header className="custom-container sticky top-0 bg-background z-50 flex items-center justify-between border-b py-3.5">
 			<div className="flex w-full h-full items-center justify-between">
 				<div className="flex items-center gap-24">
 					<Logo />

@@ -35,12 +35,7 @@ export default function RootLayout({
 			>
 				<JsonLd data={websiteSchema} id="website-schema" />
 
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<NavBar />
 					{children}
 					<Footer />

@@ -71,8 +71,8 @@ const Banner = () => {
 
 				<div className="absolute top-1/2 -translate-y-1/2 w-full px-8">
 					<div className="flex items-center justify-between">
-						<CarouselPrevious className="h-16 w-10 cursor-pointer rounded-md" />
-						<CarouselNext className="h-16 w-10 cursor-pointer rounded-md" />
+						<CarouselPrevious className="h-16 w-10 cursor-pointer rounded-md bg-white text-black" />
+						<CarouselNext className="h-16 w-10 cursor-pointer rounded-md bg-white text-black" />
 					</div>
 				</div>
 			</Carousel>

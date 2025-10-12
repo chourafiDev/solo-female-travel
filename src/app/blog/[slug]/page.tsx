@@ -15,16 +15,18 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { BsTwitterX } from "react-icons/bs";
 import { FaFacebook, FaPinterest } from "react-icons/fa";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import { RxDividerVertical } from "react-icons/rx";
 
-type Props = {
-	params: { slug: string };
-};
+interface PageProps {
+	params: Promise<{
+		slug: string;
+	}>;
+}
 
-// This would come from your CMS/database
 async function getPost(slug: string): Promise<BlogPost> {
 	return {
 		title: "Best Places to Travel Solo Female in the US",
@@ -42,16 +44,21 @@ async function getPost(slug: string): Promise<BlogPost> {
 	};
 }
 
-export async function generateMetadata({ params }: Props) {
-	const post = await getPost(params.slug);
+export async function generateMetadata({ params }: PageProps) {
+	const { slug } = await params;
+
+	const post = await getPost(slug);
 	return generateBlogPostMetadata(post);
 }
 
-export default async function BlogPostPage({ params }: Props) {
-	const post = await getPost(params.slug);
+export default async function BlogPostPage({ params }: PageProps) {
+	const { slug } = await params;
+
+	const post = await getPost(slug);
+
+	if (!post) return notFound();
 
 	const blogPostSchema = generateBlogPostingSchema(post);
-
 	const breadcrumbSchema = generateBreadcrumbSchema([
 		{ name: "Home", url: "/" },
 		{ name: "Blog", url: "/blog" },

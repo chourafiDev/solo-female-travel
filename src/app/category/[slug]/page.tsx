@@ -189,7 +189,8 @@ const CategoryPage = async ({ params }: PageProps) => {
 				{/* Category Header */}
 				<section className="mt-10 mb-16 lg:w-[60%]">
 					<div className="flex items-center gap-3">
-						<h1 className="text-foreground font-marcellus text-4xl font-semibold capitalize">
+						<h1 className="text-foreground font-marcellus text-4xl font-semibold">
+							{/* Use title from wordpress {category.slug} */}
 							{category.slug}
 						</h1>
 						<div className="px-3 py-1 bg-foreground rounded-full">
@@ -198,7 +199,10 @@ const CategoryPage = async ({ params }: PageProps) => {
 							</p>
 						</div>
 					</div>
-					<p className="text-muted-foreground text-[15px] font-normal mt-4">
+					<p
+						itemProp="description"
+						className="text-muted-foreground text-[15px] font-normal mt-4"
+					>
 						{category.description}
 					</p>
 				</section>
@@ -221,6 +225,7 @@ const CategoryPage = async ({ params }: PageProps) => {
 							</React.Fragment>
 						))}
 
+						{/* use posts.length >= 10 use you use wordpress */}
 						{posts.length > 5 && (
 							<nav
 								aria-label="Pagination"
@@ -229,17 +234,23 @@ const CategoryPage = async ({ params }: PageProps) => {
 								<Link
 									href={`/${category.slug}?page=1`}
 									rel="prev"
-									className="px-4 py-2 border rounded hover:bg-foreground hover:text-background"
+									className="px-4 py-2 border rounded hover:bg-foreground hover:text-background transition-colors"
+									aria-label="Go to previous page"
 								>
 									Previous
 								</Link>
-								<span className="px-4 py-2 bg-foreground text-background rounded">
+								<span
+									className="px-4 py-2 bg-foreground text-background rounded"
+									aria-current="page"
+									aria-label="Current page, page 1"
+								>
 									1
 								</span>
 								<Link
 									href={`/${category.slug}?page=2`}
 									rel="next"
-									className="px-4 py-2 border rounded hover:bg-foreground hover:text-background"
+									className="px-4 py-2 border rounded hover:bg-foreground hover:text-background transition-colors"
+									aria-label="Go to next page"
 								>
 									Next
 								</Link>
@@ -304,18 +315,18 @@ const BlogCard = ({
 						src={image}
 						alt={title}
 						fill
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 25vw"
 						className="absolute object-cover transition-all duration-300 group-hover:scale-110"
 						itemProp="url"
 						loading="lazy"
 					/>
 
 					{/* Category badge */}
-					<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 pt-0.5 pb-1 rounded-full z-20">
+					<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1 rounded-full z-20">
 						<Link
 							href={`/${category.toLowerCase()}`}
 							rel="category tag"
-							className="text-[11px] text-white font-semibold uppercase"
+							className="text-[11px] text-white font-bold uppercase leading-none"
 						>
 							{category}
 						</Link>
@@ -371,6 +382,23 @@ const BlogCard = ({
 				>
 					Read More
 				</Link>
+			</div>
+
+			{/* hidden publisher info */}
+			<div
+				itemProp="publisher"
+				itemScope
+				itemType="https://schema.org/Organization"
+				className="hidden"
+			>
+				<meta itemProp="name" content={siteConfig.name} />
+				<div
+					itemProp="logo"
+					itemScope
+					itemType="https://schema.org/ImageObject"
+				>
+					<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+				</div>
 			</div>
 		</article>
 	);

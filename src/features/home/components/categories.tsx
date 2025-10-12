@@ -12,18 +12,22 @@ import { CATEGORIES } from "../constants";
 
 const Categories = () => {
 	return (
-		<section className="section-bottom">
+		<section aria-labelledby="categories-heading" className="section-bottom">
 			<Carousel className="w-full">
 				<div className="flex items-center justify-between mb-4">
-					<h2 className="title">Top Categories</h2>
+					<h2 id="categories-heading" className="title">
+						Top Categories
+					</h2>
 
 					<div className="space-x-1">
 						<CarouselPrevious
 							variant={"default"}
+							aria-label="Previous categories"
 							className="disabled:bg-background disabled:text-foreground disabled:opacity-100 disabled:border cursor-pointer"
 						/>
 						<CarouselNext
 							variant={"default"}
+							aria-label="Next categories"
 							className="disabled:bg-background disabled:text-foreground disabled:opacity-100 disabled:border cursor-pointer"
 						/>
 					</div>
@@ -39,7 +43,9 @@ const Categories = () => {
 												src={cat.image}
 												alt={cat.title}
 												fill
+												sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
 												className="absolute object-cover"
+												loading="lazy"
 											/>
 										</div>
 

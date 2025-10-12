@@ -31,10 +31,13 @@ const Subscribe = () => {
 		}
 	}
 	return (
-		<section className="section-bottom rounded-xl px-10 py-12 bg-soft-linen flex items-center gap-16">
-			<h3 className="title flex-1">
+		<section
+			aria-labelledby="subscribe-heading"
+			className="section-bottom rounded-xl px-10 py-12 bg-soft-linen flex items-center gap-16"
+		>
+			<h2 id="subscribe-heading" className="title flex-1">
 				Subscribe Now To Stay Updated With Top News!
-			</h3>
+			</h2>
 			<p className="text-muted-foreground text-sm flex-1">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
 				voluptatem nobis minus accusantium voluptas.
@@ -45,6 +48,7 @@ const Subscribe = () => {
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
 						className="flex items-center bg-background rounded-full p-1.5 border"
+						aria-label="Newsletter subscription form"
 					>
 						<FormField
 							control={form.control}
@@ -53,13 +57,13 @@ const Subscribe = () => {
 								<FormItem className="flex-1">
 									<FormControl>
 										<Input
-											placeholder="E-mail"
+											placeholder="Enter your email"
 											type="email"
+											aria-label="Email address"
 											className="w-full bg-background border-none shadow-none outline-none focus-visible:ring-0"
 											{...field}
 										/>
 									</FormControl>
-
 									<FormMessage />
 								</FormItem>
 							)}
@@ -68,8 +72,9 @@ const Subscribe = () => {
 							type="submit"
 							size={"icon"}
 							className="size-11 cursor-pointer"
+							aria-label="Subscribe to newsletter"
 						>
-							<IoIosSend className="size-5" />
+							<IoIosSend className="size-5" aria-hidden="true" />
 						</Button>
 					</form>
 				</Form>

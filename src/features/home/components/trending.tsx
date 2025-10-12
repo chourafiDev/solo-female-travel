@@ -1,188 +1,159 @@
 import { Separator } from "@/components/ui/separator";
 import { touristCarryingLuggage } from "@/lib/assets";
+import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { RxDividerVertical } from "react-icons/rx";
 
+interface TrendingPost {
+	id: number;
+	title: string;
+	slug: string;
+	image: string;
+	date: string;
+	author: string;
+	authorSlug: string;
+}
+
 const Trending = () => {
+	const posts: TrendingPost[] = [
+		{
+			id: 1,
+			title: "Best places to travel solo female in us",
+			slug: "best-places-travel-solo-female-us",
+			image: "https://...",
+			date: "2025-02-12T10:00:00Z",
+			author: "Maya Pena",
+			authorSlug: "maya-pena",
+		},
+		{
+			id: 2,
+			title: "Best places to travel solo female in us",
+			slug: "best-places-travel-solo-female-us",
+			image: "https://...",
+			date: "2025-02-12T10:00:00Z",
+			author: "Maya Pena",
+			authorSlug: "maya-pena",
+		},
+		{
+			id: 3,
+			title: "Best places to travel solo female in us",
+			slug: "best-places-travel-solo-female-us",
+			image: "https://...",
+			date: "2025-02-12T10:00:00Z",
+			author: "Maya Pena",
+			authorSlug: "maya-pena",
+		},
+		{
+			id: 4,
+			title: "Best places to travel solo female in us",
+			slug: "best-places-travel-solo-female-us",
+			image: "https://...",
+			date: "2025-02-12T10:00:00Z",
+			author: "Maya Pena",
+			authorSlug: "maya-pena",
+		},
+	];
+
 	return (
-		<section className="mb-8">
+		<section aria-labelledby="trending-heading" className="mb-8">
+			<h2 id="trending-heading" className="sr-only">
+				Trending Posts
+			</h2>
+
 			<div
 				className="grid gap-2 my-6"
 				style={{ gridTemplateColumns: "1fr 1px 1fr 1px 1fr 1px 1fr" }}
 			>
-				<article className="group w-full flex items-center gap-2">
-					<Link href="">
-						<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
-							<Image
-								src={touristCarryingLuggage}
-								alt=""
-								fill
-								placeholder="blur"
-								className="absolute object-cover transition-all duration-300 group-hover:scale-110"
-							/>
-						</div>
-					</Link>
-
-					<div>
-						<div className="flex items-center gap-0 mb-1">
-							<p className="text-[9px] font-bold text-foreground">
-								{/* <time
-									dateTime={format(
-										new Date(posts[0].publishedAt),
-										"MMMM d, yyyy",
-									)}
+				{posts.map((post, index) => (
+					<>
+						<article
+							key={post.id}
+							itemScope
+							itemType="https://schema.org/BlogPosting"
+							className="group w-full flex items-center gap-3"
+						>
+							<Link href={`/blog/${post.slug}`} itemProp="url">
+								<figure
+									itemProp="image"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+									className="relative w-[90px] h-[70px] rounded-lg overflow-hidden"
 								>
-									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
-								</time> */}
-								FEBRUARY 12, 2025
-							</p>
-							<RxDividerVertical className="text-foreground font-bold rotate-12" />
-							<Link
-								href="/author"
-								className="text-[9px] text-bold font-semibold"
-							>
-								<span className="text-muted-foreground">POST BY</span> MAYA PENA
+									<Image
+										src={touristCarryingLuggage}
+										alt={post.title}
+										fill
+										placeholder="blur"
+										sizes="90px"
+										className="absolute object-cover transition-all duration-300 group-hover:scale-110"
+										itemProp="url"
+										loading={index < 2 ? "eager" : "lazy"}
+									/>
+								</figure>
 							</Link>
-						</div>
 
-						<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
-							<Link href="">Best places to travel solo female in us</Link>
-						</h3>
-					</div>
-				</article>
+							<div>
+								<div className="flex items-center gap-0">
+									<time
+										dateTime={post.date}
+										itemProp="datePublished"
+										className="text-[9px] font-bold text-foreground"
+									>
+										{format(new Date(post.date), "MMMM d, yyyy").toUpperCase()}
+									</time>
+									<RxDividerVertical
+										className="text-foreground font-bold rotate-12"
+										aria-hidden="true"
+									/>
+									<div
+										itemProp="author"
+										itemScope
+										itemType="https://schema.org/Person"
+										className="mb-1"
+									>
+										<Link
+											href={`/author/${post.authorSlug}`}
+											className="text-[9px] font-semibold"
+										>
+											<span className="text-muted-foreground">POST BY</span>{" "}
+											<span itemProp="name">{post.author.toUpperCase()}</span>
+										</Link>
+									</div>
+								</div>
 
-				<Separator orientation="vertical" className="h-full" />
-
-				<article className="group w-full flex items-center gap-2">
-					<Link href="">
-						<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
-							<Image
-								src={touristCarryingLuggage}
-								alt=""
-								fill
-								placeholder="blur"
-								className="absolute object-cover transition-all duration-300 group-hover:scale-110"
-							/>
-						</div>
-					</Link>
-
-					<div>
-						<div className="flex items-center gap-0 mb-1">
-							<p className="text-[9px] font-semibold text-foreground">
-								{/* <time
-									dateTime={format(
-										new Date(posts[0].publishedAt),
-										"MMMM d, yyyy",
-									)}
+								<h3
+									itemProp="headline"
+									className="text-foreground font-bold text-sm leading-[20px] group-hover:underline"
 								>
-									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
-								</time> */}
-								FEBRUARY 12, 2025
-							</p>
-							<RxDividerVertical className="text-foreground font-bold rotate-12" />
-							<Link
-								href="/author"
-								className="text-[9px] text-foreground font-semibold"
+									<Link href={`/blog/${post.slug}`}>{post.title}</Link>
+								</h3>
+							</div>
+
+							{/* Hidden publisher info */}
+							<div
+								itemProp="publisher"
+								itemScope
+								itemType="https://schema.org/Organization"
+								className="hidden"
 							>
-								<span className="text-muted-foreground">POST BY</span> MAYA PENA
-							</Link>
-						</div>
+								<meta itemProp="name" content="DROZY" />
+							</div>
+						</article>
 
-						<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
-							<Link href="">Best places to travel solo female in us</Link>
-						</h3>
-					</div>
-				</article>
-
-				<Separator orientation="vertical" className="h-full" />
-
-				<article className="group w-full flex items-center gap-2">
-					<Link href="">
-						<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
-							<Image
-								src={touristCarryingLuggage}
-								alt=""
-								fill
-								placeholder="blur"
-								className="absolute object-cover transition-all duration-300 group-hover:scale-110"
+						{index < posts.length - 1 && (
+							<Separator
+								key={`sep-${post.id}`}
+								orientation="vertical"
+								className="h-full"
+								aria-hidden="true"
 							/>
-						</div>
-					</Link>
-
-					<div>
-						<div className="flex items-center gap-0 mb-1">
-							<p className="text-[9px] font-semibold text-foreground">
-								{/* <time
-									dateTime={format(
-										new Date(posts[0].publishedAt),
-										"MMMM d, yyyy",
-									)}
-								>
-									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
-								</time> */}
-								FEBRUARY 12, 2025
-							</p>
-							<RxDividerVertical className="text-foreground font-bold rotate-12" />
-							<Link
-								href="/author"
-								className="text-[9px] text-foreground font-semibold"
-							>
-								<span className="text-muted-foreground">POST BY</span> MAYA PENA
-							</Link>
-						</div>
-
-						<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
-							<Link href="">Best places to travel solo female in us</Link>
-						</h3>
-					</div>
-				</article>
-
-				<Separator orientation="vertical" className="h-full" />
-
-				<article className="group w-full flex items-center gap-2">
-					<Link href="">
-						<div className="relative w-[90px] h-[70px] rounded-lg overflow-hidden">
-							<Image
-								src={touristCarryingLuggage}
-								alt=""
-								fill
-								placeholder="blur"
-								className="absolute object-cover transition-all duration-300 group-hover:scale-110"
-							/>
-						</div>
-					</Link>
-
-					<div>
-						<div className="flex items-center gap-0 mb-1">
-							<p className="text-[9px] font-semibold text-foreground">
-								{/* <time
-									dateTime={format(
-										new Date(posts[0].publishedAt),
-										"MMMM d, yyyy",
-									)}
-								>
-									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
-								</time> */}
-								FEBRUARY 12, 2025
-							</p>
-							<RxDividerVertical className="text-foreground font-bold rotate-12" />
-							<Link
-								href="/author"
-								className="text-[9px] text-foreground font-semibold"
-							>
-								<span className="text-muted-foreground">POST BY</span> MAYA PENA
-							</Link>
-						</div>
-
-						<h3 className="text-foreground font-bold text-sm leading-[20px] group-hover:underline">
-							<Link href="">Best places to travel solo female in us</Link>
-						</h3>
-					</div>
-				</article>
+						)}
+					</>
+				))}
 			</div>
 
-			<Separator className="w-full" />
+			<Separator className="w-full" aria-hidden="true" />
 		</section>
 	);
 };

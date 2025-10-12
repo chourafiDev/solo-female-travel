@@ -146,7 +146,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 							{/* Category */}
 							<div className="px-4 pt-1.5 pb-2 bg-foreground rounded-full">
 								<Link
-									href="/destinations"
+									href="/category/destinations"
 									rel="category tag"
 									className="text-xs font-semibold text-background"
 								>
@@ -438,7 +438,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 										alt="Best places to travel solo female in us"
 										fill
 										className="absolute object-cover transition-all duration-300 hover:scale-110"
-										itemProp="image"
+										itemProp="url"
 										placeholder="blur"
 										loading="lazy"
 									/>
@@ -499,7 +499,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 										alt="Best places to travel solo female in us"
 										fill
 										className="absolute object-cover transition-all duration-300 hover:scale-110"
-										itemProp="image"
+										itemProp="url"
 										placeholder="blur"
 										loading="lazy"
 									/>
@@ -560,7 +560,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 										alt="Best places to travel solo female in us"
 										fill
 										className="absolute object-cover transition-all duration-300 hover:scale-110"
-										itemProp="image"
+										itemProp="url"
 										placeholder="blur"
 										loading="lazy"
 									/>
@@ -621,7 +621,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 										alt="Best places to travel solo female in us"
 										fill
 										className="absolute object-cover transition-all duration-300 hover:scale-110"
-										itemProp="image"
+										itemProp="url"
 										placeholder="blur"
 										loading="lazy"
 									/>

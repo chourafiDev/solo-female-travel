@@ -1,13 +1,51 @@
+import { JsonLd } from "@/components/JsonLd";
 import { Separator } from "@/components/ui/separator";
 import Categories from "@/features/category/components/categories";
 import RelatesPosts from "@/features/category/components/relates-posts";
 import Search from "@/features/category/components/search";
+import {
+	generateBreadcrumbSchema,
+	generateCategoryMetadata,
+	generateCollectionPageSchema,
+	siteConfig,
+} from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { RxDividerVertical } from "react-icons/rx";
 
-const CategoryPage = () => {
+type Props = {
+	params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props) {
+	return generateCategoryMetadata(params.slug);
+}
+
+const CategoryPage = ({ params }: Props) => {
+	const category =
+		siteConfig.categories[params.slug as keyof typeof siteConfig.categories];
+
+	if (!category) {
+		return (
+			<main className="custom-container my-10">
+				<div className="py-44 bg-soft-linen rounded-xl flex justify-center items-center">
+					<p className="text-foreground font-semibold text-lg">Category not found</p>
+				</div>
+			</main>
+		);
+	}
+
+	const collectionSchema = generateCollectionPageSchema(
+		category.title,
+		category.description,
+	);
+
+	const breadcrumbSchema = generateBreadcrumbSchema([
+		{ name: "Home", url: "/" },
+		{ name: category.title, url: `/${category.slug}` },
+	]);
+
 	const posts = [
 		{
 			id: 1,
@@ -66,42 +104,44 @@ const CategoryPage = () => {
 		},
 	];
 	return (
-		<main className="custom-container">
-			<article className="mt-10 mb-16 lg:w-[60%]">
-				<div className="flex items-center gap-3">
-					<h1 className="text-foreground font-marcellus text-4xl font-semibold">
-						Destinations
-					</h1>
-					<div className="px-3 py-1 bg-foreground rounded-full">
-						<p className="text-xs font-medium text-background">30 article</p>
-					</div>
-				</div>
-				<p className="text-muted-foreground text-[15px] font-normal mt-4">
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae quidem
-					modi consequuntur, repellat ipsum cum eum. Obcaecati, cum incidunt
-					eveniet dolores odio quae dignissimos tempora doloremque illo
-					provident, officia vel.
-				</p>
-			</article>
+		<>
+			<JsonLd data={collectionSchema} id="collection-schema" />
+			<JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
 
-			<section className="mb-10 grid grid-cols-[75%_1px_1fr] gap-5 items-start">
-				<div className="space-y-6 mb-10">
-					{posts.map((post, index) => (
-						<React.Fragment key={post.id}>
-							<BlogCard {...post} />
-							{index < posts.length - 1 && <Separator />}
-						</React.Fragment>
-					))}
-				</div>
-				<Separator orientation="vertical" />
-				<aside className="space-y-8">
-					<Search />
-					<Categories />
-					<Separator />
-					<RelatesPosts />
-				</aside>
-			</section>
-		</main>
+			<main className="custom-container">
+				<article className="mt-10 mb-16 lg:w-[60%]">
+					<div className="flex items-center gap-3">
+						<h1 className="text-foreground font-marcellus text-4xl font-semibold">
+							{category.slug}
+						</h1>
+						<div className="px-3 py-1 bg-foreground rounded-full">
+							<p className="text-xs font-medium text-background">30 article</p>
+						</div>
+					</div>
+					<p className="text-muted-foreground text-[15px] font-normal mt-4">
+						{category.description}
+					</p>
+				</article>
+
+				<section className="mb-10 grid grid-cols-[75%_1px_1fr] gap-5 items-start">
+					<div className="space-y-6 mb-10">
+						{posts.map((post, index) => (
+							<React.Fragment key={post.id}>
+								<BlogCard {...post} />
+								{index < posts.length - 1 && <Separator />}
+							</React.Fragment>
+						))}
+					</div>
+					<Separator orientation="vertical" />
+					<aside className="space-y-8">
+						<Search />
+						<Categories />
+						<Separator />
+						<RelatesPosts />
+					</aside>
+				</section>
+			</main>
+		</>
 	);
 };
 

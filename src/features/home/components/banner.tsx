@@ -20,20 +20,19 @@ const Banner = () => {
 				<CarouselContent>
 					{Array.from({ length: 5 }).map((_, index) => (
 						<CarouselItem key={index}>
-							<Link href="/">
-								<div className="relative h-[550px] w-full rounded-xl overflow-hidden gradient-overlay">
-									<Image
-										src={touristCarryingLuggage}
-										alt="title"
-										fill
-										placeholder="blur"
-										className="absolute object-cover"
-									/>
+							<div className="relative h-[550px] w-full rounded-xl overflow-hidden gradient-overlay">
+								<Image
+									src={touristCarryingLuggage}
+									alt="title"
+									fill
+									placeholder="blur"
+									className="absolute object-cover"
+								/>
 
-									<div className="absolute bottom-8 left-8 w-[60%] z-20">
-										<div className="flex items-center gap-5 mb-5">
-											<p className="text-sm font-medium text-background dark:text-white">
-												{/* <time
+								<div className="absolute bottom-9 left-9 w-[60%] z-20">
+									<div className="flex items-center gap-5 mb-5">
+										<p className="text-sm font-medium text-background dark:text-white">
+											{/* <time
 									dateTime={format(
 										new Date(posts[0].publishedAt),
 										"MMMM d, yyyy",
@@ -41,20 +40,21 @@ const Banner = () => {
 								>
 									{format(new Date(posts[0].publishedAt), "MMMM d, yyyy")}
 								</time> */}
-												FEBRUARY 12, 2025
-											</p>
-											<RxDividerVertical className="text-background dark:text-white font-bold rotate-12" />
-											<Link
-												href="/author"
-												className="text-sm text-background dark:text-white font-medium"
-											>
-												<span className="text-background dark:text-white">
-													POST BY
-												</span>{" "}
-												MAYA PENA
-											</Link>
-										</div>
+											FEBRUARY 12, 2025
+										</p>
+										<RxDividerVertical className="text-background dark:text-white font-bold rotate-12" />
+										<Link
+											href="/author"
+											className="text-sm text-background dark:text-white font-medium"
+										>
+											<span className="text-background dark:text-white">
+												POST BY
+											</span>{" "}
+											MAYA PENA
+										</Link>
+									</div>
 
+									<Link href="/">
 										<h2 className="text-background dark:text-white text-[44px] leading-12 font-bold mb-4">
 											Safest countries for solo female travelers
 										</h2>
@@ -62,9 +62,9 @@ const Banner = () => {
 											Lorem ipsum dolor sit amet consectetur adipisicing elit.
 											Praesentium consequatur ipsum deserunt...
 										</p>
-									</div>
+									</Link>
 								</div>
-							</Link>
+							</div>
 						</CarouselItem>
 					))}
 				</CarouselContent>

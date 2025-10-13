@@ -10,13 +10,14 @@ export function generateBaseMetadata(): Metadata {
 		metadataBase: new URL(siteConfig.url),
 		title: {
 			default: siteConfig.title,
-			template: `%s | ${siteConfig.name}`,
+			template: `%s | ${siteConfig.shortName}`,
 		},
 		description: siteConfig.description,
 		keywords: [...siteConfig.keywords],
 		authors: [{ name: siteConfig.creator.name, url: siteConfig.url }],
 		creator: siteConfig.creator.name,
 		publisher: siteConfig.name,
+		applicationName: siteConfig.name,
 		formatDetection: {
 			email: false,
 			address: false,
@@ -31,10 +32,10 @@ export function generateBaseMetadata(): Metadata {
 			siteName: siteConfig.name,
 			images: [
 				{
-					url: siteConfig.ogImage,
+					url: `${siteConfig.url}${siteConfig.ogImage}`,
 					width: 1200,
 					height: 630,
-					alt: siteConfig.name,
+					alt: `${siteConfig.name} - ${siteConfig.branding.tagline}`,
 				},
 			],
 		},
@@ -42,8 +43,9 @@ export function generateBaseMetadata(): Metadata {
 			card: "summary_large_image",
 			title: siteConfig.title,
 			description: siteConfig.description,
+			site: siteConfig.creator.twitter,
 			creator: siteConfig.creator.twitter,
-			images: [siteConfig.twitterImage],
+			images: [`${siteConfig.url}${siteConfig.twitterImage}`],
 		},
 		robots: {
 			index: true,
@@ -57,11 +59,29 @@ export function generateBaseMetadata(): Metadata {
 			},
 		},
 		icons: {
-			icon: "/favicon.ico",
+			icon: [
+				{ url: "/favicon.ico" },
+				{ url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+				{ url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+			],
 			shortcut: "/favicon-16x16.png",
-			apple: "/apple-touch-icon.png",
+			apple: [
+				{ url: "/apple-touch-icon.png" },
+				{
+					url: "/apple-touch-icon-180x180.png",
+					sizes: "180x180",
+					type: "image/png",
+				},
+			],
 		},
 		manifest: "/site.webmanifest",
+		alternates: {
+			canonical: siteConfig.url,
+			types: {
+				"application/rss+xml": `${siteConfig.url}/feed.xml`,
+			},
+		},
+		category: "travel",
 	};
 }
 
@@ -79,14 +99,21 @@ export function generateHomeMetadata(): Metadata {
 			title: siteConfig.title,
 			description: siteConfig.description,
 			url: siteConfig.url,
+			type: "website",
 			images: [
 				{
-					url: siteConfig.ogImage,
+					url: `${siteConfig.url}${siteConfig.ogImage}`,
 					width: 1200,
 					height: 630,
-					alt: `${siteConfig.name} homepage`,
+					alt: `${siteConfig.name} - Homepage`,
 				},
 			],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: siteConfig.title,
+			description: siteConfig.description,
+			images: [`${siteConfig.url}${siteConfig.twitterImage}`],
 		},
 	};
 }
@@ -118,7 +145,7 @@ export function generateCategoryMetadata(categorySlug: string): Metadata {
 			type: "website",
 			images: [
 				{
-					url: `/og-${category.slug}.jpg`,
+					url: `${siteConfig.url}/og-${category.slug}.jpg`,
 					width: 1200,
 					height: 630,
 					alt: category.title,
@@ -129,7 +156,7 @@ export function generateCategoryMetadata(categorySlug: string): Metadata {
 			card: "summary_large_image",
 			title: category.title,
 			description: category.description,
-			images: [`/twitter-${category.slug}.jpg`],
+			images: [`${siteConfig.url}/twitter-${category.slug}.jpg`],
 		},
 	};
 }
@@ -159,6 +186,7 @@ export function generateBlogPostMetadata(post: BlogPost): Metadata {
 			modifiedTime: post.modifiedDate || post.publishedDate,
 			authors: [post.author],
 			url: url,
+			siteName: siteConfig.name,
 			images: [
 				{
 					url: imageUrl,
@@ -173,6 +201,7 @@ export function generateBlogPostMetadata(post: BlogPost): Metadata {
 			title: post.title,
 			description: post.description,
 			images: [imageUrl],
+			site: siteConfig.creator.twitter,
 			creator: siteConfig.creator.twitter,
 		},
 	};
@@ -185,16 +214,24 @@ export function generateAboutMetadata(): Metadata {
 	const url = `${siteConfig.url}/about`;
 
 	return {
-		title: `About ${siteConfig.name}`,
-		description: `Learn about ${siteConfig.name} and our mission to help women travel solo safely and confidently around the world.`,
+		title: `About ${siteConfig.shortName}`,
+		description: `Learn about ${siteConfig.name} and our mission to empower women to travel solo safely, confidently, and authentically around the world.`,
 		alternates: {
 			canonical: url,
 		},
 		openGraph: {
 			title: `About ${siteConfig.name}`,
-			description: `Learn about ${siteConfig.name} and our mission to help women travel solo safely.`,
+			description: `${siteConfig.branding.mission}`,
 			url: url,
 			type: "website",
+			images: [
+				{
+					url: `${siteConfig.url}/og-about.jpg`,
+					width: 1200,
+					height: 630,
+					alt: `About ${siteConfig.name}`,
+				},
+			],
 		},
 	};
 }
@@ -215,6 +252,55 @@ export function generateContactMetadata(): Metadata {
 			title: `Contact ${siteConfig.name}`,
 			description: `Get in touch with ${siteConfig.name}. We'd love to hear from you!`,
 			url: url,
+			type: "website",
+		},
+	};
+}
+
+/**
+ * Generate metadata for author pages
+ */
+export function generateAuthorMetadata(
+	authorName: string,
+	authorBio: string,
+	authorSlug: string,
+): Metadata {
+	const url = `${siteConfig.url}/author/${authorSlug}`;
+
+	return {
+		title: `${authorName} - Travel Writer at ${siteConfig.shortName}`,
+		description: authorBio,
+		alternates: {
+			canonical: url,
+		},
+		openGraph: {
+			title: authorName,
+			description: authorBio,
+			url: url,
+			type: "profile",
+		},
+	};
+}
+
+/**
+ * Generate metadata for search pages
+ */
+export function generateSearchMetadata(query?: string): Metadata {
+	const url = `${siteConfig.url}/search`;
+	const title = query ? `Search results for "${query}"` : "Search";
+	const description = query
+		? `Find solo female travel guides and tips about "${query}"`
+		: `Search ${siteConfig.name} for destinations, tips, and travel guides`;
+
+	return {
+		title,
+		description,
+		alternates: {
+			canonical: url,
+		},
+		robots: {
+			index: false, // Don't index search result pages
+			follow: true,
 		},
 	};
 }

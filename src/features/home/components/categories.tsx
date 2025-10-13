@@ -35,7 +35,7 @@ const Categories = () => {
 				<CarouselContent>
 					{CATEGORIES.map((cat) => (
 						<CarouselItem key={cat.id} className="md:basis-1/2 lg:basis-1/5">
-							<Link href="/">
+							<Link href={`${cat.path}`}>
 								<Card className="p-0 hover:border-foreground hover:border-[1.2px] duration-200 ease-linear">
 									<CardContent className="flex flex-col items-start justify-center gap-3 p-3">
 										<div className="relative h-36 w-full rounded-lg overflow-hidden">

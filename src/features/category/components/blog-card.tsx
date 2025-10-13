@@ -1,0 +1,134 @@
+import { siteConfig } from "@/lib/metadata";
+import { format } from "date-fns";
+import Image from "next/image";
+import Link from "next/link";
+import { RxDividerVertical } from "react-icons/rx";
+
+const BlogCard = ({
+	image,
+	date,
+	author,
+	authorSlug,
+	title,
+	slug,
+	category,
+	excerpt,
+}: {
+	image: string;
+	date: string;
+	author: string;
+	authorSlug: string;
+	title: string;
+	slug: string;
+	category: string;
+	excerpt: string;
+}) => {
+	return (
+		<article
+			itemScope
+			itemType="https://schema.org/BlogPosting"
+			className="group flex items-center gap-10"
+		>
+			{/* Image */}
+			<Link href={`/blog/${slug}`} itemProp="url" className="flex-1 h-full">
+				<figure
+					itemProp="image"
+					itemScope
+					itemType="https://schema.org/ImageObject"
+					className="relative w-full h-[250px] rounded-lg overflow-hidden"
+				>
+					<Image
+						src={image}
+						alt={title}
+						fill
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 25vw"
+						className="absolute object-cover transition-all duration-300 group-hover:scale-110"
+						itemProp="url"
+						loading="lazy"
+					/>
+
+					{/* Category badge */}
+					<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1 rounded-full z-20">
+						<Link
+							href={`/${category.toLowerCase()}`}
+							rel="category tag"
+							className="text-[11px] text-white font-bold uppercase leading-none"
+						>
+							{category}
+						</Link>
+					</div>
+				</figure>
+			</Link>
+
+			{/* Content */}
+			<div className="flex-1">
+				{/* Meta */}
+				<div className="flex items-center gap-0 mb-4">
+					<time
+						dateTime={date}
+						itemProp="datePublished"
+						className="text-xs font-bold text-foreground"
+					>
+						{format(new Date(date), "MMMM d, yyyy").toUpperCase()}
+					</time>
+					<RxDividerVertical
+						className="text-foreground font-bold rotate-12"
+						aria-hidden="true"
+					/>
+					<div itemProp="author" itemScope itemType="https://schema.org/Person">
+						<Link
+							href={`/author/${authorSlug}`}
+							className="text-xs text-foreground font-bold"
+						>
+							<span className="text-muted-foreground">POST BY</span>{" "}
+							<span itemProp="name">{author}</span>
+						</Link>
+					</div>
+				</div>
+
+				{/* Title & Excerpt */}
+				<div className="mb-8">
+					<h2
+						itemProp="headline"
+						className="post-title group-hover:underline text-2xl mb-3"
+					>
+						<Link href={`/blog/${slug}`}>{title}</Link>
+					</h2>
+
+					<p itemProp="description" className="text-muted-foreground text-sm">
+						{excerpt}
+					</p>
+				</div>
+
+				{/* Read More */}
+				<Link
+					href={`/blog/${slug}`}
+					className="text-sm font-bold underline hover:no-underline"
+					aria-label={`Read more about ${title}`}
+				>
+					Read More
+				</Link>
+			</div>
+
+			{/* hidden publisher info */}
+			<div
+				itemProp="publisher"
+				itemScope
+				itemType="https://schema.org/Organization"
+				className="hidden"
+			>
+				<meta itemProp="name" content={siteConfig.name} />
+				<div
+					itemProp="logo"
+					itemScope
+					itemType="https://schema.org/ImageObject"
+				>
+					<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+				</div>
+			</div>
+		</article>
+	);
+};
+
+
+export default BlogCard;

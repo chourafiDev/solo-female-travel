@@ -1,6 +1,10 @@
 import { JsonLd } from "@/components/JsonLd";
 import { Separator } from "@/components/ui/separator";
+import BlogCard from "@/features/category/components/blog-card";
+import Breadcrumbs from "@/features/category/components/breadcrumbs";
 import Categories from "@/features/category/components/categories";
+import CategoryHeader from "@/features/category/components/category-header";
+import PaginationPosts from "@/features/category/components/pagination-posts";
 import RelatesPosts from "@/features/category/components/relates-posts";
 import Search from "@/features/category/components/search";
 import {
@@ -10,12 +14,7 @@ import {
 	generateItemListSchema,
 	siteConfig,
 } from "@/lib/metadata";
-import { format } from "date-fns";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import { IoChevronForwardOutline } from "react-icons/io5";
-import { RxDividerVertical } from "react-icons/rx";
 
 interface PageProps {
 	params: Promise<{
@@ -150,62 +149,11 @@ const CategoryPage = async ({ params }: PageProps) => {
 			<JsonLd data={itemListSchema} id="itemlist-schema" />
 
 			{/* Breadcrumbs */}
-			<nav aria-label="Breadcrumb" className="bg-soft-linen py-3 border-b">
-				<div className="custom-container">
-					<ol
-						itemScope
-						itemType="https://schema.org/BreadcrumbList"
-						className="flex items-center gap-1.5 font-medium text-foreground text-xs"
-					>
-						<li
-							itemProp="itemListElement"
-							itemScope
-							itemType="https://schema.org/ListItem"
-						>
-							<Link href="/" itemProp="item">
-								<span itemProp="name">Home</span>
-							</Link>
-							<meta itemProp="position" content="1" />
-						</li>
-						<li>
-							<IoChevronForwardOutline
-								className="size-3.5"
-								aria-hidden="true"
-							/>
-						</li>
-						<li
-							itemProp="itemListElement"
-							itemScope
-							itemType="https://schema.org/ListItem"
-						>
-							<span itemProp="name">{category.title}</span>
-							<meta itemProp="position" content="2" />
-						</li>
-					</ol>
-				</div>
-			</nav>
+			<Breadcrumbs category={category.title} />
 
 			<main className="custom-container">
 				{/* Category Header */}
-				<section className="mt-10 mb-16 lg:w-[60%]">
-					<div className="flex items-center gap-3">
-						<h1 className="text-foreground font-marcellus text-4xl font-semibold">
-							{/* Use title from wordpress {category.slug} */}
-							{category.slug}
-						</h1>
-						<div className="px-3 py-1 bg-foreground rounded-full">
-							<p className="text-xs font-medium text-background">
-								{posts.length} articles
-							</p>
-						</div>
-					</div>
-					<p
-						itemProp="description"
-						className="text-muted-foreground text-[15px] font-normal mt-4"
-					>
-						{category.description}
-					</p>
-				</section>
+				<CategoryHeader />
 
 				{/* Posts Section */}
 				<section
@@ -217,45 +165,17 @@ const CategoryPage = async ({ params }: PageProps) => {
 					</h2>
 
 					{/* Posts List */}
-					<div className="space-y-6 mb-10">
-						{posts.map((post, index) => (
-							<React.Fragment key={post.id}>
-								<BlogCard {...post} />
-								{index < posts.length - 1 && <Separator />}
-							</React.Fragment>
-						))}
+					<div className="space-y-14 mb-10">
+						<div className="space-y-6">
+							{posts.map((post, index) => (
+								<React.Fragment key={post.id}>
+									<BlogCard {...post} />
+									{index < posts.length - 1 && <Separator />}
+								</React.Fragment>
+							))}
+						</div>
 
-						{/* use posts.length >= 10 use you use wordpress */}
-						{posts.length > 5 && (
-							<nav
-								aria-label="Pagination"
-								className="flex justify-center gap-2 mt-10"
-							>
-								<Link
-									href={`/${category.slug}?page=1`}
-									rel="prev"
-									className="px-4 py-2 border rounded hover:bg-foreground hover:text-background transition-colors"
-									aria-label="Go to previous page"
-								>
-									Previous
-								</Link>
-								<span
-									className="px-4 py-2 bg-foreground text-background rounded"
-									aria-current="page"
-									aria-label="Current page, page 1"
-								>
-									1
-								</span>
-								<Link
-									href={`/${category.slug}?page=2`}
-									rel="next"
-									className="px-4 py-2 border rounded hover:bg-foreground hover:text-background transition-colors"
-									aria-label="Go to next page"
-								>
-									Next
-								</Link>
-							</nav>
-						)}
+						<PaginationPosts currentPage={1} totalPages={10} />
 					</div>
 
 					<Separator orientation="vertical" aria-hidden="true" />
@@ -276,130 +196,3 @@ const CategoryPage = async ({ params }: PageProps) => {
 };
 
 export default CategoryPage;
-
-// Fixed BlogCard Component
-const BlogCard = ({
-	image,
-	date,
-	author,
-	authorSlug,
-	title,
-	slug,
-	category,
-	excerpt,
-}: {
-	image: string;
-	date: string;
-	author: string;
-	authorSlug: string;
-	title: string;
-	slug: string;
-	category: string;
-	excerpt: string;
-}) => {
-	return (
-		<article
-			itemScope
-			itemType="https://schema.org/BlogPosting"
-			className="group flex items-center gap-10"
-		>
-			{/* Image */}
-			<Link href={`/blog/${slug}`} itemProp="url" className="flex-1 h-full">
-				<figure
-					itemProp="image"
-					itemScope
-					itemType="https://schema.org/ImageObject"
-					className="relative w-full h-[250px] rounded-lg overflow-hidden"
-				>
-					<Image
-						src={image}
-						alt={title}
-						fill
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 25vw"
-						className="absolute object-cover transition-all duration-300 group-hover:scale-110"
-						itemProp="url"
-						loading="lazy"
-					/>
-
-					{/* Category badge */}
-					<div className="absolute top-3 left-3 bg-foreground/20 backdrop-blur-md px-4 py-1 rounded-full z-20">
-						<Link
-							href={`/${category.toLowerCase()}`}
-							rel="category tag"
-							className="text-[11px] text-white font-bold uppercase leading-none"
-						>
-							{category}
-						</Link>
-					</div>
-				</figure>
-			</Link>
-
-			{/* Content */}
-			<div className="flex-1">
-				{/* Meta */}
-				<div className="flex items-center gap-0 mb-4">
-					<time
-						dateTime={date}
-						itemProp="datePublished"
-						className="text-xs font-bold text-foreground"
-					>
-						{format(new Date(date), "MMMM d, yyyy").toUpperCase()}
-					</time>
-					<RxDividerVertical
-						className="text-foreground font-bold rotate-12"
-						aria-hidden="true"
-					/>
-					<div itemProp="author" itemScope itemType="https://schema.org/Person">
-						<Link
-							href={`/author/${authorSlug}`}
-							className="text-xs text-foreground font-bold"
-						>
-							<span className="text-muted-foreground">POST BY</span>{" "}
-							<span itemProp="name">{author}</span>
-						</Link>
-					</div>
-				</div>
-
-				{/* Title & Excerpt */}
-				<div className="mb-8">
-					<h2
-						itemProp="headline"
-						className="post-title group-hover:underline text-2xl mb-3"
-					>
-						<Link href={`/blog/${slug}`}>{title}</Link>
-					</h2>
-
-					<p itemProp="description" className="text-muted-foreground text-sm">
-						{excerpt}
-					</p>
-				</div>
-
-				{/* Read More */}
-				<Link
-					href={`/blog/${slug}`}
-					className="text-sm font-bold underline hover:no-underline"
-					aria-label={`Read more about ${title}`}
-				>
-					Read More
-				</Link>
-			</div>
-
-			{/* hidden publisher info */}
-			<div
-				itemProp="publisher"
-				itemScope
-				itemType="https://schema.org/Organization"
-				className="hidden"
-			>
-				<meta itemProp="name" content={siteConfig.name} />
-				<div
-					itemProp="logo"
-					itemScope
-					itemType="https://schema.org/ImageObject"
-				>
-					<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
-				</div>
-			</div>
-		</article>
-	);
-};

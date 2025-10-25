@@ -85,7 +85,7 @@ const Banner = () => {
 									/>
 								</figure>
 
-								<div className="absolute bottom-9 left-9 w-[60%] z-20">
+								<div className="absolute bottom-9 left-9 lg:w-[60%] w-[90%] z-20">
 									<div className="flex items-center gap-5 mb-3">
 										<time
 											dateTime={post.date}

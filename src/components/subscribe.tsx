@@ -33,12 +33,12 @@ const Subscribe = () => {
 	return (
 		<section
 			aria-labelledby="subscribe-heading"
-			className="section-bottom rounded-xl px-10 py-12 bg-soft-linen flex items-center gap-16"
+			className="section-bottom rounded-xl px-10 py-12 bg-soft-linen flex lg:flex-row flex-col items-center lg:gap-16 gap-6"
 		>
 			<h2 id="subscribe-heading" className="title flex-1">
 				Subscribe Now To Stay Updated With Top News!
 			</h2>
-			<p className="text-muted-foreground text-sm flex-1">
+			<p className="text-muted-foreground lg:text-start text-center text-sm flex-1">
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
 				voluptatem nobis minus accusantium voluptas.
 			</p>

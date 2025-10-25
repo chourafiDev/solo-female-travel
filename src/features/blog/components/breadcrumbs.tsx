@@ -42,6 +42,7 @@ const Breadcrumbs = () => {
 					itemProp="itemListElement"
 					itemScope
 					itemType="https://schema.org/ListItem"
+					className="text-foreground/40"
 				>
 					<span itemProp="name">
 						10 Simple Habits To Build A More Joyful And Fulfilling Life

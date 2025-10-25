@@ -1,6 +1,6 @@
 const Info = () => {
 	return (
-		<div className="p-12 flex-1">
+		<div className="md:p-12 p-8 flex-1">
 			<p className="text-foreground font-bold text-2xl mb-4">Logo</p>
 
 			<p className="text-sm text-muted-foreground">

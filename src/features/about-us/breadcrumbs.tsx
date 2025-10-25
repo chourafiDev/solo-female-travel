@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { IoChevronForwardOutline } from "react-icons/io5";
 
-const Breadcrumbs = ({ category }: { category: string }) => {
+const Breadcrumbs = () => {
 	return (
 		<nav aria-label="Breadcrumb" className="bg-soft-linen py-3 border-b">
 			<div className="custom-container">
@@ -29,7 +29,7 @@ const Breadcrumbs = ({ category }: { category: string }) => {
 						itemType="https://schema.org/ListItem"
 						className="text-foreground/40"
 					>
-						<span itemProp="name">{category}</span>
+						<span itemProp="name">About Us</span>
 						<meta itemProp="position" content="2" />
 					</li>
 				</ol>

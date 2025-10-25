@@ -31,7 +31,7 @@ const Subscribe = () => {
 		}
 	}
 	return (
-		<div className="flex-1 p-12">
+		<div className="flex-1 md:p-12 p-8">
 			<p className="text-foreground font-semibold text-base mb-4">
 				Subscribe for all the top news!
 			</p>

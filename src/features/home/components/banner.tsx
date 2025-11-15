@@ -85,7 +85,7 @@ const Banner = () => {
 									/>
 								</figure>
 
-								<div className="absolute bottom-9 left-9 lg:w-[60%] w-[90%] z-20">
+								<div className="absolute md:bottom-9 bottom-28 md:left-9 left-6 lg:w-[60%] w-[90%] z-20">
 									<div className="flex items-center gap-5 mb-3">
 										<time
 											dateTime={post.date}
@@ -119,7 +119,7 @@ const Banner = () => {
 									<Link href={`/blog/${post.slug}`} itemProp="url">
 										<h3
 											itemProp="headline"
-											className="text-background dark:text-white text-[44px] leading-tight font-bold mb-4"
+											className="text-background dark:text-white md:text-[44px] text-[38px] lg:leading-tight md:leading-12 leading-10 font-bold mb-4"
 										>
 											{post.title}
 										</h3>
@@ -146,14 +146,14 @@ const Banner = () => {
 					))}
 				</CarouselContent>
 
-				<div className="absolute top-1/2 -translate-y-1/2 w-full px-8">
+				<div className="absolute md:top-1/2 top-[500px] -translate-y-1/2 w-full md:px-8 px-4">
 					<div className="flex items-center justify-between">
 						<CarouselPrevious
-							className="h-16 w-10 cursor-pointer rounded-md bg-white text-black"
+							className="md:h-16 h-12 md:w-10 w-12 cursor-pointer md:rounded-md rounded-full bg-white text-black"
 							aria-label="Previous featured article"
 						/>
 						<CarouselNext
-							className="h-16 w-10 cursor-pointer rounded-md bg-white text-black"
+							className="md:h-16 h-12 md:w-10 w-12 cursor-pointer md:rounded-md rounded-full bg-white text-black"
 							aria-label="Next featured article"
 						/>
 					</div>

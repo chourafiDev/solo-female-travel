@@ -24,7 +24,7 @@ const index = () => {
 						&copy; {new Date().getFullYear()} Brand, All Rights Reserved.
 					</p>
 
-					<div className="flex md:flex-row flex-col items-center gap-4">
+					<div className="flex md:flex-row flex-col items-center md:gap-4 gap-2">
 						<Link href="/" className="font-medium text-[13px] link">
 							Term Of Services
 						</Link>

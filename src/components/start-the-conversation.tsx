@@ -6,7 +6,7 @@ const StartTheConversation = () => {
 	return (
 		<section
 			aria-labelledby="contact-cta-heading"
-			className="mb-6 py-16 flex flex-col items-center justify-center bg-soft-linen rounded-xl"
+			className="mb-6 px-3 py-16 flex flex-col items-center justify-center bg-soft-linen rounded-xl"
 		>
 			<h2 id="contact-cta-heading" className="title text-center lg:text-5xl text-3xl mb-5">
 				Let&apos;s Start The Conversation!

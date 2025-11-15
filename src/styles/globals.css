@@ -102,7 +102,7 @@
 	}
 
 	.section-bottom {
-		@apply mb-16;
+		@apply md:mb-16 mb-10;
 	}
 
 	.gradient-overlay {

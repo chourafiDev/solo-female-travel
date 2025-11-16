@@ -129,10 +129,18 @@ const posts = [
   },
 ];
 
-const Articles = () => {
+interface ArticlesProps {
+  query: string;
+  category: string;
+}
+
+const Articles = ({ query, category }: ArticlesProps) => {
   return (
     <section aria-labelledby="latest-posts-heading" className="section-bottom">
-      <h2 id="latest-posts-heading" className="text-muted-foreground text-lg font-medium font-marcellus mb-4">
+      <h2
+        id="latest-posts-heading"
+        className="text-muted-foreground text-lg font-medium font-marcellus mb-4"
+      >
         <span className="font-extrabold text-foreground text-2xl">320</span> Results found
       </h2>
 

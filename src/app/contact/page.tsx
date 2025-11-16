@@ -1,84 +1,174 @@
+import { JsonLd } from '@/components/JsonLd';
 import ContactForm from '@/features/contact/components/contact-form';
+import { generateContactMetadata, generateContactPageSchema, siteConfig } from '@/lib/metadata';
 import Link from 'next/link';
 import { AiFillInstagram } from 'react-icons/ai';
-import { FaFacebook, FaPinterest } from 'react-icons/fa';
+import { FaFacebook, FaPinterest, FaTiktok } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+
+export async function generateMetadata() {
+  return generateContactMetadata();
+}
 
 const ContactPage = () => {
+  const contactSchema = generateContactPageSchema();
+
   return (
-    <main id="main-content" className="md:py-10 py-5 custom-container">
-      <section className="section-bottom rounded-xl md:px-10 px-4 py-20 bg-soft-linen">
-        <h1 className="title text-center">Contact Us</h1>
-      </section>
+    <>
+      <JsonLd data={contactSchema} id="contact-schema" />
 
-      <section className="flex lg:flex-row flex-col items-start gap-10">
-        <div className="flex-1 lg:border-r lg:pr-10">
-          <div className="space-y-2 lg:mb-16 mb-10">
-            <h2 className="title">Let&apos;s Work Together</h2>
-            <p className="text-muted-foreground text-base">
-              We are here to listen, help, and connect, Reach out to us anytime with your thoughts,
-              questions, or suggestions.
-            </p>
-          </div>
+      <main id="main-content" className="md:py-10 py-5 custom-container">
+        <section className="section-bottom rounded-xl md:px-10 px-4 py-20 bg-soft-linen">
+          <h1 className="title text-center">Contact Us</h1>
+          <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Have questions about solo female travel? We&apos;re here to help you plan your next
+            adventure with confidence and safety.
+          </p>
+        </section>
 
-          <div className="space-y-8">
-            <div>
-              <strong className="text-foreground">Address:</strong>
-              <p className="text-muted-foreground text-[15px] mt-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat sequi nostrum
-                distinctio voluptatibus eos ut.
+        <section
+          aria-labelledby="contact-heading"
+          className="flex lg:flex-row flex-col items-start gap-10"
+        >
+          <h2 id="contact-heading" className="sr-only">
+            Contact Information and Form
+          </h2>
+
+          <div className="flex-1 lg:border-r lg:pr-10">
+            <div className="space-y-2 mb-10">
+              <h2 className="title">Let&apos;s Connect</h2>
+              <p className="text-muted-foreground text-base">
+                Whether you have questions about solo travel safety, need destination advice, or
+                want to share your travel story, we&apos;d love to hear from you.
               </p>
             </div>
-            <div>
-              <strong className="text-foreground">Information:</strong>
-              <div className="flex flex-col mt-2">
-                <Link href="/" className="text-muted-foreground text-[15px]">
-                  + 1234567890
-                </Link>
-                <Link href="/" className="text-muted-foreground text-[15px]">
-                  example@email.com
-                </Link>
+
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-foreground text-xl font-semibold mb-2">Get in Touch</h3>
+                <div className="flex flex-col gap-2">
+                  <div>
+                    <span className="text-sm text-foreground font-bold">General Inquiries:</span>
+                    <br />
+                    <Link
+                      href={`mailto:${siteConfig.contact.email}`}
+                      className="text-muted-foreground text-[15px] hover:text-foreground transition-colors"
+                    >
+                      {siteConfig.contact.email}
+                    </Link>
+                  </div>
+                  <div>
+                    <span className="text-sm text-foreground font-bold">Support:</span>
+                    <br />
+                    <Link
+                      href={`mailto:${siteConfig.contact.supportEmail}`}
+                      className="text-muted-foreground text-[15px] hover:text-foreground transition-colors"
+                    >
+                      {siteConfig.contact.supportEmail}
+                    </Link>
+                  </div>
+                  <div>
+                    <span className="text-sm text-foreground font-bold">
+                      Partnerships & Collaborations:
+                    </span>
+                    <br />
+                    <Link
+                      href={`mailto:${siteConfig.contact.businessEmail}`}
+                      className="text-muted-foreground text-[15px] hover:text-foreground transition-colors"
+                    >
+                      {siteConfig.contact.businessEmail}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-foreground font-semibold mb-2">Join Our Community</h3>
+                <p className="text-muted-foreground text-[15px] mb-3">
+                  Follow us for daily travel inspiration, safety tips, and connect with fellow solo
+                  female travelers.
+                </p>
+                <ul className="flex items-center gap-2">
+                  <li>
+                    <Link
+                      href={siteConfig.social.instagram.url}
+                      aria-label={`Follow us on Instagram ${siteConfig.social.instagram.handle}`}
+                      className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <AiFillInstagram size={24} aria-hidden="true" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={siteConfig.social.facebook.url}
+                      aria-label="Follow us on Facebook"
+                      className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaFacebook size={20} aria-hidden="true" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={siteConfig.social.pinterest.url}
+                      aria-label={`Follow us on Pinterest ${siteConfig.social.pinterest.handle}`}
+                      className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaPinterest size={20} aria-hidden="true" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={siteConfig.social.twitter.url}
+                      aria-label={`Follow us on Twitter ${siteConfig.social.twitter.handle}`}
+                      className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaXTwitter size={20} aria-hidden="true" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href={siteConfig.social.tiktok.url}
+                      aria-label={`Follow us on TikTok ${siteConfig.social.tiktok.handle}`}
+                      className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaTiktok size={20} aria-hidden="true" />
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-foreground font-semibold mb-2">Response Time</h3>
+                <p className="text-muted-foreground text-[15px]">
+                  We typically respond to all inquiries within 24-48 hours during business days. For
+                  urgent travel safety concerns, please contact local authorities.
+                </p>
               </div>
             </div>
-            <div>
-              <strong className="text-foreground">Our Social Media:</strong>
-              <ul className="flex items-center gap-2 mt-2">
-                <li>
-                  <Link
-                    href="/"
-                    className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
-                  >
-                    <FaFacebook size={20} />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
-                  >
-                    <FaPinterest size={20} />
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/"
-                    className="flex items-center justify-center size-10 border hover:bg-foreground hover:text-background duration-200 ease-in rounded-full"
-                  >
-                    <AiFillInstagram size={24} />
-                  </Link>
-                </li>
-              </ul>
+          </div>
+
+          <div className="flex-1 w-full">
+            <div className="mb-10 space-y-1">
+              <h2 className="title">Send Us a Message</h2>
+              <p className="text-muted-foreground">
+                Fill out the form below and we&apos;ll get back to you as soon as possible.
+              </p>
             </div>
+            <ContactForm />
           </div>
-        </div>
-        <div className="flex-1 w-full">
-          <div className="mb-10 space-y-1">
-            <h2 className="title">Drop Us A Line</h2>
-            <p className="text-muted-foreground">Use the form bellow to get in touch.</p>
-          </div>
-          <ContactForm />
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </>
   );
 };
 

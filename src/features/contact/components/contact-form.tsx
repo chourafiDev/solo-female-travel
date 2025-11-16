@@ -53,7 +53,7 @@ const ContactForm = () => {
                     Full Name <span className="text-destructive">*</span>
                   </FormLabel>
                   <FormControl>
-                    <Input className="border-foreground" {...field} />
+                    <Input className="border-foreground" autoComplete="name" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -70,7 +70,7 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel>Phone</FormLabel>
                   <FormControl>
-                    <Input className="border-foreground" type="tel" {...field} />
+                    <Input className="border-foreground" type="tel" autoComplete="tel" {...field} />
                   </FormControl>
 
                   <FormMessage />

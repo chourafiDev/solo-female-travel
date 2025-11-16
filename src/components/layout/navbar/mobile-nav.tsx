@@ -17,7 +17,19 @@ const MobileNav = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button size="icon" variant="ghost" className="rounded-full lg:hidden">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="rounded-full lg:hidden"
+          data-slot="button"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="radix-_R_56lb_"
+          data-state="closed"
+          aria-label="Open navigation menu"
+          title="Menu"
+        >
           <MenuIcon className="size-5" />
         </Button>
       </SheetTrigger>

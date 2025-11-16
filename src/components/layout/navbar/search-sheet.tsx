@@ -121,7 +121,20 @@ const SearchSheet = () => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="default" size="icon" className="size-10 flex" data-search-toggle>
+        <Button
+          variant="default"
+          size="icon"
+          className="size-10 flex"
+          data-slot="sheet-trigger"
+          data-search-toggle="true"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="radix-_r_1_"
+          data-state="closed"
+          aria-label="Open search dialog"
+          title="Search"
+        >
           <IoSearch className="size-4" />
         </Button>
       </SheetTrigger>

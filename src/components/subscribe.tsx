@@ -74,6 +74,7 @@ const Subscribe = () => {
               size={'icon'}
               className="size-12 cursor-pointer"
               aria-label="Subscribe to newsletter"
+              data-slot="button"
             >
               <IoIosSend className="size-7" aria-hidden="true" />
             </Button>

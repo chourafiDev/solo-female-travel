@@ -59,13 +59,21 @@ const Subscribe = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" size={'icon'} className="size-12 cursor-pointer">
+          <Button
+            type="submit"
+            size={'icon'}
+            className="size-12 cursor-pointer"
+            data-slot="button"
+            aria-label="Submit contact form"
+          >
             <IoIosSend className="size-7" />
           </Button>
         </form>
 
         {form.formState.errors.email && (
-          <p className="text-xs text-destructive pl-4 mt-2">{form.formState.errors.email.message}</p>
+          <p className="text-xs text-destructive pl-4 mt-2">
+            {form.formState.errors.email.message}
+          </p>
         )}
       </Form>
 

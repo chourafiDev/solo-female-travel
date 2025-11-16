@@ -75,7 +75,7 @@ const LatestPosts = () => {
           Latest Posts
         </h2>
         <Link
-          href="/blog"
+          href="/search"
           className={cn(buttonVariants({ variant: 'default' }))}
           /*  className="text-foreground flex items-center gap-1 text-sm font-medium hover:underline" */
         >

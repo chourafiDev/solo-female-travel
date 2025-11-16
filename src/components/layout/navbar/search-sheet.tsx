@@ -107,7 +107,7 @@ const SearchSheet = () => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="default" size="icon" className="size-10 lg:flex hidden" data-search-toggle>
+        <Button variant="default" size="icon" className="size-10 flex" data-search-toggle>
           <IoSearch className="size-4" />
         </Button>
       </SheetTrigger>

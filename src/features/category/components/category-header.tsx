@@ -1,6 +1,6 @@
 const CategoryHeader = () => {
 	return (
-		<section className="mt-10 mb-16 lg:w-[60%]">
+		<section className="mt-10 md:mb-16 mb-10 lg:w-[60%]">
 			<div className="flex items-center gap-3">
 				<h1 className="text-foreground font-marcellus text-4xl font-semibold">
 					{/* Use title from wordpress {category.slug} */}

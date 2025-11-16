@@ -27,7 +27,7 @@ const BlogCard = ({
     <article
       itemScope
       itemType="https://schema.org/BlogPosting"
-      className="group flex md:flex-row flex-col items-center gap-10"
+      className="group flex md:flex-row flex-col items-center md:gap-10 gap-5"
     >
       {/* Image */}
       <div className="relative flex-1 w-full h-full">
@@ -51,7 +51,7 @@ const BlogCard = ({
         </Link>
 
         {/* Category badge */}
-        <div className="absolute top-3 left-3  z-20">
+        <div className="absolute top-3 left-3 z-20">
           <Link
             href={`/category/${category.toLowerCase()}`}
             rel="category tag"
@@ -65,7 +65,7 @@ const BlogCard = ({
       {/* Content */}
       <div className="flex-1">
         {/* Meta */}
-        <div className="flex items-center gap-0 mb-4">
+        <div className="flex items-center gap-0 md:mb-4 mb-2">
           <time
             dateTime={date}
             itemProp="datePublished"
@@ -83,8 +83,8 @@ const BlogCard = ({
         </div>
 
         {/* Title & Excerpt */}
-        <div className="mb-8">
-          <h2 itemProp="headline" className="post-title group-hover:underline text-2xl mb-3">
+        <div className="md:mb-8 mb-4">
+          <h2 itemProp="headline" className="post-title group-hover:underline md:text-2xl text-xl mb-3">
             <Link href={`/blog/${slug}`}>{title}</Link>
           </h2>
 

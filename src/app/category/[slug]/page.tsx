@@ -142,7 +142,10 @@ const CategoryPage = async ({ params }: PageProps) => {
         <CategoryHeader />
 
         {/* Posts Section */}
-        <section aria-labelledby="posts-heading" className="mb-10 flex lg:flex-row flex-col gap-5 items-start">
+        <section
+          aria-labelledby="posts-heading"
+          className="mb-10 flex lg:flex-row flex-col gap-5 items-start"
+        >
           <h2 id="posts-heading" className="sr-only">
             {category.title} Posts
           </h2>
@@ -162,7 +165,7 @@ const CategoryPage = async ({ params }: PageProps) => {
           </div>
 
           {/* Sidebar */}
-          <aside aria-label="Sidebar" className='lg:w-auto w-full'>
+          <aside aria-label="Sidebar" className="lg:w-auto w-full">
             <div className="space-y-8 w-full">
               <Search />
               <Categories />

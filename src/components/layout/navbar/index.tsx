@@ -5,7 +5,6 @@ import MobileNav from './mobile-nav';
 
 export const NAVIGATION_MENU = [
   { href: '/', label: 'Home' },
-  { href: 'blog', label: 'Our Blog' },
   {
     label: 'Categories',
     submenu: true,

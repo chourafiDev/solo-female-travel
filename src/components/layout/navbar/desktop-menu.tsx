@@ -7,7 +7,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import Link from 'next/link';
 import { NAVIGATION_MENU } from '.';
 
 const DesktopMenu = () => {
@@ -18,7 +17,7 @@ const DesktopMenu = () => {
           item.submenu ? (
             <NavigationMenuItem key={item.label}>
               <NavigationMenuTrigger className="hover:bg-soft-linen font-bold text-sm">
-                <Link href={`/${item.href}`}>{item.label}</Link>
+                {item.label}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <div className="grid w-full md:w-4xl md:grid-cols-[.30fr_1fr]">

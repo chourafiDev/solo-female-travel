@@ -303,22 +303,55 @@ export function generateAuthorMetadata(
 /**
  * Generate metadata for search pages
  */
-export function generateSearchMetadata(query?: string): Metadata {
+export function generateSearchMetadata(query?: string, category?: string): Metadata {
   const url = `${siteConfig.url}/search`;
-  const title = query ? `Search results for "${query}"` : 'Search';
-  const description = query
-    ? `Find solo female travel guides and tips about "${query}"`
-    : `Search ${siteConfig.name} for destinations, tips, and travel guides`;
+
+  let title: string;
+  let description: string;
+
+  if (query && category) {
+    const categoryData = siteConfig.categories[category as keyof typeof siteConfig.categories];
+    title = `Search: "${query}" in ${categoryData?.title || category}`;
+    description = `Search results for "${query}" in ${categoryData?.title || category}. Find solo female travel guides, safety tips, and destination information.`;
+  } else if (query) {
+    title = `Search Results: "${query}"`;
+    description = `Search results for "${query}". Discover solo female travel guides, destination tips, and travel inspiration for women traveling alone.`;
+  } else if (category) {
+    const categoryData = siteConfig.categories[category as keyof typeof siteConfig.categories];
+    title = `Search ${categoryData?.title || category}`;
+    description =
+      categoryData?.description || `Browse ${category} articles for solo female travelers`;
+  } else {
+    title = 'Search Travel Guides';
+    description = `Search ${siteConfig.name} for solo female travel destinations, safety tips, budget guides, packing lists, and travel inspiration for women traveling alone.`;
+  }
 
   return {
     title,
     description,
+    keywords: [
+      ...siteConfig.keywords,
+      'search travel guides',
+      'find destinations',
+      'travel search',
+    ],
     alternates: {
       canonical: url,
     },
     robots: {
-      index: false, // Don't index search result pages
+      index: false,
       follow: true,
+    },
+    openGraph: {
+      title,
+      description,
+      url: url,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
     },
   };
 }

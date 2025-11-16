@@ -272,3 +272,33 @@ export function generateContactPageSchema() {
     },
   };
 }
+
+/**
+ * Generate schema for search page
+ */
+export function generateSearchPageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SearchResultsPage',
+    name: `Search ${siteConfig.name}`,
+    description: `Search page for ${siteConfig.name} - Find solo female travel guides and destination information`,
+    url: `${siteConfig.url}/search`,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/logo.png`,
+      },
+    },
+  };
+}

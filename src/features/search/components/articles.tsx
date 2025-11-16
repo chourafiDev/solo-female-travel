@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { touristCarryingLuggage } from '@/lib/assets';
 import { siteConfig } from '@/lib/metadata';
 import { format } from 'date-fns';
@@ -9,6 +10,7 @@ const posts = [
   {
     id: 1,
     title: 'Best places to travel solo female in us',
+    excerpt: 'test',
     slug: 'best-places-travel-solo-female-us',
     category: 'Travel',
     categorySlug: 'travel',
@@ -20,6 +22,7 @@ const posts = [
   {
     id: 2,
     title: 'Best places to travel solo female in us',
+    excerpt: 'test',
     slug: 'best-places-travel-solo-female-us',
     category: 'Travel',
     categorySlug: 'travel',
@@ -135,7 +138,69 @@ interface ArticlesProps {
 }
 
 const Articles = ({ query, category }: ArticlesProps) => {
-  console.log(query, category);
+  // TODO: Replace with actual API call
+  // const { data: posts, isLoading, error } = useFetchPosts({ query, category });
+
+  // Simulate filtering based on query and category
+  // In production, this filtering should happen on the API/backend
+  const filteredPosts = posts.filter((post) => {
+    const matchesQuery = query
+      ? post.title.toLowerCase().includes(query.toLowerCase()) ||
+        post.excerpt?.toLowerCase().includes(query.toLowerCase())
+      : true;
+
+    const matchesCategory = category ? post.categorySlug === category : true;
+
+    return matchesQuery && matchesCategory;
+  });
+
+  const resultsCount = filteredPosts.length;
+  const hasQuery = query || category;
+
+  // Loading state (for future API implementation)
+  // if (isLoading) {
+  //   return <ArticlesLoading />;
+  // }
+
+  // Error state (for future API implementation)
+  // if (error) {
+  //   return <ArticlesError />;
+  // }
+
+  // Empty state - no results found
+  if (resultsCount === 0) {
+    return (
+      <section aria-labelledby="no-results-heading" className="section-bottom">
+        <div className="text-center py-20 px-4">
+          <div className="max-w-md mx-auto space-y-4">
+            <h2 id="no-results-heading" className="text-2xl font-bold text-foreground">
+              No Articles Found
+            </h2>
+            <p className="text-muted-foreground">
+              {query && category
+                ? `We couldn't find any articles matching "${query}" in ${category}. Try different keywords or browse other categories.`
+                : query
+                  ? `No articles found for "${query}". Try different search terms or explore our categories.`
+                  : category
+                    ? `No articles found in ${category}. Check back soon for new content.`
+                    : 'No articles available at the moment.'}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-6">
+              <Button asChild variant="default">
+                <Link href="/">Browse All Articles</Link>
+              </Button>
+              {hasQuery && (
+                <Button asChild variant="outline">
+                  <Link href="/search">Clear Filters</Link>
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section aria-labelledby="latest-posts-heading" className="section-bottom">
       <h2

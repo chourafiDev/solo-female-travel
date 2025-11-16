@@ -5,14 +5,14 @@ import { FaFacebook, FaPinterest } from 'react-icons/fa';
 
 const ContactPage = () => {
   return (
-    <main id="main-content" className="py-10 custom-container">
+    <main id="main-content" className="md:py-10 py-5 custom-container">
       <section className="section-bottom rounded-xl md:px-10 px-4 py-20 bg-soft-linen">
         <h1 className="title text-center">Contact Us</h1>
       </section>
 
-      <section className="flex items-start gap-10">
-        <div className="flex-1 border-r pr-10">
-          <div className="space-y-2 mb-16">
+      <section className="flex lg:flex-row flex-col items-start gap-10">
+        <div className="flex-1 lg:border-r lg:pr-10">
+          <div className="space-y-2 lg:mb-16 mb-10">
             <h2 className="title">Let&apos;s Work Together</h2>
             <p className="text-muted-foreground text-base">
               We are here to listen, help, and connect, Reach out to us anytime with your thoughts,
@@ -70,7 +70,7 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1">
+        <div className="flex-1 w-full">
           <div className="mb-10 space-y-1">
             <h2 className="title">Drop Us A Line</h2>
             <p className="text-muted-foreground">Use the form bellow to get in touch.</p>

@@ -135,6 +135,7 @@ interface ArticlesProps {
 }
 
 const Articles = ({ query, category }: ArticlesProps) => {
+  console.log(query, category);
   return (
     <section aria-labelledby="latest-posts-heading" className="section-bottom">
       <h2

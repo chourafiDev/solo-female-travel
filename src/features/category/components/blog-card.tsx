@@ -84,7 +84,10 @@ const BlogCard = ({
 
         {/* Title & Excerpt */}
         <div className="md:mb-8 mb-4">
-          <h2 itemProp="headline" className="post-title group-hover:underline md:text-2xl text-xl mb-3">
+          <h2
+            itemProp="headline"
+            className="post-title group-hover:underline md:text-2xl text-xl mb-3"
+          >
             <Link href={`/blog/${slug}`}>{title}</Link>
           </h2>
 
@@ -96,10 +99,19 @@ const BlogCard = ({
         {/* Read More */}
         <Link
           href={`/blog/${slug}`}
-          className="text-sm font-bold underline hover:no-underline"
-          aria-label={`Read more about ${title}`}
+          className="inline-flex items-center text-primary hover:underline text-sm font-medium"
+          aria-label={`Read full article: ${title}`}
         >
-          Read More
+          Read Full Article
+          <svg
+            className="ml-1 h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
         </Link>
       </div>
 

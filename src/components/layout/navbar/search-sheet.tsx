@@ -9,8 +9,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Trending from '@/features/search/components/trending';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { useId, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useId, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IoSearch } from 'react-icons/io5';
 import z from 'zod';
@@ -53,13 +53,27 @@ const SearchSheet = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
+  const searchParams = useSearchParams();
+
+  const query = searchParams.get('q') || '';
+  const category = searchParams.get('category') || '';
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      search: '',
-      category: '',
+      search: query,
+      category: category,
     },
   });
+
+  // Update form when URL params change
+
+  useEffect(() => {
+    form.reset({
+      search: query,
+      category: category,
+    });
+  }, [query, category, form]);
 
   const performSearch = (values: z.infer<typeof formSchema>) => {
     const params = new URLSearchParams();

@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 
 const SearchPage = () => {
   return (
-    <main id="main-content" className="custom-container">
+    <main id="main-content" className="custom-container pt-6">
       <Suspense fallback={<div>Loading search results...</div>}>
         <SearchResults />
       </Suspense>

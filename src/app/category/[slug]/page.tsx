@@ -140,7 +140,7 @@ const CategoryPage = async ({ params }: PageProps) => {
           itemProp="itemListElement"
           itemScope
           itemType="https://schema.org/ListItem"
-          className="text-foreground/40"
+          className="text-foreground"
         >
           <span itemProp="name">{category.title}</span>
           <meta itemProp="position" content="2" />

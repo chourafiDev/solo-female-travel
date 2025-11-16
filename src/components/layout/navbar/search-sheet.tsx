@@ -134,7 +134,7 @@ const SearchSheet = () => {
                 <h3 className="text-foreground font-extrabold text-[17px] mb-2">
                   What Are You Looking For?
                 </h3>
-                <div className="flex items-center bg-background rounded-full p-1 border">
+                <div className="flex items-center bg-background dark:bg-input/30 overflow-hidden rounded-full p-1 border">
                   <FormField
                     control={form.control}
                     name="search"
@@ -145,7 +145,7 @@ const SearchSheet = () => {
                             placeholder="Search articles..."
                             type="text"
                             aria-label="Search query"
-                            className="w-full bg-background border-none shadow-none outline-none focus-visible:ring-0"
+                            className="w-full bg-background dark:bg-transparent border-none shadow-none outline-none dark:focus-visible:ring-offset-0 focus-visible:border-none focus-visible:ring-0"
                             {...field}
                             onKeyDown={(e) => {
                               // Allow search on Enter key
@@ -159,7 +159,7 @@ const SearchSheet = () => {
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="px-8 flex-shrink-0">
+                  <Button type="submit" className="px-8 py-6 flex-shrink-0">
                     Search
                   </Button>
                 </div>
@@ -195,7 +195,7 @@ const SearchSheet = () => {
                             <Label
                               key={`${id}-${item.value}`}
                               htmlFor={`${id}-${item.value}`}
-                              className="relative flex cursor-pointer items-center gap-3 rounded-full border border-input px-5 py-2.5 text-center hover:bg-foreground hover:text-background transition-colors outline-none has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:checked]:text-background has-[:checked]:bg-foreground"
+                              className="relative flex cursor-pointer items-center gap-3 rounded-full border border-input dark:bg-input/30 px-5 py-2.5 text-center dark:hover:bg-white hover:bg-foreground hover:text-background transition-colors outline-none has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:checked]:text-background dark:has-[:checked]:bg-white has-[:checked]:bg-foreground"
                             >
                               <RadioGroupItem
                                 id={`${id}-${item.value}`}

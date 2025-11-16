@@ -10,7 +10,10 @@ const CallActions = () => {
       <Skiper />
       <SearchSheet />
       <div className="h-10 w-1 mx-3 bg-border" />
-      <Link href="/" className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-10 lg:flex hidden')}>
+      <Link
+        href="/contact"
+        className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'h-10 lg:flex hidden')}
+      >
         Let&apos;s Talk
       </Link>
     </div>

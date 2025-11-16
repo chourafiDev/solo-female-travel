@@ -145,7 +145,7 @@ export default function SearchResults() {
                           placeholder="Search articles..."
                           type="text"
                           aria-label="Search query"
-                          className="bg-background rounded-full border w-full px-4 py-6 pr-12 shadow-none outline-none focus-visible:ring-0"
+                          className="bg-background dark:bg-background rounded-full border w-full px-4 py-6 pr-12 shadow-none outline-none focus-visible:ring-0"
                           {...field}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
@@ -191,7 +191,7 @@ export default function SearchResults() {
                           <Label
                             key={`${id}-${item.value}`}
                             htmlFor={`${id}-${item.value}`}
-                            className="relative flex cursor-pointer items-center bg-white dark:bg-background gap-3 rounded-full border border-input px-5 py-3 text-center hover:bg-foreground dark:hover:bg-foreground hover:text-background transition-colors outline-none has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:checked]:text-background has-[:checked]:bg-foreground"
+                            className="relative flex cursor-pointer items-center bg-white dark:bg-background gap-3 rounded-full border border-input px-5 py-3 text-center hover:bg-foreground dark:hover:bg-foreground hover:text-background transition-colors outline-none has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:checked]:text-background dark:has-[:checked]:bg-white has-[:checked]:bg-foreground"
                           >
                             <RadioGroupItem
                               id={`${id}-${item.value}`}

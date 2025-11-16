@@ -1,6 +1,12 @@
 import { JsonLd } from '@/components/JsonLd';
+import Breadcrumbs from '@/components/breadcrumbs';
 import ContactForm from '@/features/contact/components/contact-form';
-import { generateContactMetadata, generateContactPageSchema, siteConfig } from '@/lib/metadata';
+import {
+  generateBreadcrumbSchema,
+  generateContactMetadata,
+  generateContactPageSchema,
+  siteConfig,
+} from '@/lib/metadata';
 import Link from 'next/link';
 import { AiFillInstagram } from 'react-icons/ai';
 import { FaFacebook, FaPinterest, FaTiktok } from 'react-icons/fa';
@@ -12,10 +18,29 @@ export async function generateMetadata() {
 
 const ContactPage = () => {
   const contactSchema = generateContactPageSchema();
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Contact Us', url: '/contact' },
+  ]);
 
   return (
     <>
+      {/* JSON-LD Schemas */}
       <JsonLd data={contactSchema} id="contact-schema" />
+      <JsonLd data={breadcrumbSchema} id="breadcrumb-schema" />
+
+      {/* Breadcrumbs */}
+      <Breadcrumbs>
+        <li
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
+          className="text-foreground"
+        >
+          <span itemProp="name">Contact Us</span>
+          <meta itemProp="position" content="2" />
+        </li>
+      </Breadcrumbs>
 
       <main id="main-content" className="md:py-10 py-5 custom-container">
         <section className="section-bottom rounded-xl md:px-10 px-4 py-20 bg-soft-linen">
@@ -45,8 +70,8 @@ const ContactPage = () => {
 
             <div className="space-y-8">
               <div>
-                <h3 className="text-foreground text-xl font-semibold mb-2">Get in Touch</h3>
-                <div className="flex flex-col gap-2">
+                <h3 className="text-foreground text-xl font-semibold mb-3">Get in Touch</h3>
+                <div className="flex flex-col gap-3">
                   <div>
                     <span className="text-sm text-foreground font-bold">General Inquiries:</span>
                     <br />
@@ -83,7 +108,7 @@ const ContactPage = () => {
               </div>
 
               <div>
-                <h3 className="text-foreground font-semibold mb-2">Join Our Community</h3>
+                <h3 className="text-foreground text-xl font-semibold mb-2">Join Our Community</h3>
                 <p className="text-muted-foreground text-[15px] mb-3">
                   Follow us for daily travel inspiration, safety tips, and connect with fellow solo
                   female travelers.
@@ -148,7 +173,7 @@ const ContactPage = () => {
               </div>
 
               <div>
-                <h3 className="text-foreground font-semibold mb-2">Response Time</h3>
+                <h3 className="text-foreground text-xl font-semibold mb-2">Response Time</h3>
                 <p className="text-muted-foreground text-[15px]">
                   We typically respond to all inquiries within 24-48 hours during business days. For
                   urgent travel safety concerns, please contact local authorities.

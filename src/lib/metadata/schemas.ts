@@ -302,3 +302,35 @@ export function generateSearchPageSchema() {
     },
   };
 }
+
+/**
+ * Generate WebPage schema for static pages
+ */
+export function generateWebPageSchema(pageName: string, description: string, path: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: pageName,
+    description: description,
+    url: `${siteConfig.url}${path}`,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    about: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      description: siteConfig.branding.mission,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/logo.png`,
+      },
+    },
+  };
+}

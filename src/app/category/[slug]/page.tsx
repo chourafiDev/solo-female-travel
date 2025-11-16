@@ -1,7 +1,7 @@
 import { JsonLd } from '@/components/JsonLd';
+import Breadcrumbs from '@/components/breadcrumbs';
 import { Separator } from '@/components/ui/separator';
 import BlogCard from '@/features/category/components/blog-card';
-import Breadcrumbs from '@/features/category/components/breadcrumbs';
 import Categories from '@/features/category/components/categories';
 import CategoryHeader from '@/features/category/components/category-header';
 import PaginationPosts from '@/features/category/components/pagination-posts';
@@ -135,7 +135,17 @@ const CategoryPage = async ({ params }: PageProps) => {
       <JsonLd data={itemListSchema} id="itemlist-schema" />
 
       {/* Breadcrumbs */}
-      <Breadcrumbs category={category.title} />
+      <Breadcrumbs>
+        <li
+          itemProp="itemListElement"
+          itemScope
+          itemType="https://schema.org/ListItem"
+          className="text-foreground/40"
+        >
+          <span itemProp="name">{category.title}</span>
+          <meta itemProp="position" content="2" />
+        </li>
+      </Breadcrumbs>
 
       <main className="custom-container">
         {/* Category Header */}

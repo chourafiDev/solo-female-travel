@@ -1,7 +1,7 @@
 import { JsonLd } from '@/components/JsonLd';
+import Breadcrumbs from '@/components/breadcrumbs';
 import ArticleHeader from '@/features/blog/components/article-header';
 import AuthorBio from '@/features/blog/components/author-bio';
-import Breadcrumbs from '@/features/blog/components/breadcrumbs';
 import PostNavigation from '@/features/blog/components/post-navigation';
 import RelatedPosts from '@/features/blog/components/related-posts';
 import SocialShareButtons from '@/features/blog/components/social-share-buttons';
@@ -13,7 +13,9 @@ import {
   generateFAQSchema,
 } from '@/lib/metadata';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { IoChevronForwardOutline } from 'react-icons/io5';
 
 interface PageProps {
   params: Promise<{
@@ -77,7 +79,28 @@ export default async function BlogPostPage({ params }: PageProps) {
       <JsonLd data={faqSchema} id="faq-schema" />
 
       {/* Breadcrumbs */}
-      <Breadcrumbs />
+      <Breadcrumbs>
+        <>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link href="/category/lifestyle" itemProp="item">
+              <span itemProp="name">Lifestyle</span>
+            </Link>
+            <meta itemProp="position" content="2" />
+          </li>
+          <li>
+            <IoChevronForwardOutline className="size-3.5" aria-hidden="true" />
+          </li>
+          <li
+            itemProp="itemListElement"
+            itemScope
+            itemType="https://schema.org/ListItem"
+            className="text-foreground/40"
+          >
+            <span itemProp="name">10 Simple Habits To Build A More Joyful And Fulfilling Life</span>
+            <meta itemProp="position" content="3" />
+          </li>
+        </>
+      </Breadcrumbs>
 
       <main className="custom-container">
         <article itemScope itemType="https://schema.org/BlogPosting" className="mb-10 mt-10">

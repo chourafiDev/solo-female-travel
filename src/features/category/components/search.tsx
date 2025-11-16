@@ -45,7 +45,7 @@ const Search = () => {
 								<Input
 									placeholder="Search"
 									type="text"
-									className="w-full bg-background border-none shadow-none outline-none focus-visible:ring-0"
+									className="w-full bg-background overflow-hidden border-none shadow-none outline-none focus-visible:ring-0"
 									{...field}
 								/>
 							</FormControl>

@@ -99,7 +99,7 @@ const BlogCard = ({
         {/* Read More */}
         <Link
           href={`/blog/${slug}`}
-          className="inline-flex items-center text-primary hover:underline text-sm font-medium"
+          className="inline-flex items-center text-primary hover:underline text-sm font-semibold"
           aria-label={`Read full article: ${title}`}
         >
           Read Full Article

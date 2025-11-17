@@ -334,3 +334,49 @@ export function generateWebPageSchema(pageName: string, description: string, pat
     },
   };
 }
+
+/**
+ * Generate Person schema for author pages
+ */
+export function generateAuthorSchema(author: {
+  name: string;
+  slug: string;
+  bio: string;
+  image: string;
+  jobTitle: string;
+  location: string;
+  email: string;
+  social?: {
+    instagram?: string;
+    twitter?: string;
+    pinterest?: string;
+    facebook?: string;
+  };
+}) {
+  const sameAs = [];
+  if (author.social?.instagram) sameAs.push(author.social.instagram);
+  if (author.social?.twitter) sameAs.push(author.social.twitter);
+  if (author.social?.pinterest) sameAs.push(author.social.pinterest);
+  if (author.social?.facebook) sameAs.push(author.social.facebook);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: author.name,
+    url: `${siteConfig.url}/author/${author.slug}`,
+    image: author.image,
+    jobTitle: author.jobTitle,
+    description: author.bio,
+    email: author.email,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: author.location,
+    },
+    worksFor: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    ...(sameAs.length > 0 && { sameAs }),
+  };
+}

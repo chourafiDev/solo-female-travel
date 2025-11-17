@@ -288,14 +288,34 @@ export function generateAuthorMetadata(
   return {
     title: `${authorName} - Travel Writer at ${siteConfig.shortName}`,
     description: authorBio,
+    keywords: [
+      ...siteConfig.keywords,
+      authorName.toLowerCase(),
+      'travel writer',
+      'travel blogger',
+      'solo female travel expert',
+    ],
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: authorName,
+      title: `${authorName} - ${siteConfig.shortName}`,
       description: authorBio,
       url: url,
       type: 'profile',
+      images: [
+        {
+          url: `${siteConfig.url}/og-author-${authorSlug}.jpg`,
+          width: 1200,
+          height: 630,
+          alt: `${authorName} - Travel Writer`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary',
+      title: `${authorName} - Travel Writer`,
+      description: authorBio,
     },
   };
 }

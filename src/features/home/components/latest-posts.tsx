@@ -1,5 +1,4 @@
 import { buttonVariants } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { touristCarryingLuggage } from '@/lib/assets';
 import { siteConfig } from '@/lib/metadata';
 import { cn } from '@/lib/utils';
@@ -70,7 +69,7 @@ const LatestPosts = () => {
 
   return (
     <section aria-labelledby="latest-posts-heading" className="section-bottom">
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center justify-between">
         <h2 id="latest-posts-heading" className="title">
           Latest Posts
         </h2>
@@ -83,9 +82,7 @@ const LatestPosts = () => {
         </Link>
       </div>
 
-      <Separator />
-
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 lg:gap-3 gap-6 mt-6">
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 lg:gap-3 gap-6 mt-4">
         {posts.map((post) => (
           <article key={post.id} itemScope itemType="https://schema.org/BlogPosting">
             <div className="relative w-full">

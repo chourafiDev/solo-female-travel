@@ -67,7 +67,7 @@ const Banner = async () => {
 								<article
 									itemScope
 									itemType="https://schema.org/BlogPosting"
-									className="relative h-[550px] w-full rounded-xl overflow-hidden gradient-overlay"
+									className="relative h-[600px] w-full rounded-xl overflow-hidden gradient-overlay"
 								>
 									<figure
 										itemProp="image"

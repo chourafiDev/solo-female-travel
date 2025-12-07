@@ -115,7 +115,7 @@ const SubscribeVertical = () => {
 														<Input
 															type="email"
 															disabled={isPending}
-															className="w-full p-3.5 bg-white"
+															className="w-full py-3.5 dark:bg-white"
 															{...field}
 														/>
 													</FormControl>

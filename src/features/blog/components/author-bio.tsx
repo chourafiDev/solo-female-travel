@@ -69,7 +69,7 @@ const AuthorBio = ({ author }: AuthorBioProps) => {
 								components={{
 									block: {
 										normal: ({ children }) => (
-											<p className="my-2 text-gray-700 text-base leading-7 first:mt-0 last:mb-0">
+											<p className="my-2 text-foreground text-base leading-7 first:mt-0 last:mb-0">
 												{children}
 											</p>
 										),

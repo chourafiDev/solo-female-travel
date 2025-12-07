@@ -285,15 +285,6 @@ const AboutUsPage = () => {
 								</Link>
 
 								<Link
-									href={siteConfig.social.facebook.url}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="block text-foreground text-[15px] hover:text-primary transition-colors"
-								>
-									Facebook
-								</Link>
-
-								<Link
 									href={siteConfig.social.tiktok.url}
 									target="_blank"
 									rel="noopener noreferrer"

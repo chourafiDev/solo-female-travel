@@ -1,5 +1,5 @@
 import { getAllCategories } from "@/sanity/queries";
-import type { Category } from "@/sanity/types";
+import type { ALL_CATEGORIES_QUERYResult } from "@/sanity/types";
 import CallActions from "./call-actions";
 import DesktopMenu from "./desktop-menu";
 import Logo from "./logo";
@@ -27,10 +27,20 @@ export default async function NavBar() {
 			label: "Categories",
 			submenu: true,
 			type: "description",
-			items: categories.map((category: Category) => ({
-				href: `/category/${category.slug}`,
-				label: category.title,
-			})),
+
+			items: categories
+				.filter(
+					(
+						category,
+					): category is NonNullable<ALL_CATEGORIES_QUERYResult[number]> & {
+						slug: string;
+						title: string;
+					} => category.slug !== null && category.title !== null,
+				)
+				.map((category) => ({
+					href: `/category/${category.slug}`,
+					label: category.title,
+				})),
 		},
 		{ href: "/about-us", label: "About Us" },
 		{ href: "/contact", label: "Contact" },

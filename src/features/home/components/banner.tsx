@@ -79,7 +79,7 @@ const Banner = async () => {
 											alt={imageAlt}
 											fill
 											sizes="100vw"
-											className="absolute object-cover"
+											className="absolute object-cover object-bottom"
 											itemProp="url"
 											priority={index === 0}
 											placeholder="empty"

@@ -26,11 +26,7 @@ export function generateOrganizationSchema(): OrganizationSchema {
 			"@type": "ImageObject",
 			url: `${siteConfig.url}/logo.png`,
 		},
-		sameAs: [
-			siteConfig.links.twitter,
-			siteConfig.links.instagram,
-			siteConfig.links.pinterest,
-		],
+		sameAs: [siteConfig.links.instagram, siteConfig.links.pinterest],
 	};
 }
 
@@ -289,9 +285,7 @@ export function generateContactPageSchema() {
 			],
 			sameAs: [
 				siteConfig.social.instagram.url,
-				siteConfig.social.facebook.url,
 				siteConfig.social.pinterest.url,
-				siteConfig.social.twitter.url,
 				siteConfig.social.tiktok.url,
 			],
 		},

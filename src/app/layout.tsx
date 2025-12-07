@@ -1,96 +1,122 @@
-import Footer from '@/components/layout/footer';
-import NavBar from '@/components/layout/navbar';
-import { ThemeProvider } from 'next-themes';
-import { Manrope, Marcellus } from 'next/font/google';
-import '../styles/globals.css';
-import { JsonLd } from '@/components/JsonLd';
-import GoToTopButton from '@/components/go-to-top-button';
-import { generateBaseMetadata, siteConfig } from '@/lib/metadata';
-import { generateWebsiteSchema } from '@/lib/metadata';
-import type { Viewport } from 'next';
-import NextTopLoader from 'nextjs-toploader';
+import { Manrope, Marcellus } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import Footer from "@/components/layout/footer";
+import NavBar from "@/components/layout/navbar";
+import "../styles/globals.css";
+import type { Viewport } from "next";
+import NextTopLoader from "nextjs-toploader";
+import GoToTopButton from "@/components/go-to-top-button";
+import { JsonLd } from "@/components/JsonLd";
+import {
+	generateBaseMetadata,
+	generateWebsiteSchema,
+	siteConfig,
+} from "@/lib/metadata";
 
 const manrope = Manrope({
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-manrope',
-  subsets: ['latin'],
+	weight: ["300", "400", "500", "600", "700"],
+	variable: "--font-manrope",
+	subsets: ["latin"],
 });
 
 const marcellus = Marcellus({
-  weight: '400',
-  variable: '--font-marcellus',
-  subsets: ['latin'],
+	weight: "400",
+	variable: "--font-marcellus",
+	subsets: ["latin"],
 });
 
 export const metadata = generateBaseMetadata();
 
 export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#161616' },
-  ],
+	width: "device-width",
+	initialScale: 1,
+	maximumScale: 5,
+	userScalable: true,
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#ffffff" },
+		{ media: "(prefers-color-scheme: dark)", color: "#161616" },
+	],
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  const websiteSchema = generateWebsiteSchema();
+	const websiteSchema = generateWebsiteSchema();
 
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+	return (
+		<html lang="en" suppressHydrationWarning>
+			<head>
+				{/* Preconnect to external domains for performance */}
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link
+					rel="preconnect"
+					href="https://fonts.gstatic.com"
+					crossOrigin="anonymous"
+				/>
 
-        {/* Additional meta tags */}
-        <meta name="author" content={siteConfig.creator.name} />
-        <meta name="theme-color" content={siteConfig.branding.colors.primary} />
+				{/* Additional meta tags */}
+				<meta name="author" content={siteConfig.creator.name} />
+				<meta name="theme-color" content={siteConfig.branding.colors.primary} />
 
-        {/* Social Media Meta Tags */}
-        <meta property="og:site_name" content={siteConfig.name} />
-        <meta name="twitter:site" content={siteConfig.creator.twitter} />
+				{/* Social Media Meta Tags */}
+				<meta property="og:site_name" content={siteConfig.name} />
+				<meta name="twitter:site" content={siteConfig.creator.twitter} />
 
-        {/* Pinterest Domain Verification - Add your code after verification */}
-        {/* <meta name="p:domain_verify" content="your-pinterest-verification-code" /> */}
+				{/* Pinterest Domain Verification - Add your code after verification */}
+				{/* <meta name="p:domain_verify" content="your-pinterest-verification-code" /> */}
 
-        {/* Favicon - Multiple sizes for better support */}
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+				{/* Favicon - Multiple sizes for better support */}
+				<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="16x16"
+					href="/favicon-16x16.png"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="32x32"
+					href="/favicon-32x32.png"
+				/>
+				<link
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="/apple-touch-icon.png"
+				/>
 
-        {/* Android/Chrome */}
-        <link rel="manifest" href="/site.webmanifest" />
+				{/* Android/Chrome */}
+				<link rel="manifest" href="/site.webmanifest" />
 
-        {/* Microsoft Tiles */}
-        <meta name="msapplication-TileColor" content={siteConfig.branding.colors.primary} />
-      </head>
-      <body className={`${manrope.className} ${marcellus.variable} antialiased`}>
-        <JsonLd data={websiteSchema} id="website-schema" />
+				{/* Microsoft Tiles */}
+				<meta
+					name="msapplication-TileColor"
+					content={siteConfig.branding.colors.primary}
+				/>
+			</head>
+			<body
+				className={`${manrope.className} ${marcellus.variable} antialiased`}
+			>
+				<JsonLd data={websiteSchema} id="website-schema" />
 
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NavBar />
-          {children}
-          <Footer />
-          <NextTopLoader showSpinner={false} color="#161616" />
-          <GoToTopButton />
-        </ThemeProvider>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+					<NavBar />
+					{children}
+					<Footer />
+					<NextTopLoader showSpinner={false} color="#04363D" />
+					<GoToTopButton />
+				</ThemeProvider>
 
-        {/* Skip to main content - Accessibility */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-foreground focus:text-background focus:rounded"
-        >
-          Skip to main content
-        </a>
-      </body>
-    </html>
-  );
+				{/* Skip to main content - Accessibility */}
+				<a
+					href="#main-content"
+					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-foreground focus:text-background focus:rounded"
+				>
+					Skip to main content
+				</a>
+			</body>
+		</html>
+	);
 }

@@ -1,32 +1,73 @@
 import Link from "next/link";
+import { getNextPost, getPreviousPost } from "@/sanity/queries";
 
-const PostNavigation = () => {
+interface PostNavigationProps {
+	currentSlug: string;
+}
+
+const PostNavigation = async ({ currentSlug }: PostNavigationProps) => {
+	// ✅ Fetch previous and next posts
+	const [previousPost, nextPost] = await Promise.all([
+		getPreviousPost(currentSlug),
+		getNextPost(currentSlug),
+	]);
+
+	// ✅ Don't render if no previous or next posts
+	if (!previousPost && !nextPost) return null;
+
 	return (
 		<nav
 			aria-label="Post navigation"
-			className="w-[80%] h-32 flex items-center bg-background dark:bg-soft-linen border rounded-lg mx-auto mb-28"
+			className="w-[80%] flex items-stretch bg-background dark:bg-soft-linen border rounded-lg mx-auto mb-28 overflow-hidden min-h-[8rem]"
 		>
-			<Link href="/previous-post" rel="prev" className="group px-10 flex-1">
-				<span className="text-sm font-bold text-foreground underline">
-					Previous
-				</span>
-				<h3 className="text-lg mt-2 font-bold text-foreground group-hover:underline">
-					How to Blog Productive While Working From Home
-				</h3>
-			</Link>
-			<div className="bg-border h-full w-[1px]" />
-			<Link
-				href="/next-post"
-				rel="next"
-				className="group text-right flex-1 px-10"
-			>
-				<span className="text-sm font-bold text-foreground underline">
-					Next
-				</span>
-				<h3 className="text-lg mt-2 font-bold text-foreground group-hover:underline">
-					How to Blog Productive While Working From Home
-				</h3>
-			</Link>
+			{/* Previous Post */}
+			{previousPost ? (
+				<Link
+					href={`/blog/${previousPost.slug}`}
+					rel="prev"
+					className="group px-10 py-6 flex-1 flex flex-col justify-center hover:bg-soft-linen dark:hover:bg-background transition-colors"
+				>
+					<span className="text-sm font-bold text-foreground underline">
+						Previous
+					</span>
+					<h3 className="text-lg mt-2 font-bold text-foreground group-hover:underline line-clamp-2">
+						{previousPost.title}
+					</h3>
+				</Link>
+			) : (
+				<div className="flex-1 px-10 py-6 flex flex-col justify-center opacity-50">
+					<span className="text-sm font-bold text-muted-foreground">
+						No previous post
+					</span>
+				</div>
+			)}
+
+			{/* Divider - only show if both posts exist */}
+			{previousPost && nextPost && (
+				<div className="bg-border w-[1px]" aria-hidden="true" />
+			)}
+
+			{/* Next Post */}
+			{nextPost ? (
+				<Link
+					href={`/blog/${nextPost.slug}`}
+					rel="next"
+					className="group text-right flex-1 px-10 py-6 flex flex-col justify-center hover:bg-soft-linen dark:hover:bg-background transition-colors"
+				>
+					<span className="text-sm font-bold text-foreground underline">
+						Next
+					</span>
+					<h3 className="text-lg mt-2 font-bold text-foreground group-hover:underline line-clamp-2">
+						{nextPost.title}
+					</h3>
+				</Link>
+			) : (
+				<div className="flex-1 px-10 py-6 flex flex-col justify-center text-right opacity-50">
+					<span className="text-sm font-bold text-muted-foreground">
+						No next post
+					</span>
+				</div>
+			)}
 		</nav>
 	);
 };

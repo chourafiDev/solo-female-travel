@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import StartTheConversation from "@/components/start-the-conversation";
 import Subscribe from "@/components/subscribe";
@@ -11,7 +12,6 @@ import {
 	generateWebsiteSchema,
 	siteConfig,
 } from "@/lib/metadata";
-import type { Metadata } from "next";
 
 export const metadata: Metadata = generateHomeMetadata();
 

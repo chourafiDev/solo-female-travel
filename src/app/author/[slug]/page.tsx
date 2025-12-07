@@ -33,7 +33,7 @@ const authorData = {
     pinterest: 'https://pinterest.com/emmacarson',
     facebook: 'https://facebook.com/emmacarson',
   },
-  email: 'emma@wanderhertravel.com',
+  email: 'emma@solofemalevoyage.com',
   totalPosts: 42,
   joinDate: '2023-01-15',
 };

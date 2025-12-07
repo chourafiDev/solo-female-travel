@@ -1,23 +1,21 @@
 export const siteConfig = {
-	name: "WanderHer Travel",
-	shortName: "WanderHer",
-	title: "WanderHer Travel: Solo Female Travel Guide & Safety Tips",
+	name: "Solo Female Voyage Travel",
+	shortName: "Solo Female Voyage",
+	title: "Solo Female Voyage Travel: Solo Female Travel Guide & Safety Tips",
 	description:
 		"Your trusted solo female travel companion. Discover safe destinations, expert travel tips, budget guides, and inspiring stories for women traveling alone around the world.",
-	url: process.env.NEXT_PUBLIC_SITE_URL || "https://wanderhertravel.com",
+	url: process.env.NEXT_PUBLIC_SITE_URL || "https://solofemalevoyage.com",
 	ogImage: "/og-image.jpg",
 	twitterImage: "/twitter-image.jpg",
 	links: {
-		twitter: "https://twitter.com/wanderhertravel",
-		instagram: "https://instagram.com/wanderhertravel",
-		pinterest: "https://pinterest.com/wanderhertravel",
-		facebook: "https://facebook.com/wanderhertravel",
-		tiktok: "https://tiktok.com/@wanderhertravel",
+		instagram: "https://instagram.com/solofemalevoyage",
+		pinterest: "https://pinterest.com/solofemalevoyage",
+		tiktok: "https://tiktok.com/@solofemalevoyage",
 	},
 	creator: {
-		name: "WanderHer Travel",
-		email: "hello@wanderhertravel.com",
-		twitter: "@wanderhertravel",
+		name: "Solo Female Voyage Travel",
+		email: "hello@solofemalevoyage.com",
+		twitter: "@solofemalevoyage",
 	},
 	keywords: [
 		"solo female travel",
@@ -28,8 +26,8 @@ export const siteConfig = {
 		"budget travel for women",
 		"solo travel destinations",
 		"women travel guides",
-		"wanderher",
-		"wanderher travel",
+		"Solo Female Voyage",
+		"Solo Female Voyage travel",
 		"solo female travel blog",
 		"female travel blogger",
 	],
@@ -97,29 +95,22 @@ export const siteConfig = {
 	},
 	social: {
 		instagram: {
-			handle: "@wanderhertravel",
-			url: "https://instagram.com/wanderhertravel",
-		},
-		twitter: {
-			handle: "@wanderhertravel",
-			url: "https://twitter.com/wanderhertravel",
+			handle: "@solofemalevoyage",
+			url: "https://instagram.com/solofemalevoyage",
 		},
 		pinterest: {
-			handle: "@wanderhertravel",
-			url: "https://pinterest.com/wanderhertravel",
-		},
-		facebook: {
-			url: "https://facebook.com/wanderhertravel",
+			handle: "@solofemalevoyage",
+			url: "https://pinterest.com/solofemalevoyage",
 		},
 		tiktok: {
-			handle: "@wanderhertravel",
-			url: "https://tiktok.com/@wanderhertravel",
+			handle: "@solofemalevoyage",
+			url: "https://tiktok.com/@solofemalevoyage",
 		},
 	},
 	contact: {
-		email: "support@wanderhertravel.com",
-		supportEmail: "support@wanderhertravel.com",
-		businessEmail: "partnerships@wanderhertravel.com",
+		email: "support@solofemalevoyage.com",
+		supportEmail: "support@solofemalevoyage.com",
+		businessEmail: "partnerships@solofemalevoyage.com",
 	},
 	branding: {
 		tagline: "Your Solo Female Travel Companion",

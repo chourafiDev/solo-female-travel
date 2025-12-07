@@ -1,7 +1,5 @@
-import { buttonVariants } from '@/components/ui/button';
 import { touristCarryingLuggage } from '@/lib/assets';
 import { siteConfig } from '@/lib/metadata';
-import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
@@ -75,8 +73,7 @@ const LatestPosts = () => {
         </h2>
         <Link
           href="/search"
-          className={cn(buttonVariants({ variant: 'default' }))}
-          /*  className="text-foreground flex items-center gap-1 text-sm font-medium hover:underline" */
+          className="text-foreground flex items-center gap-1 text-sm font-medium cursor-pointer hover:underline"
         >
           Explore Blog Posts <ChevronRight className="size-4" aria-hidden="true" />
         </Link>

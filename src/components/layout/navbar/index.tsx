@@ -1,59 +1,54 @@
-import CallActions from './call-actions';
-import DesktopMenu from './desktop-menu';
-import Logo from './logo';
-import MobileNav from './mobile-nav';
+import { getAllCategories } from "@/sanity/queries";
+import type { Category } from "@/sanity/types";
+import CallActions from "./call-actions";
+import DesktopMenu from "./desktop-menu";
+import Logo from "./logo";
+import MobileNav from "./mobile-nav";
 
-export const NAVIGATION_MENU = [
-  { href: '/', label: 'Home' },
-  {
-    label: 'Categories',
-    submenu: true,
-    type: 'description',
-    items: [
-      {
-        href: 'category/destinations',
-        label: 'Destinations',
-      },
-      {
-        href: 'category/travel-tips',
-        label: 'Travel Tips',
-      },
-      {
-        href: 'category/safety',
-        label: 'Safety Guide',
-      },
-      {
-        href: 'category/budget-travel',
-        label: 'Budget Travel',
-      },
-      {
-        href: 'category/tours',
-        label: 'Tours & Experiences',
-      },
-      {
-        href: 'category/packing',
-        label: 'Packing Guides',
-      },
-    ],
-  },
-  { href: '/about-us', label: 'About Us' },
-  { href: '/contact', label: 'Contact' },
-];
+export type NavigationItem = {
+	href?: string;
+	label: string;
+	submenu?: boolean;
+	type?: string;
+	items?: {
+		href: string;
+		label: string;
+	}[];
+};
 
-export default function NavBar() {
-  return (
-    <header className="custom-container sticky top-0 bg-background z-50 flex items-center justify-between border-b py-3.5">
-      <div className="flex w-full h-full items-center justify-between">
-        <div className="flex items-center gap-24">
-          <Logo />
-          <DesktopMenu />
-        </div>
+export type NavigationMenu = NavigationItem[];
 
-        <div className="flex items-center gap-2">
-          <CallActions />
-          <MobileNav />
-        </div>
-      </div>
-    </header>
-  );
+export default async function NavBar() {
+	const categories = await getAllCategories();
+
+	const NAVIGATION_MENU: NavigationMenu = [
+		{ href: "/", label: "Home" },
+		{
+			label: "Categories",
+			submenu: true,
+			type: "description",
+			items: categories.map((category: Category) => ({
+				href: `/category/${category.slug}`,
+				label: category.title,
+			})),
+		},
+		{ href: "/about-us", label: "About Us" },
+		{ href: "/contact", label: "Contact" },
+	];
+
+	return (
+		<header className="custom-container sticky top-0 bg-background z-50 flex items-center justify-between border-b py-3.5">
+			<div className="flex w-full h-full items-center justify-between">
+				<div className="flex items-center gap-24">
+					<Logo />
+					<DesktopMenu menu={NAVIGATION_MENU} />
+				</div>
+
+				<div className="flex items-center gap-2">
+					<CallActions />
+					<MobileNav menu={NAVIGATION_MENU} />
+				</div>
+			</div>
+		</header>
+	);
 }

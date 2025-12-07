@@ -1,6 +1,6 @@
 {
-	"name": "WanderHer Travel - Your Solo Female Travel Companion",
-	"short_name": "WanderHer",
+	"name": "Solo Female Voyage Travel - Your Solo Female Travel Companion",
+	"short_name": "Solo Female Voyage",
 	"description": "Empowering women to travel solo safely, confidently, and authentically around the world",
 	"start_url": "/",
 	"display": "standalone",
@@ -73,7 +73,7 @@
 			"src": "/screenshots/homepage.png",
 			"sizes": "1280x720",
 			"type": "image/png",
-			"label": "WanderHer Travel Homepage"
+			"label": "Solo Female Voyage Travel Homepage"
 		}
 	]
 }

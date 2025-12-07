@@ -26,7 +26,7 @@ const SocialShareButtons = ({ post }: SocialShareButtonsProps) => {
 	const encodedImage = encodeURIComponent(postImage);
 
 	return (
-		<aside aria-label="Share this post" className="w-[15%] sticky top-20">
+		<div>
 			<p className="text-foreground font-bold text-[15px] mb-3">
 				Share This Post
 			</p>
@@ -77,7 +77,7 @@ const SocialShareButtons = ({ post }: SocialShareButtonsProps) => {
 					Pinterest
 				</Link>
 			</div>
-		</aside>
+		</div>
 	);
 };
 

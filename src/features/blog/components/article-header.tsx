@@ -18,8 +18,6 @@ const ArticleHeader = ({ post }: ArticleHeaderProps) => {
 	const authorSlug = post.author?.slug || "#";
 	const authorImage = post.author?.image?.asset?.url;
 
-	console.log("publishedDate:", publishedDate);
-
 	// ✅ Get author initials
 	const getInitials = (name: string) => {
 		return name
@@ -78,7 +76,7 @@ const ArticleHeader = ({ post }: ArticleHeaderProps) => {
 				itemType="https://schema.org/Person"
 				className="flex items-center justify-center gap-1.5"
 			>
-				<Avatar>
+				<Avatar className="size-10">
 					{authorImage ? (
 						<AvatarImage
 							src={authorImage}

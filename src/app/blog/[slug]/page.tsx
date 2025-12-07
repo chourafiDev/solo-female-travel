@@ -7,6 +7,7 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { portableTextComponents } from "@/components/portable-text-components";
 import Subscribe from "@/components/subscribe";
+import SubscribeVertical from "@/components/subscribe-vertical";
 import ArticleHeader from "@/features/blog/components/article-header";
 import AuthorBio from "@/features/blog/components/author-bio";
 import PostNavigation from "@/features/blog/components/post-navigation";
@@ -143,9 +144,12 @@ export default async function BlogPostPage({ params }: PageProps) {
 						</figure>
 					)}
 
-					<div className="flex items-start gap-10 w-[80%] mx-auto">
+					<div className="flex items-start gap-10 w-[90%] mx-auto">
 						{/* Social Share Buttons */}
-						<SocialShareButtons post={post} />
+						<aside className="w-[25%] sticky top-20 space-y-5">
+							<SocialShareButtons post={post} />
+							<SubscribeVertical />
+						</aside>
 
 						{/* Article body */}
 						<div className="flex-1">

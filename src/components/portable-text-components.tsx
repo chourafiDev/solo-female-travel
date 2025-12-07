@@ -2,7 +2,6 @@ import type { PortableTextComponents as PTComponents } from "@portabletext/react
 import Image from "next/image";
 import Link from "next/link";
 import type { PortableTextSpan } from "sanity";
-import { urlFor } from "@/sanity/lib/image";
 import FAQAccordion from "./FAQAccordion";
 
 /* import PortableFreeEbook from "./portable-free-ebook"; */
@@ -79,22 +78,21 @@ export const portableTextComponents: PTComponents = {
 	},
 	types: {
 		image: ({ value }) => {
-			if (!value?.asset?._ref) return null;
+			const imageUrl = value?.asset?.url || value?.asset?._ref;
+
+			if (!imageUrl) {
+				return null;
+			}
 
 			return (
 				<figure className="my-8">
 					<Image
 						alt={value.alt || ""}
-						src={urlFor(value).url()}
+						src={imageUrl}
 						className="w-auto mx-auto my-8 md:h-[600px] h-[400px]"
 						width={1400}
 						height={1000}
 					/>
-					{value.caption && (
-						<figcaption className="mt-2 text-center text-sm text-gray-600">
-							{value.caption}
-						</figcaption>
-					)}
 				</figure>
 			);
 		},
@@ -120,7 +118,7 @@ export const portableTextComponents: PTComponents = {
 										(cell: string, cellIndex: number) => (
 											<th
 												key={cellIndex}
-												className="border border-gray-300 px-4 py-2 text-left font-semibold text-foreground"
+												className="text-[15px] border border-gray-300 px-4 py-2 text-left font-semibold text-foreground"
 											>
 												{cell}
 											</th>
@@ -135,7 +133,7 @@ export const portableTextComponents: PTComponents = {
 										{row.cells?.map((cell: string, cellIndex: number) => (
 											<td
 												key={cellIndex}
-												className="border border-gray-300 px-4 py-2 text-gray-700"
+												className="text-[15px] border border-gray-300 px-4 py-2 text-gray-700"
 											>
 												{cell}
 											</td>

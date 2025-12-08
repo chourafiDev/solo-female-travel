@@ -25,16 +25,19 @@ const index = () => {
 					</p>
 
 					<div className="flex md:flex-row flex-col items-center md:gap-4 gap-2">
-						<Link href="/" className="font-medium text-[13px] link">
+						<Link href="/terms" className="font-medium text-[13px] link">
 							Term Of Services
 						</Link>
 						<div className="md:block hidden h-3 w-[1px] bg-muted-foreground/30" />
-						<Link href="/" className="font-medium text-[13px] link">
+						<Link
+							href="/privacy-policy"
+							className="font-medium text-[13px] link"
+						>
 							Privacy Policy
 						</Link>
 						<div className="md:block hidden h-3 w-[1px] bg-muted-foreground/30" />
-						<Link href="/" className="font-medium text-[13px] link">
-							Cookie Policy
+						<Link href="/disclaimer" className="font-medium text-[13px] link">
+							Disclaimer
 						</Link>
 					</div>
 				</div>

@@ -162,14 +162,14 @@ const CategoryPage = async ({ params }: PageProps) => {
 
           {/* Posts List */}
           <div className="flex-1 space-y-14 mb-10 lg:border-r border-border lg:pr-5">
-            <div className="space-y-6">
+           {/*  <div className="space-y-6">
               {posts.map((post, index) => (
                 <React.Fragment key={post.id}>
                   <BlogCard {...post} />
                   {index < posts.length - 1 && <Separator />}
                 </React.Fragment>
               ))}
-            </div>
+            </div> */}
 
             <PaginationPosts currentPage={1} totalPages={10} />
           </div>

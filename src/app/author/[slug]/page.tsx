@@ -72,10 +72,13 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
 	const authorSchema = {
 		"@context": "https://schema.org",
 		"@type": "Person",
-		name: authorName,
-		url: `${siteConfig.url}/author/${authorSlug}`,
-		image: authorImage,
-		description: bioText,
+		mainEntity: {
+			"@type": "Person",
+			name: authorName,
+			url: `${siteConfig.url}/author/${authorSlug}`,
+			image: authorImage,
+			description: bioText,
+		},
 	};
 
 	const breadcrumbSchema = generateBreadcrumbSchema([

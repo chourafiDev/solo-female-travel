@@ -30,9 +30,6 @@ const Categories = async () => {
 
 	// ✅ Don't render if less than 6 categories
 	if (categories.length < 6) {
-		console.warn(
-			`Only ${categories.length} categories available, need 6 for layout`,
-		);
 		return null;
 	}
 

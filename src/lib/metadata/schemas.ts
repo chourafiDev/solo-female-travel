@@ -270,18 +270,6 @@ export function generateContactPageSchema() {
 					contactType: "Customer Service",
 					availableLanguage: ["English"],
 				},
-				{
-					"@type": "ContactPoint",
-					email: siteConfig.contact.supportEmail,
-					contactType: "Technical Support",
-					availableLanguage: ["English"],
-				},
-				{
-					"@type": "ContactPoint",
-					email: siteConfig.contact.businessEmail,
-					contactType: "Sales",
-					availableLanguage: ["English"],
-				},
 			],
 			sameAs: [
 				siteConfig.social.instagram.url,

@@ -302,10 +302,10 @@ const AboutUsPage = () => {
 									Partnerships & Collaborations:
 								</p>
 								<Link
-									href={`mailto:${siteConfig.contact.businessEmail}`}
+									href={`mailto:${siteConfig.contact.email}`}
 									className="text-foreground text-[15px] hover:text-primary transition-colors"
 								>
-									{siteConfig.contact.businessEmail}
+									{siteConfig.contact.email}
 								</Link>
 							</div>
 						</div>

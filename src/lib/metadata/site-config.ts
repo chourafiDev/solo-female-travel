@@ -14,7 +14,7 @@ export const siteConfig = {
 	},
 	creator: {
 		name: "Solo Female Voyage Travel",
-		email: "hello@solofemalevoyage.com",
+		email: "support@solofemalevoyage.com",
 		twitter: "@solofemalevoyage",
 	},
 	keywords: [
@@ -109,8 +109,6 @@ export const siteConfig = {
 	},
 	contact: {
 		email: "support@solofemalevoyage.com",
-		supportEmail: "support@solofemalevoyage.com",
-		businessEmail: "partnerships@solofemalevoyage.com",
 	},
 	branding: {
 		tagline: "Your Solo Female Travel Companion",

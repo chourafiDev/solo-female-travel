@@ -92,22 +92,10 @@ const ContactPage = () => {
 										</span>
 										<br />
 										<Link
-											href={`mailto:${siteConfig.contact.supportEmail}`}
+											href={`mailto:${siteConfig.contact.email}`}
 											className="text-muted-foreground text-[15px] hover:text-foreground transition-colors"
 										>
-											{siteConfig.contact.supportEmail}
-										</Link>
-									</div>
-									<div>
-										<span className="text-sm text-foreground font-bold">
-											Partnerships & Collaborations:
-										</span>
-										<br />
-										<Link
-											href={`mailto:${siteConfig.contact.businessEmail}`}
-											className="text-muted-foreground text-[15px] hover:text-foreground transition-colors"
-										>
-											{siteConfig.contact.businessEmail}
+											{siteConfig.contact.email}
 										</Link>
 									</div>
 								</div>

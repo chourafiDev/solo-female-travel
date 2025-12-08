@@ -4,8 +4,10 @@ const Info = () => {
 			<p className="text-foreground font-bold text-2xl mb-4">Logo</p>
 
 			<p className="text-sm text-muted-foreground">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta atque,
-				nisi illum ipsam odit reprehenderit.
+				Empowering solo female travelers to explore the world with confidence.
+				We share authentic travel experiences, practical safety tips, and
+				budget-friendly advice to help you plan your next adventure. Join our
+				community of fearless women travelers.
 			</p>
 		</div>
 	);

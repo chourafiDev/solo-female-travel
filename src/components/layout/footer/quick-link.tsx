@@ -3,7 +3,9 @@ import Link from "next/link";
 const QuickLink = () => {
 	return (
 		<div>
-			<p className="text-foreground font-semibold text-base mb-3">Quick link</p>
+			<p className="text-foreground font-extrabold text-base mb-3">
+				Quick link
+			</p>
 
 			<ul className="space-y-1 font-medium">
 				<li>
@@ -12,18 +14,13 @@ const QuickLink = () => {
 					</Link>
 				</li>
 				<li>
-					<Link href="/" className="link text-sm">
+					<Link href="/about-us" className="link text-sm">
 						About Us
 					</Link>
 				</li>
 				<li>
-					<Link href="/" className="link text-sm">
+					<Link href="/contact" className="link text-sm">
 						Contact Us
-					</Link>
-				</li>
-				<li>
-					<Link href="/" className="link text-sm">
-						Our Blog
 					</Link>
 				</li>
 			</ul>

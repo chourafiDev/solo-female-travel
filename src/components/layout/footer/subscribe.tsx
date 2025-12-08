@@ -34,7 +34,7 @@ const Subscribe = () => {
   }
   return (
     <div className="flex-1 md:p-12 p-8">
-      <p className="text-foreground font-semibold text-base mb-4">
+      <p className="text-foreground font-extrabold text-base mb-4">
         Subscribe for all the top news!
       </p>
 
@@ -77,7 +77,7 @@ const Subscribe = () => {
         )}
       </Form>
 
-      <p className="text-muted-foreground text-sm mt-2">
+      <p className="text-muted-foreground text-xs mt-2">
         We won&apos;t send you spam. Unsubscribe at any time.
       </p>
     </div>

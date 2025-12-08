@@ -1,15 +1,18 @@
-import { CATEGORIES } from "@/features/home/constants";
 import Link from "next/link";
+import { getAllCategories } from "@/sanity/queries";
 
-const Categories = () => {
+const Categories = async () => {
+	const categories = await getAllCategories();
 	return (
 		<div>
-			<p className="text-foreground font-semibold text-base mb-3">Categories</p>
+			<p className="text-foreground font-extrabold text-base mb-3">
+				Categories
+			</p>
 
 			<ul className="space-y-1 font-medium">
-				{CATEGORIES.map((cat) => (
-					<li key={cat.id}>
-						<Link href={cat.path} className="link text-sm">
+				{categories.map((cat) => (
+					<li key={cat.slug}>
+						<Link href={`/category/${cat.slug}`} className="link text-sm">
 							{cat.title}
 						</Link>
 					</li>

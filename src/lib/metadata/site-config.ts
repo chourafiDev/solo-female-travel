@@ -4,9 +4,9 @@ export const siteConfig = {
 	title: "Solo Female Voyage Travel: Solo Female Travel Guide & Safety Tips",
 	description:
 		"Your trusted solo female travel companion. Discover safe destinations, expert travel tips, budget guides, and inspiring stories for women traveling alone around the world.",
-	url: process.env.NEXT_PUBLIC_SITE_URL || "https://solofemalevoyage.com",
-	ogImage: "/og-image.jpg",
-	twitterImage: "/twitter-image.jpg",
+	url: "https://solofemalevoyage.com",
+	ogImage: "/og-image.png",
+	twitterImage: "/og-image.png",
 	links: {
 		instagram: "https://instagram.com/solofemalevoyage",
 		pinterest: "https://pinterest.com/solofemalevoyage",

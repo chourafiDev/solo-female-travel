@@ -31,14 +31,6 @@ export function generateBaseMetadata(): Metadata {
 			title: siteConfig.title,
 			description: siteConfig.description,
 			siteName: siteConfig.name,
-			images: [
-				{
-					url: `${siteConfig.url}${siteConfig.ogImage}`,
-					width: 1200,
-					height: 630,
-					alt: `${siteConfig.name} - ${siteConfig.branding.tagline}`,
-				},
-			],
 		},
 		twitter: {
 			card: "summary_large_image",
@@ -46,7 +38,6 @@ export function generateBaseMetadata(): Metadata {
 			description: siteConfig.description,
 			site: siteConfig.creator.twitter,
 			creator: siteConfig.creator.twitter,
-			images: [`${siteConfig.url}${siteConfig.twitterImage}`],
 		},
 		robots: {
 			index: true,
@@ -102,26 +93,6 @@ export function generateHomeMetadata(): Metadata {
 		alternates: {
 			canonical: siteConfig.url,
 		},
-		openGraph: {
-			title: siteConfig.title,
-			description: siteConfig.description,
-			url: siteConfig.url,
-			type: "website",
-			images: [
-				{
-					url: `${siteConfig.url}${siteConfig.ogImage}`,
-					width: 1200,
-					height: 630,
-					alt: `${siteConfig.name} - Homepage`,
-				},
-			],
-		},
-		twitter: {
-			card: "summary_large_image",
-			title: siteConfig.title,
-			description: siteConfig.description,
-			images: [`${siteConfig.url}${siteConfig.twitterImage}`],
-		},
 	};
 }
 
@@ -150,20 +121,11 @@ export function generateCategoryMetadata(categorySlug: string): Metadata {
 			description: category.description,
 			url: url,
 			type: "website",
-			images: [
-				{
-					url: `${siteConfig.url}/og-${category.slug}.jpg`,
-					width: 1200,
-					height: 630,
-					alt: category.title,
-				},
-			],
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: category.title,
 			description: category.description,
-			images: [`${siteConfig.url}/twitter-${category.slug}.jpg`],
 		},
 	};
 }
@@ -181,7 +143,7 @@ export function generateBlogPostMetadata(
 		? post.mainImage.asset.url.startsWith("http")
 			? post.mainImage.asset.url
 			: `${siteConfig.url}${post.mainImage.asset.url}`
-		: `${siteConfig.url}/default-og-image.jpg`;
+		: undefined;
 
 	return {
 		title: post.title || "Blog Post",
@@ -207,20 +169,22 @@ export function generateBlogPostMetadata(
 			authors: post.author?.name ? [post.author.name] : [],
 			url: url,
 			siteName: siteConfig.name,
-			images: [
-				{
-					url: imageUrl,
-					width: 1200,
-					height: 630,
-					alt: post.mainImage?.alt || post.title || "Blog post image",
-				},
-			],
+			...(imageUrl && {
+				images: [
+					{
+						url: imageUrl,
+						width: 1200,
+						height: 630,
+						alt: post.mainImage?.alt || post.title || "Blog post image",
+					},
+				],
+			}),
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: post.title || "Blog Post",
 			description: post.excerpt || siteConfig.description,
-			images: [imageUrl],
+			...(imageUrl && { images: [imageUrl] }),
 			site: siteConfig.creator.twitter,
 			creator: siteConfig.creator.twitter,
 		},
@@ -251,20 +215,11 @@ export function generateAboutMetadata(): Metadata {
 			description: `${siteConfig.branding.mission}`,
 			url: url,
 			type: "website",
-			images: [
-				{
-					url: `${siteConfig.url}/og-about.jpg`,
-					width: 1200,
-					height: 630,
-					alt: `About ${siteConfig.name}`,
-				},
-			],
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: `About ${siteConfig.name}`,
 			description: `Learn about our mission to empower women to travel solo safely and confidently.`,
-			images: [`${siteConfig.url}/twitter-about.jpg`],
 			site: siteConfig.creator.twitter,
 			creator: siteConfig.creator.twitter,
 		},
@@ -295,21 +250,12 @@ export function generateContactMetadata(): Metadata {
 			description: `Have questions about solo female travel? Reach out to the ${siteConfig.name} team for expert advice and support.`,
 			url: url,
 			type: "website",
-			images: [
-				{
-					url: `${siteConfig.url}/og-contact.jpg`,
-					width: 1200,
-					height: 630,
-					alt: `Contact ${siteConfig.name}`,
-				},
-			],
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: `Contact ${siteConfig.name}`,
 			description:
 				"Get in touch with us for solo female travel advice and support.",
-			images: [`${siteConfig.url}/twitter-contact.jpg`],
 		},
 	};
 }
@@ -342,14 +288,6 @@ export function generateAuthorMetadata(
 			description: authorBio,
 			url: url,
 			type: "profile",
-			images: [
-				{
-					url: `${siteConfig.url}/og-author-${authorSlug}.jpg`,
-					width: 1200,
-					height: 630,
-					alt: `${authorName} - Travel Writer`,
-				},
-			],
 		},
 		twitter: {
 			card: "summary",

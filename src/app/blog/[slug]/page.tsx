@@ -195,7 +195,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 							>
 								<meta
 									itemProp="url"
-									content="https://Solo Female Voyage.com/logo.png"
+									content="https://solofemalevoyage.com/logo.png"
 								/>
 							</div>
 						</div>

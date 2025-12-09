@@ -49,7 +49,7 @@ export default async function NavBar() {
 	return (
 		<header className="custom-container sticky top-0 bg-background z-50 flex items-center justify-between border-b py-3.5">
 			<div className="flex w-full h-full items-center justify-between">
-				<div className="flex items-center gap-24">
+				<div className="flex items-center gap-16">
 					<Logo />
 					<DesktopMenu menu={NAVIGATION_MENU} />
 				</div>

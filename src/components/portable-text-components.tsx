@@ -193,6 +193,7 @@ export const portableTextComponents: PTComponents = {
 			return (
 				<Link
 					href={value.href}
+					target="_blank"
 					className="font-medium text-link hover:text-primary duration-100 ease-linear underline"
 				>
 					{children}

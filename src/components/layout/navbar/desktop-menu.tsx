@@ -16,7 +16,7 @@ const DesktopMenu = ({ menu }: { menu: TNavigationMenu }) => {
 				{menu.map((item) =>
 					item.submenu ? (
 						<NavigationMenuItem key={item.label}>
-							<NavigationMenuTrigger className="hover:bg-soft-linen font-bold text-sm">
+							<NavigationMenuTrigger className="hover:bg-soft-linen font-bold text-base">
 								{item.label}
 							</NavigationMenuTrigger>
 							<NavigationMenuContent>
@@ -46,7 +46,7 @@ const DesktopMenu = ({ menu }: { menu: TNavigationMenu }) => {
 						<NavigationMenuItem key={item.label}>
 							<NavigationMenuLink
 								href={`${item.href}`}
-								className="cursor-pointer font-bold text-sm hover:bg-soft-linen"
+								className="cursor-pointer font-bold text-base hover:bg-soft-linen"
 							>
 								{item.label}
 							</NavigationMenuLink>

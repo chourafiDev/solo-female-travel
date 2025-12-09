@@ -106,7 +106,7 @@
   }
 
   .gradient-overlay {
-    @apply before:absolute before:z-10 before:bottom-0 before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-black/70 before:via-black/30 before:to-transparent;
+    @apply before:absolute before:z-10 before:bottom-0 before:left-0 before:h-full before:w-full before:bg-gradient-to-t before:from-black/80 before:via-black/30 before:to-transparent;
   }
 
   .title {

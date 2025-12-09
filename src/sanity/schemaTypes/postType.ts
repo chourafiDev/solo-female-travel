@@ -116,6 +116,14 @@ export const postType = defineType({
 		}),
 
 		defineField({
+			name: "isTrending",
+			title: "Is Trending",
+			type: "boolean",
+			description: "Toggle to Trending on or off",
+			initialValue: false,
+		}),
+
+		defineField({
 			name: "excerpt",
 			title: "Excerpt",
 			type: "text",

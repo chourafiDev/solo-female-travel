@@ -119,6 +119,7 @@ export type Post = {
       }
   >;
   isFeatured?: boolean;
+  isTrending?: boolean;
   excerpt?: string;
   tableOfContents?: {
     enabled?: boolean;

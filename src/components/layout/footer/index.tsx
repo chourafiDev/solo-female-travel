@@ -19,7 +19,7 @@ const index = () => {
 					<Subscribe />
 				</div>
 
-				<div className="bg-foreground flex lg:flex-row flex-col lg:gap-0 gap-5 items-center justify-between py-3 md:px-12 px-8">
+				<div className="bg-foreground dark:bg-soft-linen flex lg:flex-row flex-col lg:gap-0 gap-5 items-center justify-between py-3 md:px-12 px-8">
 					<p className="text-white font-medium text-[13px]">
 						&copy; {new Date().getFullYear()} Brand, All Rights Reserved.
 					</p>

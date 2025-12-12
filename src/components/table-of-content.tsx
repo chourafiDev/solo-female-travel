@@ -100,7 +100,7 @@ const TableOfContent = ({
 									className={cn(
 										"flex items-center gap-2 py-1.5 px-3 text-sm transition-colors rounded-md hover:bg-soft-linen",
 										activeId === heading.id
-											? "bg-soft-linen text-link font-medium"
+											? "bg-soft-linen text-link font-bold"
 											: "text-foreground",
 									)}
 								>

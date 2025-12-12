@@ -1,84 +1,93 @@
-import { usePagination } from "@/hooks/use-pagination"
 import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination"
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+	PaginationLink,
+	PaginationNext,
+	PaginationPrevious,
+} from "@/components/ui/pagination";
+import { usePagination } from "@/hooks/use-pagination";
 
 type PaginationProps = {
-  currentPage: number
-  totalPages: number
-  paginationItemsToDisplay?: number
-}
+	currentPage: number;
+	totalPages: number;
+	paginationItemsToDisplay?: number;
+	basePath?: string;
+};
 
 export default function PaginationPosts({
-  currentPage,
-  totalPages,
-  paginationItemsToDisplay = 5,
+	currentPage,
+	totalPages,
+	paginationItemsToDisplay = 5,
+	basePath = "",
 }: PaginationProps) {
-  const { pages, showLeftEllipsis, showRightEllipsis } = usePagination({
-    currentPage,
-    totalPages,
-    paginationItemsToDisplay,
-  })
+	const { pages, showLeftEllipsis, showRightEllipsis } = usePagination({
+		currentPage,
+		totalPages,
+		paginationItemsToDisplay,
+	});
 
-  return (
-    <Pagination>
-      <PaginationContent>
-        {/* Previous page button */}
-        <PaginationItem>
-          <PaginationPrevious
-            className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
-            href={currentPage === 1 ? undefined : `#/page/${currentPage - 1}`}
-            aria-disabled={currentPage === 1 ? true : undefined}
-            role={currentPage === 1 ? "link" : undefined}
-          />
-        </PaginationItem>
+	const getPageUrl = (page: number) => {
+		if (page === 1) {
+			return basePath || "/";
+		}
+		return `${basePath}?page=${page}`;
+	};
 
-        {/* Left ellipsis (...) */}
-        {showLeftEllipsis && (
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-        )}
+	return (
+		<Pagination>
+			<PaginationContent>
+				{/* Previous page button */}
+				<PaginationItem>
+					<PaginationPrevious
+						className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
+						href={currentPage === 1 ? undefined : getPageUrl(currentPage - 1)}
+						aria-disabled={currentPage === 1 ? true : undefined}
+						role={currentPage === 1 ? "link" : undefined}
+					/>
+				</PaginationItem>
 
-        {/* Page number links */}
-        {pages.map((page) => (
-          <PaginationItem key={page}>
-            <PaginationLink
-              href={`#/page/${page}`}
-              isActive={page === currentPage}
-            >
-              {page}
-            </PaginationLink>
-          </PaginationItem>
-        ))}
+				{/* Left ellipsis (...) */}
+				{showLeftEllipsis && (
+					<PaginationItem>
+						<PaginationEllipsis />
+					</PaginationItem>
+				)}
 
-        {/* Right ellipsis (...) */}
-        {showRightEllipsis && (
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-        )}
+				{/* Page number links */}
+				{pages.map((page) => (
+					<PaginationItem key={page}>
+						<PaginationLink
+							href={getPageUrl(page)}
+							isActive={page === currentPage}
+						>
+							{page}
+						</PaginationLink>
+					</PaginationItem>
+				))}
 
-        {/* Next page button */}
-        <PaginationItem>
-          <PaginationNext
-            className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
-            href={
-              currentPage === totalPages
-                ? undefined
-                : `#/page/${currentPage + 1}`
-            }
-            aria-disabled={currentPage === totalPages ? true : undefined}
-            role={currentPage === totalPages ? "link" : undefined}
-          />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
-  )
+				{/* Right ellipsis (...) */}
+				{showRightEllipsis && (
+					<PaginationItem>
+						<PaginationEllipsis />
+					</PaginationItem>
+				)}
+
+				{/* Next page button */}
+				<PaginationItem>
+					<PaginationNext
+						className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
+						href={
+							currentPage === totalPages
+								? undefined
+								: getPageUrl(currentPage + 1)
+						}
+						aria-disabled={currentPage === totalPages ? true : undefined}
+						role={currentPage === totalPages ? "link" : undefined}
+					/>
+				</PaginationItem>
+			</PaginationContent>
+		</Pagination>
+	);
 }

@@ -172,7 +172,7 @@ function NavGridCard() {
 function NavSmallItem({ item }: { item: NavItems }) {
 	return (
 		<NavigationMenuLink
-			href={`/${item.href}`}
+			href={`${item.href}`}
 			className="group relative h-max flex-row items-center cursor-pointer gap-x-3 px-2 py-2"
 		>
 			<p className="text-[13px] font-semibold">{item.label}</p>

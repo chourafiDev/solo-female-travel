@@ -8,11 +8,13 @@ import { JsonLd } from "@/components/JsonLd";
 import { portableTextComponents } from "@/components/portable-text-components";
 import Subscribe from "@/components/subscribe";
 import SubscribeVertical from "@/components/subscribe-vertical";
+import TableOfContent from "@/components/table-of-content";
 import ArticleHeader from "@/features/blog/components/article-header";
 import AuthorBio from "@/features/blog/components/author-bio";
 import PostNavigation from "@/features/blog/components/post-navigation";
 import RelatedPosts from "@/features/blog/components/related-posts";
 import SocialShareButtons from "@/features/blog/components/social-share-buttons";
+import { extractHeadings } from "@/lib/extract-headings";
 import {
 	generateBlogPostingSchema,
 	generateBlogPostMetadata,
@@ -73,6 +75,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 	const imageWidth = post.mainImage?.asset?.metadata?.dimensions?.width || 1200;
 	const imageHeight =
 		post.mainImage?.asset?.metadata?.dimensions?.height || 630;
+
+	// ✅ Extract headings for TOC
+	const headings = extractHeadings(post.body);
 
 	return (
 		<>
@@ -146,7 +151,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
 					<div className="flex items-start gap-10 w-[90%] mx-auto">
 						{/* Social Share Buttons */}
-						<aside className="w-[25%] sticky top-20 space-y-5">
+						<aside className="w-[25%] sticky top-24 space-y-5">
+							<TableOfContent
+								headings={headings}
+								title={post.tableOfContents?.title}
+							/>
 							<SocialShareButtons post={post} />
 							<SubscribeVertical />
 						</aside>

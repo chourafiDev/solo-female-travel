@@ -50,7 +50,7 @@ const sendWelcomeEmail = async (
 		);
 
 		const result = await resend.emails.send({
-			from: `Make Earn Easy ${process.env.FROM_EMAIL}`,
+			from: `Solo Female Voyage ${process.env.FROM_EMAIL}`,
 			to: [`${email}`],
 			subject: "🎉 Welcome to our newsletter!",
 			html: emailHtml,

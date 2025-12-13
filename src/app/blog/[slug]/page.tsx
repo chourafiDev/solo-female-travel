@@ -149,7 +149,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 						</figure>
 					)}
 
-					<div className="flex items-start gap-10 w-[90%] mx-auto">
+					<div className="flex items-start gap-5 w-[90%] mx-auto">
 						{/* Social Share Buttons */}
 						<aside className="w-[25%] sticky top-24 space-y-5">
 							<TableOfContent

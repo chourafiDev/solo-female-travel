@@ -62,8 +62,11 @@ export default function RootLayout({
 				<meta property="og:site_name" content={siteConfig.name} />
 				<meta name="twitter:site" content={siteConfig.creator.twitter} />
 
-				{/* Pinterest Domain Verification - Add your code after verification */}
-				{/* <meta name="p:domain_verify" content="your-pinterest-verification-code" /> */}
+				{/* Pinterest Domain Verification */}
+				<meta
+					name="p:domain_verify"
+					content="47cb10da423033dd19eb384a733fa0c0"
+				/>
 
 				<meta name="apple-mobile-web-app-title" content="MyWebSite" />
 

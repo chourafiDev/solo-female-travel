@@ -22,7 +22,6 @@ export const getAllCategories = async () => {
 export const ALL_POSTS_QUERY = defineQuery(`
   *[
     _type == "post" &&
-    isBoostHustle != true &&
     ($searchTerm == "" || (
       title match $searchTerm ||
       excerpt match $searchTerm ||
@@ -76,40 +75,49 @@ export const getAllPosts = async ({
 	return quantity ? posts.slice(0, quantity) : posts;
 };
 
-/* TODO: Get All isFeatured Posts */
-/* const IS_BOOST_HUSTLE_POSTS_QUERY = defineQuery(`*[
-  _type == "post" && isBoostHustle==true
-] | order(publishedAt desc) {
-  title,
-  "slug": slug.current,
-  publishedAt,
-  excerpt,
-  isFeatured,
-  body,
-  mainImage{
-    asset->{
-      _id,
-      url
-    },
-    alt
-  },
-  category->{
+/* Get All isFeatured Posts */
+export const IS_FEATURED_POSTS_QUERY = defineQuery(`
+  *[
+    _type == "post" &&
+    isFeatured == true
+  ] | order(publishedAt desc){
     title,
-    "slug": slug.current
-  },
-  author->{
+    "slug": slug.current,
+    publishedAt,
+    excerpt,
+    isFeatured,
+    body,
+    mainImage{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    category->{
+      title,
+      "slug": slug.current
+    },
+    author->{
       name,
       image,
       "slug": slug.current,
       bio
-    },
-}`);
+    }
+  }
+`);
 
-export const getIsBoostHustlePosts = async () => {
-	return await clientFetch({
-		query: IS_BOOST_HUSTLE_POSTS_QUERY,
+export const getIsFeaturedPosts = async ({
+	quantity,
+}: {
+	quantity?: number;
+} = {}) => {
+	const posts = await clientFetch({
+		query: IS_FEATURED_POSTS_QUERY,
 	});
-}; */
+
+	return quantity ? posts.slice(0, quantity) : posts;
+};
 
 /* Get Post */
 const POST_QUERY = defineQuery(`*[_type=='post' && slug.current == $slug][0]{

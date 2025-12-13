@@ -1,4 +1,7 @@
-import type { POST_QUERYResult } from "@/sanity/types";
+import type {
+	IS_FEATURED_POSTS_QUERYResult,
+	POST_QUERYResult,
+} from "@/sanity/types";
 
 // ✅ FAQ Block type
 export interface FAQItem {
@@ -34,8 +37,34 @@ type OriginalBodyBlock = NonNullable<
 // ✅ Extended body type including FAQ
 export type ExtendedBodyBlock = OriginalBodyBlock | FAQBlock;
 
-// ✅ Extended Post type with FAQ support and tableOfContents
+// ✅ Extended Post type with FAQ support and tableOfContents (for single post detail page)
 export type ExtendedPost = Omit<NonNullable<POST_QUERYResult>, "body"> & {
 	body: ExtendedBodyBlock[] | null;
-	tableOfContents?: TableOfContentsConfig; // ✅ Add this
+	tableOfContents?: TableOfContentsConfig;
 };
+
+// ✅ Featured Post type (for lists/cards)
+export type FeaturedPost = IS_FEATURED_POSTS_QUERYResult[number];
+
+// ✅ Or create a more specific type for BlogCard
+export interface BlogCardPost {
+	title: string | null;
+	slug: string | null;
+	publishedAt: string | null;
+	excerpt: string | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			url: string | null;
+		} | null;
+		alt: string | null;
+	} | null;
+	category: {
+		title: string | null;
+		slug: string | null;
+	} | null;
+	author: {
+		name: string | null;
+		slug: string | null;
+	} | null;
+}

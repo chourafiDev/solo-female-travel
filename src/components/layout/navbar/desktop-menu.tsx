@@ -1,4 +1,4 @@
-import { NavGridCard, NavSmallItem } from "@/components/navigation-menu";
+import { NavSmallItem } from "@/components/navigation-menu";
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -7,9 +7,14 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+import { getIsFeaturedPosts } from "@/sanity/queries";
 import type { NavigationMenu as TNavigationMenu } from ".";
+import { BlogCard } from "./blog-card";
 
-const DesktopMenu = ({ menu }: { menu: TNavigationMenu }) => {
+const DesktopMenu = async ({ menu }: { menu: TNavigationMenu }) => {
+	const posts = await getIsFeaturedPosts({ quantity: 3 });
+
 	return (
 		<NavigationMenu className="hidden lg:block">
 			<NavigationMenuList>
@@ -21,23 +26,22 @@ const DesktopMenu = ({ menu }: { menu: TNavigationMenu }) => {
 							</NavigationMenuTrigger>
 							<NavigationMenuContent>
 								<div className="grid w-full md:w-5xl md:grid-cols-[.30fr_1fr]">
+									{/* Submenu Items */}
 									<ul className="space-y-1 p-4 md:border-r">
-										{item.items?.map((item) => (
-											<li key={item.label}>
-												<NavSmallItem item={item} />
+										{item.items?.map((subItem) => (
+											<li key={subItem.label}>
+												<NavSmallItem item={subItem} />
 											</li>
 										))}
 									</ul>
+
+									{/* Featured Posts */}
 									<ul className="grid grow gap-2 p-4 md:grid-cols-3">
-										<li>
-											<NavGridCard />
-										</li>
-										<li>
-											<NavGridCard />
-										</li>
-										<li>
-											<NavGridCard />
-										</li>
+										{posts.map((post) => (
+											<li key={post.slug || post.title || Math.random()}>
+												<BlogCard post={post} />
+											</li>
+										))}
 									</ul>
 								</div>
 							</NavigationMenuContent>
@@ -45,8 +49,10 @@ const DesktopMenu = ({ menu }: { menu: TNavigationMenu }) => {
 					) : (
 						<NavigationMenuItem key={item.label}>
 							<NavigationMenuLink
-								href={`${item.href}`}
-								className="cursor-pointer font-bold text-base hover:bg-soft-linen"
+								href={item.href || "#"}
+								className={cn(
+									"group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-base font-bold transition-colors hover:bg-soft-linen focus:bg-soft-linen focus:outline-none disabled:pointer-events-none disabled:opacity-50",
+								)}
 							>
 								{item.label}
 							</NavigationMenuLink>

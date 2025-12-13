@@ -1,246 +1,260 @@
-'use client';
+"use client";
 
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Separator } from '@/components/ui/separator';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import Trending from '@/features/search/components/trending';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { X } from 'lucide-react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useId, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { IoSearch } from 'react-icons/io5';
-import z from 'zod';
-import { Button } from '../../ui/button';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { X } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useId, useState } from "react";
+import { useForm } from "react-hook-form";
+import { IoSearch } from "react-icons/io5";
+import z from "zod";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Separator } from "@/components/ui/separator";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Trending from "@/features/search/components/trending";
+import { getAllCategories } from "@/sanity/queries";
+import { Button } from "../../ui/button";
 
-const categories = [
-  {
-    value: 'destinations',
-    label: 'Destinations',
-  },
-  {
-    value: 'travel-tips',
-    label: 'Travel Tips',
-  },
-  {
-    value: 'safety',
-    label: 'Safety Guide',
-  },
-  {
-    value: 'budget-travel',
-    label: 'Budget Travel',
-  },
-  {
-    value: 'tours',
-    label: 'Tours & Experiences',
-  },
-  {
-    value: 'packing',
-    label: 'Packing Guides',
-  },
-];
+interface Category {
+	title: string;
+	slug: string;
+}
 
 const formSchema = z.object({
-  search: z.string().trim(),
-  category: z.string().optional(),
+	search: z.string().trim(),
+	category: z.string().optional(),
 });
 
 const SearchSheet = () => {
-  const id = useId();
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
+	const id = useId();
+	const router = useRouter();
+	const [open, setOpen] = useState(false);
+	const [categories, setCategories] = useState<Category[]>([]);
+	const [loading, setLoading] = useState(true);
 
-  const searchParams = useSearchParams();
+	const searchParams = useSearchParams();
 
-  const query = searchParams.get('q') || '';
-  const category = searchParams.get('category') || '';
+	const query = searchParams.get("q") || "";
+	const category = searchParams.get("category") || "";
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      search: query,
-      category: category,
-    },
-  });
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			search: query,
+			category: category,
+		},
+	});
 
-  // Update form when URL params change
+	// Fetch categories from Sanity
+	useEffect(() => {
+		const fetchCategories = async () => {
+			try {
+				const sanityCategories = await getAllCategories();
+				const transformedCategories = sanityCategories.map((cat) => ({
+					title: cat.title ?? "Untitled Category",
+					slug: cat.slug ?? "",
+				}));
+				setCategories(transformedCategories);
+			} catch (error) {
+				console.error("Failed to fetch categories:", error);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-  useEffect(() => {
-    form.reset({
-      search: query,
-      category: category,
-    });
-  }, [query, category, form]);
+		fetchCategories();
+	}, []);
 
-  const performSearch = (values: z.infer<typeof formSchema>) => {
-    const params = new URLSearchParams();
+	// Update form when URL params change
+	useEffect(() => {
+		form.reset({
+			search: query,
+			category: category,
+		});
+	}, [query, category, form]);
 
-    if (values.search) {
-      params.set('q', values.search);
-    }
+	const performSearch = (values: z.infer<typeof formSchema>) => {
+		const params = new URLSearchParams();
 
-    if (values.category) {
-      params.set('category', values.category);
-    }
+		if (values.search) {
+			params.set("q", values.search);
+		}
 
-    if (params.toString()) {
-      router.push(`/search?${params.toString()}`);
-      setOpen(false);
-    }
-  };
+		if (values.category) {
+			params.set("category", values.category);
+		}
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      performSearch(values);
-    } catch (error) {
-      console.error('Form submission error', error);
-    }
-  }
+		if (params.toString()) {
+			router.push(`/search?${params.toString()}`);
+			setOpen(false);
+		}
+	};
 
-  const handleCategoryChange = (categoryValue: string) => {
-    const currentSearch = form.getValues('search');
-    form.setValue('category', categoryValue);
+	function onSubmit(values: z.infer<typeof formSchema>) {
+		try {
+			performSearch(values);
+		} catch (error) {
+			console.error("Form submission error", error);
+		}
+	}
 
-    performSearch({
-      search: currentSearch,
-      category: categoryValue,
-    });
-  };
+	const handleCategoryChange = (categoryValue: string) => {
+		const currentSearch = form.getValues("search");
+		form.setValue("category", categoryValue);
 
-  const handleClearCategory = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    form.setValue('category', '');
-  };
+		performSearch({
+			search: currentSearch,
+			category: categoryValue,
+		});
+	};
 
-  const selectedCategory = form.watch('category');
+	const handleClearCategory = (e: React.MouseEvent) => {
+		e.preventDefault();
+		e.stopPropagation();
+		form.setValue("category", "");
+	};
 
-  return (
-    <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button
-          variant="default"
-          size="icon"
-          className="size-10 flex"
-          data-slot="sheet-trigger"
-          data-search-toggle="true"
-          type="button"
-          aria-haspopup="dialog"
-          aria-expanded="false"
-          aria-controls="radix-_r_1_"
-          data-state="closed"
-          aria-label="Open search dialog"
-          title="Search"
-        >
-          <IoSearch className="size-4" />
-        </Button>
-      </SheetTrigger>
-      <SheetContent side="top" className="gap-0 overflow-y-auto max-h-screen">
-        <div className="py-6 lg:px-20 md:px-10 px-4">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {/* Search Input Section */}
-              <div>
-                <h3 className="text-foreground font-extrabold text-[17px] mb-2">
-                  What Are You Looking For?
-                </h3>
-                <div className="flex items-center bg-background dark:bg-input/30 overflow-hidden rounded-full p-1 border">
-                  <FormField
-                    control={form.control}
-                    name="search"
-                    render={({ field }) => (
-                      <FormItem className="flex-1">
-                        <FormControl>
-                          <Input
-                            placeholder="Search articles..."
-                            type="text"
-                            aria-label="Search query"
-                            className="w-full bg-background dark:bg-transparent border-none shadow-none outline-none dark:focus-visible:ring-offset-0 focus-visible:border-none focus-visible:ring-0"
-                            {...field}
-                            onKeyDown={(e) => {
-                              // Allow search on Enter key
-                              if (e.key === 'Enter') {
-                                e.preventDefault();
-                                form.handleSubmit(onSubmit)();
-                              }
-                            }}
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                  <Button type="submit" className="px-8 py-6 flex-shrink-0">
-                    Search
-                  </Button>
-                </div>
-              </div>
+	const selectedCategory = form.watch("category");
 
-              {/* Category Filter Section */}
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-foreground font-extrabold text-[17px]">Popular Searches:</h3>
-                  {selectedCategory && (
-                    <button
-                      type="button"
-                      onClick={handleClearCategory}
-                      className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
-                    >
-                      <X className="size-3" />
-                      Clear filter
-                    </button>
-                  )}
-                </div>
-                <FormField
-                  control={form.control}
-                  name="category"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={handleCategoryChange}
-                          value={field.value}
-                          className="flex flex-wrap gap-2"
-                        >
-                          {categories.map((item) => (
-                            <Label
-                              key={`${id}-${item.value}`}
-                              htmlFor={`${id}-${item.value}`}
-                              className="relative flex cursor-pointer items-center gap-3 rounded-full border border-input dark:bg-input/30 px-5 py-2.5 text-center dark:hover:bg-white hover:bg-foreground hover:text-background transition-colors outline-none has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:checked]:text-background dark:has-[:checked]:bg-white has-[:checked]:bg-foreground"
-                            >
-                              <RadioGroupItem
-                                id={`${id}-${item.value}`}
-                                value={item.value}
-                                className="sr-only after:absolute after:inset-0"
-                              />
-                              <p className="text-sm leading-none font-medium whitespace-nowrap">
-                                {item.label}
-                              </p>
-                            </Label>
-                          ))}
-                        </RadioGroup>
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </form>
-          </Form>
+	return (
+		<Sheet open={open} onOpenChange={setOpen}>
+			<SheetTrigger asChild>
+				<Button
+					variant="default"
+					size="icon"
+					className="size-10 flex"
+					data-slot="sheet-trigger"
+					data-search-toggle="true"
+					type="button"
+					aria-haspopup="dialog"
+					aria-expanded={open}
+					aria-label="Open search dialog"
+					title="Search"
+				>
+					<IoSearch className="size-4" />
+				</Button>
+			</SheetTrigger>
+			<SheetContent side="top" className="gap-0 overflow-y-auto max-h-screen">
+				<div className="py-6 lg:px-20 md:px-10 px-4">
+					<Form {...form}>
+						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+							{/* Search Input Section */}
+							<div>
+								<h3 className="text-foreground font-extrabold text-[17px] mb-2">
+									What Are You Looking For?
+								</h3>
+								<div className="flex items-center bg-background dark:bg-input/30 overflow-hidden rounded-full p-1 border">
+									<FormField
+										control={form.control}
+										name="search"
+										render={({ field }) => (
+											<FormItem className="flex-1">
+												<FormControl>
+													<Input
+														placeholder="Search articles..."
+														type="text"
+														aria-label="Search query"
+														className="w-full bg-background dark:bg-transparent border-none shadow-none outline-none dark:focus-visible:ring-offset-0 focus-visible:border-none focus-visible:ring-0"
+														{...field}
+														onKeyDown={(e) => {
+															// Allow search on Enter key
+															if (e.key === "Enter") {
+																e.preventDefault();
+																form.handleSubmit(onSubmit)();
+															}
+														}}
+													/>
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+									<Button type="submit" className="px-8 py-6 flex-shrink-0">
+										Search
+									</Button>
+								</div>
+							</div>
 
-          <div className="my-6">
-            <Separator />
-          </div>
+							{/* Category Filter Section */}
+							<div>
+								<div className="flex items-center justify-between mb-2">
+									<h3 className="text-foreground font-extrabold text-[17px]">
+										Popular Searches:
+									</h3>
+									{selectedCategory && (
+										<button
+											type="button"
+											onClick={handleClearCategory}
+											className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
+										>
+											<X className="size-3" />
+											Clear filter
+										</button>
+									)}
+								</div>
 
-          <div>
-            <h3 className="text-foreground font-extrabold text-[17px] mb-2">Trending Now</h3>
-            <Trending />
-          </div>
-        </div>
-      </SheetContent>
-    </Sheet>
-  );
+								{loading ? (
+									<div className="flex items-center gap-2 text-muted-foreground text-sm py-4">
+										<div className="animate-spin rounded-full h-4 w-4 border-b-2 border-foreground" />
+										<span>Loading categories...</span>
+									</div>
+								) : categories.length === 0 ? (
+									<p className="text-muted-foreground text-sm py-4">
+										No categories available
+									</p>
+								) : (
+									<FormField
+										control={form.control}
+										name="category"
+										render={({ field }) => (
+											<FormItem>
+												<FormControl>
+													<RadioGroup
+														onValueChange={handleCategoryChange}
+														value={field.value}
+														className="flex flex-wrap gap-2"
+													>
+														{categories.map((item) => (
+															<Label
+																key={`${id}-${item.slug}`}
+																htmlFor={`${id}-${item.slug}`}
+																className="relative flex cursor-pointer items-center gap-3 rounded-full border border-input dark:bg-input/30 px-5 py-2.5 text-center dark:hover:bg-white hover:bg-foreground hover:text-background transition-colors outline-none has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:checked]:text-background dark:has-[:checked]:bg-white has-[:checked]:bg-foreground"
+															>
+																<RadioGroupItem
+																	id={`${id}-${item.slug}`}
+																	value={item.slug}
+																	className="sr-only after:absolute after:inset-0"
+																/>
+																<p className="text-sm leading-none font-medium whitespace-nowrap">
+																	{item.title}
+																</p>
+															</Label>
+														))}
+													</RadioGroup>
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+								)}
+							</div>
+						</form>
+					</Form>
+
+					<div className="my-6">
+						<Separator />
+					</div>
+
+					<div>
+						<h3 className="text-foreground font-extrabold text-[17px] mb-2">
+							Trending Now
+						</h3>
+						<Trending />
+					</div>
+				</div>
+			</SheetContent>
+		</Sheet>
+	);
 };
 
 export default SearchSheet;

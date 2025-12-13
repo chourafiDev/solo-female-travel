@@ -2,39 +2,6 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { getCategoriesWithPostCount } from "@/sanity/queries";
 
-const CATEGORIES = [
-	{
-		href: "/category/destinations",
-		title: "Destinations",
-		total: 10,
-	},
-	{
-		href: "/category/travel-tips",
-		title: "Travel Tips",
-		total: 10,
-	},
-	{
-		href: "/category/safety",
-		title: "Safety Guide",
-		total: 10,
-	},
-	{
-		href: "/category/budget-travel",
-		title: "Budget Travel",
-		total: 10,
-	},
-	{
-		href: "/category/tours",
-		title: "Tours & Experiences",
-		total: 10,
-	},
-	{
-		href: "/category/packing",
-		title: "Packing Guides",
-		total: 10,
-	},
-];
-
 const Categories = async () => {
 	const allCategories = await getCategoriesWithPostCount();
 
@@ -56,7 +23,7 @@ const Categories = async () => {
 								{cat.count}
 							</p>
 						</Link>
-						{index < CATEGORIES.length - 1 && <Separator />}
+						{index < allCategories.length - 1 && <Separator />}
 					</li>
 				))}
 			</ul>

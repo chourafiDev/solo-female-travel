@@ -49,7 +49,7 @@ const sendWelcomeEmail = async (
 			{ plainText: true },
 		);
 
-		const result = await resend.emails.send({
+		await resend.emails.send({
 			from: `Solo Female Voyage ${process.env.FROM_EMAIL}`,
 			to: [`${email}`],
 			subject: "🎉 Welcome to our newsletter!",
@@ -57,7 +57,6 @@ const sendWelcomeEmail = async (
 			text: emailPlainText,
 		});
 
-		console.log("Welcome email sent successfully:", result);
 		return true;
 	} catch (error) {
 		console.error("Email sending error:", error);

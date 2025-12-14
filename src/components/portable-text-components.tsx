@@ -113,7 +113,7 @@ export const portableTextComponents: PTComponents = {
 						<>
 							{/* First row as headers */}
 							<thead>
-								<tr className="bg-gray-100 dark:bg-muted/10">
+								<tr className="bg-soft-linen dark:bg-muted/10">
 									{value.rows[0].cells?.map(
 										(cell: string, cellIndex: number) => (
 											<th
@@ -131,7 +131,7 @@ export const portableTextComponents: PTComponents = {
 								{value.rows.slice(1).map((row: TableRow, rowIndex: number) => (
 									<tr
 										key={rowIndex}
-										className="hover:bg-gray-50 dark:hover:bg-muted/5"
+										className="hover:bg-soft-linen/80 dark:hover:bg-muted/5"
 									>
 										{row.cells?.map((cell: string, cellIndex: number) => (
 											<td

@@ -33,22 +33,24 @@ const MostPopular = async () => {
 				Most Popular
 			</h2>
 
-			<div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-3 gap-10">
+			<div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-3 gap-10 mb-14">
 				{/* DESTINATIONS COLUMN */}
 				<div className="w-full lg:border-r border-border lg:pr-3">
 					<div className="flex items-center justify-between mb-4">
-						<h3 className="text-foreground font-bold text-lg italic">
+						<h3 className="text-foreground font-black uppercase text-lg italic">
 							Destinations
 						</h3>
 						<Link
 							href="/category/destinations"
-							className="text-sm text-foreground/60 font-semibold underline flex items-center gap-1"
+							className="text-sm text-foreground font-semibold underline flex items-center gap-1"
 							aria-label="View more Destinations posts"
 						>
 							View More{" "}
 							<ArrowRight className="size-3 mt-1" aria-hidden="true" />
 						</Link>
 					</div>
+
+					<div className="bg-foreground h-0.5 rounded-full w-full mb-2" />
 
 					{/* Featured Article with Image */}
 					{featuredDestination && (
@@ -213,18 +215,20 @@ const MostPopular = async () => {
 				{/* TRAVEL TIPS COLUMN */}
 				<div className="w-full lg:border-r border-border lg:pr-3">
 					<div className="flex items-center justify-between mb-4">
-						<h3 className="text-foreground font-bold text-lg italic">
+						<h3 className="text-foreground font-black uppercase text-lg italic">
 							Travel Tips
 						</h3>
 						<Link
 							href="/category/travel-tips"
-							className="text-sm text-foreground/60 font-semibold underline flex items-center gap-1"
+							className="text-sm text-foreground font-semibold underline flex items-center gap-1"
 							aria-label="View more Travel Tips posts"
 						>
 							View More{" "}
 							<ArrowRight className="size-3 mt-1" aria-hidden="true" />
 						</Link>
 					</div>
+
+					<div className="bg-foreground h-0.5 rounded-full w-full mb-2" />
 
 					{/* Featured Article with Image */}
 					<article itemScope itemType="https://schema.org/BlogPosting">
@@ -409,18 +413,20 @@ const MostPopular = async () => {
 				{/* BUDGET & COSTS COLUMN */}
 				<div className="w-full">
 					<div className="flex items-center justify-between mb-4">
-						<h3 className="text-foreground font-bold text-lg italic">
+						<h3 className="text-foreground font-black uppercase text-lg italic">
 							Budget and Costs
 						</h3>
 						<Link
 							href="/category/budget-costs"
-							className="text-sm text-foreground/60 font-semibold underline flex items-center gap-1"
+							className="text-sm text-foreground font-semibold underline flex items-center gap-1"
 							aria-label="View more Safety Guide posts"
 						>
 							View More{" "}
 							<ArrowRight className="size-3 mt-1" aria-hidden="true" />
 						</Link>
 					</div>
+
+					<div className="bg-foreground h-0.5 rounded-full w-full mb-2" />
 
 					{/* Featured Article with Image */}
 					<article itemScope itemType="https://schema.org/BlogPosting">
@@ -606,6 +612,552 @@ const MostPopular = async () => {
 							content={`${siteConfig.url}/default-image.jpg`}
 						/>
 					</article>
+				</div>
+			</div>
+
+			{/* SAFETY COLUMN */}
+			<div className="w-full mb-14">
+				<div className="flex items-center justify-between mb-4">
+					<h3 className="text-foreground font-black uppercase text-lg italic">
+						Safety Guide
+					</h3>
+					<Link
+						href="/category/safety"
+						className="text-sm text-foreground font-semibold underline flex items-center gap-1"
+						aria-label="View more Destinations posts"
+					>
+						View More <ArrowRight className="size-3 mt-1" aria-hidden="true" />
+					</Link>
+				</div>
+
+				<div className="bg-foreground h-0.5 rounded-full w-full mb-2" />
+
+				<div className="flex lg:flex-row flex-col gap-4">
+					<article
+						className="lg:w-[55%] w-full flex lg:flex-row flex-col lg:items-center items-start gap-4 lg:border-r border-border lg:pr-4"
+						itemScope
+						itemType="https://schema.org/BlogPosting"
+					>
+						<Link
+							href="/blog/essential-packing-tips-solo-travelers"
+							itemProp="url"
+							className="lg:w-auto w-full h-full"
+						>
+							<figure
+								itemProp="image"
+								itemScope
+								itemType="https://schema.org/ImageObject"
+								className="relative lg:w-[340px] w-full lg:h-full h-[180px] rounded-lg overflow-hidden"
+							>
+								<Image
+									src={touristCarryingLuggage}
+									alt="Essential packing tips for solo travelers"
+									fill
+									placeholder="blur"
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+									className="absolute object-cover transition-all duration-300 hover:scale-110"
+									itemProp="url"
+									loading="lazy"
+								/>
+							</figure>
+						</Link>
+
+						<div>
+							<div className="flex items-center gap-2 lg:mt-4">
+								<time
+									dateTime="2025-02-11T10:00:00Z"
+									itemProp="datePublished"
+									className="text-[11px] font-semibold text-foreground"
+								>
+									{format(new Date("2025-02-11"), "MMMM d, yyyy").toUpperCase()}
+								</time>
+								<RxDividerVertical
+									className="text-foreground font-bold rotate-12"
+									aria-hidden="true"
+								/>
+								<div
+									itemProp="author"
+									itemScope
+									itemType="https://schema.org/Person"
+									className="mb-1"
+								>
+									<Link
+										href="/author/maya-pena"
+										className="text-[11px] text-foreground font-semibold"
+									>
+										<span className="text-muted-foreground">POST BY</span>{" "}
+										<span itemProp="name">MAYA PENA</span>
+									</Link>
+								</div>
+							</div>
+
+							<h4 itemProp="headline" className="post-title">
+								<Link href="/blog/essential-packing-tips-solo-travelers">
+									Best places to travel solo female in us
+								</Link>
+							</h4>
+						</div>
+
+						<div
+							itemProp="publisher"
+							itemScope
+							itemType="https://schema.org/Organization"
+							className="hidden"
+						>
+							<meta itemProp="name" content={siteConfig.name} />
+							<div
+								itemProp="logo"
+								itemScope
+								itemType="https://schema.org/ImageObject"
+							>
+								<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+							</div>
+						</div>
+					</article>
+
+					<div className="lg:w-[45%] lg:space-y-2 space-y-4">
+						<article
+							className="flex lg:flex-row flex-col lg:items-center items-start gap-4 lg:border-t-0 border-t border-b border-border lg:pb-2 pb-4 lg:pt-0 pt-4"
+							itemScope
+							itemType="https://schema.org/BlogPosting"
+						>
+							<Link
+								href="/blog/essential-packing-tips-solo-travelers"
+								itemProp="url"
+								className="lg:w-auto w-full h-full"
+							>
+								<figure
+									itemProp="image"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+									className="relative lg:w-[180px] w-full lg:h-[100px] h-[180px] rounded-lg overflow-hidden"
+								>
+									<Image
+										src={touristCarryingLuggage}
+										alt="Essential packing tips for solo travelers"
+										fill
+										placeholder="blur"
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										className="absolute object-cover transition-all duration-300 hover:scale-110"
+										itemProp="url"
+										loading="lazy"
+									/>
+								</figure>
+							</Link>
+
+							<div>
+								<div className="flex items-center gap-2 lg:mt-4">
+									<time
+										dateTime="2025-02-11T10:00:00Z"
+										itemProp="datePublished"
+										className="text-[11px] font-semibold text-foreground"
+									>
+										{format(
+											new Date("2025-02-11"),
+											"MMMM d, yyyy",
+										).toUpperCase()}
+									</time>
+									<RxDividerVertical
+										className="text-foreground font-bold rotate-12"
+										aria-hidden="true"
+									/>
+									<div
+										itemProp="author"
+										itemScope
+										itemType="https://schema.org/Person"
+										className="mb-1"
+									>
+										<Link
+											href="/author/maya-pena"
+											className="text-[11px] text-foreground font-semibold"
+										>
+											<span className="text-muted-foreground">POST BY</span>{" "}
+											<span itemProp="name">MAYA PENA</span>
+										</Link>
+									</div>
+								</div>
+
+								<h4 itemProp="headline" className="post-title">
+									<Link href="/blog/essential-packing-tips-solo-travelers">
+										Best places to travel solo female in us
+									</Link>
+								</h4>
+							</div>
+
+							<div
+								itemProp="publisher"
+								itemScope
+								itemType="https://schema.org/Organization"
+								className="hidden"
+							>
+								<meta itemProp="name" content={siteConfig.name} />
+								<div
+									itemProp="logo"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+								>
+									<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+								</div>
+							</div>
+						</article>
+						<article
+							className="flex lg:flex-row flex-col lg:items-center items-start gap-4"
+							itemScope
+							itemType="https://schema.org/BlogPosting"
+						>
+							<Link
+								href="/blog/essential-packing-tips-solo-travelers"
+								itemProp="url"
+								className="lg:w-auto w-full h-full"
+							>
+								<figure
+									itemProp="image"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+									className="relative lg:w-[180px] w-full lg:h-[100px] h-[180px] rounded-lg overflow-hidden"
+								>
+									<Image
+										src={touristCarryingLuggage}
+										alt="Essential packing tips for solo travelers"
+										fill
+										placeholder="blur"
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										className="absolute object-cover transition-all duration-300 hover:scale-110"
+										itemProp="url"
+										loading="lazy"
+									/>
+								</figure>
+							</Link>
+
+							<div>
+								<div className="flex items-center gap-2 lg:mt-4">
+									<time
+										dateTime="2025-02-11T10:00:00Z"
+										itemProp="datePublished"
+										className="text-[11px] font-semibold text-foreground"
+									>
+										{format(
+											new Date("2025-02-11"),
+											"MMMM d, yyyy",
+										).toUpperCase()}
+									</time>
+									<RxDividerVertical
+										className="text-foreground font-bold rotate-12"
+										aria-hidden="true"
+									/>
+									<div
+										itemProp="author"
+										itemScope
+										itemType="https://schema.org/Person"
+										className="mb-1"
+									>
+										<Link
+											href="/author/maya-pena"
+											className="text-[11px] text-foreground font-semibold"
+										>
+											<span className="text-muted-foreground">POST BY</span>{" "}
+											<span itemProp="name">MAYA PENA</span>
+										</Link>
+									</div>
+								</div>
+
+								<h4 itemProp="headline" className="post-title">
+									<Link href="/blog/essential-packing-tips-solo-travelers">
+										Best places to travel solo female in us
+									</Link>
+								</h4>
+							</div>
+
+							<div
+								itemProp="publisher"
+								itemScope
+								itemType="https://schema.org/Organization"
+								className="hidden"
+							>
+								<meta itemProp="name" content={siteConfig.name} />
+								<div
+									itemProp="logo"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+								>
+									<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+
+			{/* COMPARISONS & REVIEWS COLUMN */}
+			<div className="w-full">
+				<div className="flex items-center justify-between mb-4">
+					<h3 className="text-foreground font-black uppercase text-lg italic">
+						Comparisons and Reviews
+					</h3>
+					<Link
+						href="/category/comparisons-reviews"
+						className="text-sm text-foreground font-semibold underline flex items-center gap-1"
+						aria-label="View more Destinations posts"
+					>
+						View More <ArrowRight className="size-3 mt-1" aria-hidden="true" />
+					</Link>
+				</div>
+
+				<div className="bg-foreground h-0.5 rounded-full w-full mb-2" />
+
+				<div className="flex lg:flex-row flex-col gap-4">
+					<article
+						className="lg:w-[55%] w-full flex lg:flex-row flex-col lg:items-center items-start gap-4 lg:border-r border-border lg:pr-4"
+						itemScope
+						itemType="https://schema.org/BlogPosting"
+					>
+						<Link
+							href="/blog/essential-packing-tips-solo-travelers"
+							itemProp="url"
+							className="lg:w-auto w-full h-full"
+						>
+							<figure
+								itemProp="image"
+								itemScope
+								itemType="https://schema.org/ImageObject"
+								className="relative lg:w-[340px] w-full lg:h-full h-[180px] rounded-lg overflow-hidden"
+							>
+								<Image
+									src={touristCarryingLuggage}
+									alt="Essential packing tips for solo travelers"
+									fill
+									placeholder="blur"
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+									className="absolute object-cover transition-all duration-300 hover:scale-110"
+									itemProp="url"
+									loading="lazy"
+								/>
+							</figure>
+						</Link>
+
+						<div>
+							<div className="flex items-center gap-2 lg:mt-4">
+								<time
+									dateTime="2025-02-11T10:00:00Z"
+									itemProp="datePublished"
+									className="text-[11px] font-semibold text-foreground"
+								>
+									{format(new Date("2025-02-11"), "MMMM d, yyyy").toUpperCase()}
+								</time>
+								<RxDividerVertical
+									className="text-foreground font-bold rotate-12"
+									aria-hidden="true"
+								/>
+								<div
+									itemProp="author"
+									itemScope
+									itemType="https://schema.org/Person"
+									className="mb-1"
+								>
+									<Link
+										href="/author/maya-pena"
+										className="text-[11px] text-foreground font-semibold"
+									>
+										<span className="text-muted-foreground">POST BY</span>{" "}
+										<span itemProp="name">MAYA PENA</span>
+									</Link>
+								</div>
+							</div>
+
+							<h4 itemProp="headline" className="post-title">
+								<Link href="/blog/essential-packing-tips-solo-travelers">
+									Best places to travel solo female in us
+								</Link>
+							</h4>
+						</div>
+
+						<div
+							itemProp="publisher"
+							itemScope
+							itemType="https://schema.org/Organization"
+							className="hidden"
+						>
+							<meta itemProp="name" content={siteConfig.name} />
+							<div
+								itemProp="logo"
+								itemScope
+								itemType="https://schema.org/ImageObject"
+							>
+								<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+							</div>
+						</div>
+					</article>
+
+					<div className="lg:w-[45%] lg:space-y-2 space-y-4">
+						<article
+							className="flex lg:flex-row flex-col lg:items-center items-start gap-4 lg:border-t-0 border-t border-b border-border lg:pb-2 pb-4 lg:pt-0 pt-4"
+							itemScope
+							itemType="https://schema.org/BlogPosting"
+						>
+							<Link
+								href="/blog/essential-packing-tips-solo-travelers"
+								itemProp="url"
+								className="lg:w-auto w-full h-full"
+							>
+								<figure
+									itemProp="image"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+									className="relative lg:w-[180px] w-full lg:h-[100px] h-[180px] rounded-lg overflow-hidden"
+								>
+									<Image
+										src={touristCarryingLuggage}
+										alt="Essential packing tips for solo travelers"
+										fill
+										placeholder="blur"
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										className="absolute object-cover transition-all duration-300 hover:scale-110"
+										itemProp="url"
+										loading="lazy"
+									/>
+								</figure>
+							</Link>
+
+							<div>
+								<div className="flex items-center gap-2 lg:mt-4">
+									<time
+										dateTime="2025-02-11T10:00:00Z"
+										itemProp="datePublished"
+										className="text-[11px] font-semibold text-foreground"
+									>
+										{format(
+											new Date("2025-02-11"),
+											"MMMM d, yyyy",
+										).toUpperCase()}
+									</time>
+									<RxDividerVertical
+										className="text-foreground font-bold rotate-12"
+										aria-hidden="true"
+									/>
+									<div
+										itemProp="author"
+										itemScope
+										itemType="https://schema.org/Person"
+										className="mb-1"
+									>
+										<Link
+											href="/author/maya-pena"
+											className="text-[11px] text-foreground font-semibold"
+										>
+											<span className="text-muted-foreground">POST BY</span>{" "}
+											<span itemProp="name">MAYA PENA</span>
+										</Link>
+									</div>
+								</div>
+
+								<h4 itemProp="headline" className="post-title">
+									<Link href="/blog/essential-packing-tips-solo-travelers">
+										Best places to travel solo female in us
+									</Link>
+								</h4>
+							</div>
+
+							<div
+								itemProp="publisher"
+								itemScope
+								itemType="https://schema.org/Organization"
+								className="hidden"
+							>
+								<meta itemProp="name" content={siteConfig.name} />
+								<div
+									itemProp="logo"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+								>
+									<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+								</div>
+							</div>
+						</article>
+						<article
+							className="flex lg:flex-row flex-col lg:items-center items-start gap-4"
+							itemScope
+							itemType="https://schema.org/BlogPosting"
+						>
+							<Link
+								href="/blog/essential-packing-tips-solo-travelers"
+								itemProp="url"
+								className="lg:w-auto w-full h-full"
+							>
+								<figure
+									itemProp="image"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+									className="relative lg:w-[180px] w-full lg:h-[100px] h-[180px] rounded-lg overflow-hidden"
+								>
+									<Image
+										src={touristCarryingLuggage}
+										alt="Essential packing tips for solo travelers"
+										fill
+										placeholder="blur"
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										className="absolute object-cover transition-all duration-300 hover:scale-110"
+										itemProp="url"
+										loading="lazy"
+									/>
+								</figure>
+							</Link>
+
+							<div>
+								<div className="flex items-center gap-2 lg:mt-4">
+									<time
+										dateTime="2025-02-11T10:00:00Z"
+										itemProp="datePublished"
+										className="text-[11px] font-semibold text-foreground"
+									>
+										{format(
+											new Date("2025-02-11"),
+											"MMMM d, yyyy",
+										).toUpperCase()}
+									</time>
+									<RxDividerVertical
+										className="text-foreground font-bold rotate-12"
+										aria-hidden="true"
+									/>
+									<div
+										itemProp="author"
+										itemScope
+										itemType="https://schema.org/Person"
+										className="mb-1"
+									>
+										<Link
+											href="/author/maya-pena"
+											className="text-[11px] text-foreground font-semibold"
+										>
+											<span className="text-muted-foreground">POST BY</span>{" "}
+											<span itemProp="name">MAYA PENA</span>
+										</Link>
+									</div>
+								</div>
+
+								<h4 itemProp="headline" className="post-title">
+									<Link href="/blog/essential-packing-tips-solo-travelers">
+										Best places to travel solo female in us
+									</Link>
+								</h4>
+							</div>
+
+							<div
+								itemProp="publisher"
+								itemScope
+								itemType="https://schema.org/Organization"
+								className="hidden"
+							>
+								<meta itemProp="name" content={siteConfig.name} />
+								<div
+									itemProp="logo"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+								>
+									<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+								</div>
+							</div>
+						</article>
+					</div>
 				</div>
 			</div>
 		</section>

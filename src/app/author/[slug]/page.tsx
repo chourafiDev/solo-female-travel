@@ -160,10 +160,14 @@ const AuthorPage = async ({ params }: AuthorPageProps) => {
 						>
 							<h1
 								itemProp="name"
-								className="text-foreground font-semibold text-xl text-center mb-1"
+								className="text-foreground font-black text-xl text-center mb-1"
 							>
 								{authorName}
 							</h1>
+
+							<p className="text-foreground text-center text-sm">
+								Teaching you to travel longer, cheaper, smarter
+							</p>
 
 							{/* Hidden metadata */}
 							<meta

@@ -36,7 +36,7 @@ export const portableTextComponents: PTComponents = {
 			return (
 				<h2
 					id={id}
-					className="my-6 text-foreground font-bold md:leading-[44px] leading-[35px] md:text-[30px] text-xl tracking-tight first:mt-0 last:mb-0"
+					className="my-6 text-foreground font-black md:leading-[44px] leading-[35px] md:text-[30px] text-xl tracking-tight first:mt-0 last:mb-0"
 				>
 					{children}
 				</h2>

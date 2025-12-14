@@ -23,8 +23,12 @@ export default async function NavBar() {
 
 	const NAVIGATION_MENU: NavigationMenu = [
 		{ href: "/", label: "Home" },
+		{ href: "/category/destinations", label: "Destinations" },
+		{ href: "/category/travel-tips", label: "Travel Tips" },
+		{ href: "/category/safety", label: "safety Guide" },
+		{ href: "/about-us", label: "About Us" },
 		{
-			label: "Categories",
+			label: "Discover More",
 			submenu: true,
 			type: "description",
 
@@ -35,24 +39,25 @@ export default async function NavBar() {
 					): category is NonNullable<ALL_CATEGORIES_QUERYResult[number]> & {
 						slug: string;
 						title: string;
-					} => category.slug !== null && category.title !== null,
+					} =>
+						category.slug !== null &&
+						category.title !== null &&
+						category.slug !== "destinations" &&
+						category.slug !== "travel-tips" &&
+						category.slug !== "safety",
 				)
 				.map((category) => ({
 					href: `/category/${category.slug}`,
 					label: category.title,
 				})),
 		},
-		{ href: "/about-us", label: "About Us" },
-		{ href: "/contact", label: "Contact" },
 	];
 
 	return (
 		<header className="custom-container sticky top-0 bg-background z-50 flex items-center justify-between border-b py-3.5">
 			<div className="flex w-full h-full items-center justify-between">
-				<div className="flex items-center gap-16">
-					<Logo />
-					<DesktopMenu menu={NAVIGATION_MENU} />
-				</div>
+				<Logo />
+				<DesktopMenu menu={NAVIGATION_MENU} />
 
 				<div className="flex items-center gap-2">
 					<CallActions />

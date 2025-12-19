@@ -6,6 +6,7 @@ import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { IoClose } from "react-icons/io5";
 import z from "zod";
+import { addDigitalEbookSubscriber } from "@/app/_actions/digital-ebook-email";
 /* import { addSubscriber } from "@/app/_actions/ebook-email"; */
 import {
 	Form,
@@ -38,11 +39,11 @@ const DigitalEbook = () => {
 	});
 
 	function onSubmit(values: z.infer<typeof subscribeSchema>) {
-		/* startTransition(async () => {
+		startTransition(async () => {
 			setMessage("");
 			setIsSuccess(false);
 
-			const result = await addSubscriber({ email: values.email });
+			const result = await addDigitalEbookSubscriber({ email: values.email });
 
 			if (result.success) {
 				setMessage(result.message);
@@ -52,7 +53,7 @@ const DigitalEbook = () => {
 				setMessage(result.error);
 				setIsSuccess(false);
 			}
-		}); */
+		});
 	}
 
 	const handleClear = () => {
@@ -78,7 +79,7 @@ const DigitalEbook = () => {
 				<h2 className="lg:text-3xl text-2xl text-background font-bold mb-4">
 					Plan Your 2026 Southeast Asia Adventures with Confidence ✈️
 				</h2>
-				<p className="text-muted mb-6">
+				<p className="text-muted mb-4">
 					Get my{" "}
 					<span className="font-semibold">
 						FREE 52-page Travel Planner Bundle
@@ -88,7 +89,7 @@ const DigitalEbook = () => {
 					accommodations, and journal your memories all in one beautiful PDF.
 				</p>
 
-				<ul className="text-muted mb-8 space-y-2">
+				<ul className="text-muted mb-6 space-y-2">
 					<li className="flex items-start">
 						<span className="mr-2">✓</span>
 						<span>Full 2026 calendar + monthly trip planning pages</span>

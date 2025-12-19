@@ -140,7 +140,7 @@ const DigitalEbook = () => {
 												<Input
 													type="email"
 													placeholder="Enter your email to get instant access"
-													className="flex-1 rounded-full px-6"
+													className="flex-1 focus-visible:border-white rounded-full px-6"
 													disabled={isPending}
 													{...field}
 												/>

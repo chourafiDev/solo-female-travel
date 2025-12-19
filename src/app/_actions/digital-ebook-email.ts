@@ -2,6 +2,8 @@
 
 import mailchimpClient from "@mailchimp/mailchimp_marketing";
 import { render } from "@react-email/render";
+import fs from "fs";
+import path from "path";
 import { Resend } from "resend";
 import DigitalEbookEmail from "../../../email/digital-ebook-email";
 
@@ -31,7 +33,10 @@ type SubscriberResult =
 	| { success: true; message: string }
 	| { success: false; error: string };
 
-const sendEbookEmail = async (email: string, isExistingSubscriber = false) => {
+const sendDigitalEbookEmail = async (
+	email: string,
+	isExistingSubscriber = false,
+) => {
 	try {
 		const downloadLink =
 			process.env.EBOOK_DOWNLOAD_URL ||
@@ -50,6 +55,18 @@ const sendEbookEmail = async (email: string, isExistingSubscriber = false) => {
 			{ plainText: true },
 		);
 
+		// Get absolute path to the PDF
+		const pdfPath = path.join(
+			process.cwd(),
+			"public",
+			"assets",
+			"download",
+			"travel-planner-2026.pdf",
+		);
+
+		// Read the file as buffer
+		const pdfBuffer = fs.readFileSync(pdfPath);
+
 		await resend.emails.send({
 			from: `Solo Female Voyage <${process.env.FROM_EMAIL}>`,
 			to: [email],
@@ -59,7 +76,7 @@ const sendEbookEmail = async (email: string, isExistingSubscriber = false) => {
 			attachments: [
 				{
 					filename: "2026-travel-planner.pdf",
-					path: "/assets/download/travel-planner-2026.pdf",
+					content: pdfBuffer,
 				},
 			],
 		});
@@ -88,7 +105,7 @@ export const addDigitalEbookSubscriber = async ({
 		);
 
 		// Send ebook email
-		const emailSent = await sendEbookEmail(email);
+		const emailSent = await sendDigitalEbookEmail(email);
 
 		if (!emailSent) {
 			console.error(
@@ -112,7 +129,7 @@ export const addDigitalEbookSubscriber = async ({
 			// Handle specific Mailchimp errors
 			if (error.response?.body?.title === "Member Exists") {
 				// Send ebook email anyway for existing subscribers
-				const emailSent = await sendEbookEmail(email, true);
+				const emailSent = await sendDigitalEbookEmail(email, true);
 
 				return {
 					success: true,

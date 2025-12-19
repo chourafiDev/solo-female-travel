@@ -2,8 +2,6 @@
 
 import mailchimpClient from "@mailchimp/mailchimp_marketing";
 import { render } from "@react-email/render";
-import fs from "fs";
-import path from "path";
 import { Resend } from "resend";
 import DigitalEbookEmail from "../../../email/digital-ebook-email";
 
@@ -28,11 +26,6 @@ interface MailchimpError {
 	status?: number;
 }
 
-// Define return types
-type SubscriberResult =
-	| { success: true; message: string }
-	| { success: false; error: string };
-
 const sendDigitalEbookEmail = async (
 	email: string,
 	isExistingSubscriber = false,
@@ -41,6 +34,10 @@ const sendDigitalEbookEmail = async (
 		const downloadLink =
 			process.env.EBOOK_DOWNLOAD_URL ||
 			"https://solofemalevoyage.com/assets/download/travel-planner-2026.pdf";
+
+		console.log("Rendering email for:", email);
+		console.log("Download link:", downloadLink);
+		console.log("FROM_EMAIL:", process.env.FROM_EMAIL);
 
 		const emailHtml = await render(
 			DigitalEbookEmail({
@@ -55,35 +52,30 @@ const sendDigitalEbookEmail = async (
 			{ plainText: true },
 		);
 
-		// Get absolute path to the PDF
-		const pdfPath = path.join(
-			process.cwd(),
-			"public",
-			"assets",
-			"download",
-			"travel-planner-2026.pdf",
-		);
-
-		// Read the file as buffer
-		const pdfBuffer = fs.readFileSync(pdfPath);
-
 		await resend.emails.send({
-			from: `Solo Female Voyage <${process.env.FROM_EMAIL}>`,
+			from: `Solo Female Voyage ${process.env.FROM_EMAIL}`,
 			to: [email],
 			subject: "🎉 Your FREE 2026 Travel Planner is Here!",
 			html: emailHtml,
 			text: emailPlainText,
-			attachments: [
-				{
-					filename: "2026-travel-planner.pdf",
-					content: pdfBuffer,
-				},
-			],
 		});
 
 		return true;
 	} catch (error) {
 		console.error("Ebook email sending error:", error);
+
+		// Log the full error details
+		if (error instanceof Error) {
+			console.error("Error name:", error.name);
+			console.error("Error message:", error.message);
+			console.error("Error stack:", error.stack);
+		}
+
+		// If it's a Resend error, log the response
+		if (typeof error === "object" && error !== null && "response" in error) {
+			console.error("Resend error response:", JSON.stringify(error, null, 2));
+		}
+
 		return false;
 	}
 };
@@ -92,7 +84,7 @@ export const addDigitalEbookSubscriber = async ({
 	email,
 }: {
 	email: string;
-}): Promise<SubscriberResult> => {
+}) => {
 	try {
 		// Add to Mailchimp with a specific tag for ebook subscribers
 		await mailchimpClient.lists.addListMember(

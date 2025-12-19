@@ -73,8 +73,6 @@ export const DigitalEbookEmail = ({
 					<Text style={paragraph}>
 						Happy planning! 🗺️
 						<br />
-						<strong>[Your Name]</strong>
-						<br />
 						Solo Female Voyage
 					</Text>
 

@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { IoClose } from "react-icons/io5";
 import z from "zod";
 import { addDigitalEbookSubscriber } from "@/app/_actions/digital-ebook-email";
-/* import { addSubscriber } from "@/app/_actions/ebook-email"; */
 import {
 	Form,
 	FormControl,
@@ -27,7 +26,7 @@ const subscribeSchema = z.object({
 });
 
 const DigitalEbook = () => {
-	const [message, setMessage] = useState<string>("");
+	const [message, setMessage] = useState<string | undefined>("");
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 	const [isPending, startTransition] = useTransition();
 

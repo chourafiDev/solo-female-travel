@@ -2,6 +2,7 @@ import type { PortableTextComponents as PTComponents } from "@portabletext/react
 import Image from "next/image";
 import Link from "next/link";
 import type { PortableTextSpan } from "sanity";
+import DigitalEbook from "./digital-ebook";
 import FAQAccordion from "./FAQAccordion";
 
 /* import PortableFreeEbook from "./portable-free-ebook"; */
@@ -152,9 +153,9 @@ export const portableTextComponents: PTComponents = {
 		faqBlock: ({ value }) => (
 			<FAQAccordion title={value.title} faqs={value.faqs} />
 		),
-		/* emailSignup: () => {
-			return <PortableFreeEbook />;
-		}, */
+		emailSignup: () => {
+			return <DigitalEbook />;
+		},
 	},
 	list: {
 		bullet: ({ children }) => (

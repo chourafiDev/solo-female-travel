@@ -45,6 +45,7 @@ const AuthorBio = ({ author }: AuthorBioProps) => {
 							<AvatarImage
 								src={authorImage}
 								alt={authorName}
+								className="object-cover"
 								itemProp="image"
 							/>
 						)}

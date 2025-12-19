@@ -109,7 +109,7 @@ const CategoryPage = async ({ params, searchParams }: PageProps) => {
 				</Breadcrumbs>
 
 				<main className="custom-container my-10">
-					<CategoryHeader />
+					<CategoryHeader slug={slug} postCount={0} />
 					<div className="py-44 bg-soft-linen rounded-xl flex justify-center items-center">
 						<h1 className="text-foreground font-semibold text-lg">
 							No posts found in this category
@@ -160,7 +160,7 @@ const CategoryPage = async ({ params, searchParams }: PageProps) => {
 
 			<main className="custom-container">
 				{/* Category Header */}
-				<CategoryHeader />
+				<CategoryHeader slug={slug} postCount={totalPosts} />
 
 				{/* Posts Section */}
 				<section

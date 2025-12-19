@@ -82,6 +82,7 @@ const ArticleHeader = ({ post }: ArticleHeaderProps) => {
 							src={authorImage}
 							alt={`${authorName} profile picture`}
 							itemProp="image"
+							className="object-cover"
 						/>
 					) : null}
 					<AvatarFallback>{getInitials(authorName)}</AvatarFallback>

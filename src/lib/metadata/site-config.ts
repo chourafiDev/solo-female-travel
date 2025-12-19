@@ -68,28 +68,45 @@ export const siteConfig = {
 				"solo travel safety",
 			],
 		},
-		"budget-travel": {
+		"budget-costs": {
 			title: "Budget Solo Female Travel: Affordable Destinations & Money Tips",
 			description:
 				"Travel solo on a budget! Discover affordable destinations, money-saving tips, best travel credit cards, and budget hacks for female travelers.",
-			slug: "budget-travel",
+			slug: "budget-costs",
 			keywords: [
 				"budget travel",
+				"budget costs",
 				"cheap destinations",
 				"travel savings",
 				"affordable travel",
 			],
 		},
-		tours: {
-			title: "Solo Female Travel Tours & Packages: Group Tours & Experiences",
+		accommodation: {
+			title: "Solo Female Travel Accommodation: Hotels, Hostels & Safe Stays",
 			description:
-				"Best group tours, all-inclusive packages, and curated experiences for solo female travelers. Reviews of top tour companies and destination recommendations.",
-			slug: "tours",
+				"Find the best accommodation for solo female travelers. Reviews of women-friendly hotels, safe hostels, boutique stays, and tips for booking secure lodging worldwide.",
+			slug: "accommodation",
 			keywords: [
-				"travel tours",
-				"group tours",
-				"travel packages",
-				"solo travel tours",
+				"solo female accommodation",
+				"women-friendly hotels",
+				"safe hostels",
+				"female-only hostels",
+				"accommodation reviews",
+				"where to stay solo",
+			],
+		},
+		"comparisons-reviews": {
+			title: "Solo Female Travel Gear Reviews & Product Comparisons",
+			description:
+				"Honest reviews and comparisons of travel gear, luggage, safety products, and essential items for solo female travelers. Make informed decisions with expert recommendations.",
+			slug: "comparisons-reviews",
+			keywords: [
+				"travel gear reviews",
+				"product comparisons",
+				"best travel products",
+				"luggage reviews",
+				"travel equipment",
+				"gear recommendations",
 			],
 		},
 	},

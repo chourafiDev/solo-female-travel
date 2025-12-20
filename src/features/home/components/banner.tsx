@@ -86,7 +86,7 @@ const Banner = async () => {
 										/>
 									</figure>
 
-									<div className="absolute md:bottom-9 bottom-28 md:left-9 left-6 lg:w-[60%] w-[90%] z-20">
+									<div className="absolute md:bottom-9 bottom-28 md:left-9 left-6 lg:w-[80%] w-[90%] z-20">
 										<div className="flex items-center gap-5 mb-3">
 											<time
 												dateTime={postDate}

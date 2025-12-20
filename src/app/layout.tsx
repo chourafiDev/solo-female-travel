@@ -53,6 +53,10 @@ export default function RootLayout({
 					name="google-site-verification"
 					content="yxeFNWpuhvlS0eo9B8iQrxf0t5J49c_LIm7DPQoOTZU"
 				/>
+				<meta
+					name="facebook-domain-verification"
+					content="4a1y1l86exge4zhu8x7fy6s5ao9jo4"
+				/>
 				<meta name="msvalidate.01" content="CD6B89087A11047F5523FAC02B18D301" />
 
 				{/* Additional meta tags */}

@@ -1,3 +1,4 @@
+import type { PortableTextBlock } from "sanity";
 import type {
 	IS_FEATURED_POSTS_QUERYResult,
 	POST_QUERYResult,
@@ -6,7 +7,7 @@ import type {
 // ✅ FAQ Block type
 export interface FAQItem {
 	question: string;
-	answer: string;
+	answer: PortableTextBlock[];
 }
 
 export interface FAQBlock {

@@ -1,3 +1,4 @@
+import { toPlainText } from "@portabletext/toolkit";
 import type {
 	BreadcrumbListSchema,
 	CollectionPageSchema,
@@ -153,8 +154,8 @@ export function generateCollectionPageSchema(
 /**
  * Generate FAQ schema
  */
-export function generateFAQSchema(
-	faqs: Array<{ question: string; answer: string }>,
+export function generateFAQSchema<T = unknown>(
+	faqs: Array<{ question: string; answer: T }>,
 ): FAQPageSchema {
 	return {
 		"@context": "https://schema.org",
@@ -164,7 +165,7 @@ export function generateFAQSchema(
 			name: faq.question,
 			acceptedAnswer: {
 				"@type": "Answer",
-				text: faq.answer,
+				text: toPlainText(faq.answer as any),
 			},
 		})),
 	};

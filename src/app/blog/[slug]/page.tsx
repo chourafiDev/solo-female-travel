@@ -168,7 +168,10 @@ export default async function BlogPostPage({ params }: PageProps) {
 									<strong>Disclosure:</strong> This post may contain affiliate
 									links, which means I earn a small commission at no extra cost
 									to you if you book through my links. I only recommend services
-									I&apos;ve personally used and trust.
+									I&apos;ve personally used and trust.{" "}
+									<Link href="/disclaimer" className="font-medium">
+										Read More
+									</Link>
 								</p>
 							</div>
 

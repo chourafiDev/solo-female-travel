@@ -165,6 +165,7 @@ export function generateFAQSchema<T = unknown>(
 			name: faq.question,
 			acceptedAnswer: {
 				"@type": "Answer",
+				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				text: toPlainText(faq.answer as any),
 			},
 		})),

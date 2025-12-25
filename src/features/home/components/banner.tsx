@@ -124,7 +124,7 @@ const Banner = async () => {
 										<Link href={`/blog/${postSlug}`} itemProp="url">
 											<h3
 												itemProp="headline"
-												className="text-background dark:text-white md:text-[44px] text-[38px] lg:leading-tight md:leading-12 leading-10 font-extrabold mb-4"
+												className="text-background dark:text-white hover:underline md:text-[44px] text-[38px] lg:leading-tight md:leading-12 leading-10 font-extrabold mb-4"
 											>
 												{postTitle}
 											</h3>

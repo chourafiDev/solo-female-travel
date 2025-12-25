@@ -12,7 +12,7 @@ const Breadcrumbs = ({
 				<ol
 					itemScope
 					itemType="https://schema.org/BreadcrumbList"
-					className="flex items-center gap-1.5 font-medium text-foreground text-xs"
+					className="flex flex-wrap items-center gap-1.5 font-medium text-foreground text-xs"
 				>
 					<li
 						itemProp="itemListElement"

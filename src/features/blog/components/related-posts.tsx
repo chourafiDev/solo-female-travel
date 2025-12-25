@@ -2,7 +2,13 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import { RxDividerVertical } from "react-icons/rx";
-import { Separator } from "@/components/ui/separator";
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
 import { getRelatedPosts } from "@/sanity/queries";
 import type { RELATED_POSTS_QUERYResult } from "@/sanity/types";
 
@@ -36,26 +42,25 @@ const RelatedPosts = async ({
 				Related Posts
 			</h2>
 
-			<div
-				className="grid gap-3"
-				style={{
-					gridTemplateColumns: `repeat(${displayPosts.length * 2 - 1}, auto)`,
+			<Carousel
+				opts={{
+					align: "start",
 				}}
+				className="w-full"
 			>
-				{displayPosts.map((post, index) => (
-					<>
-						<RelatedPostCard key={post.slug || index} post={post} />
-						{index < displayPosts.length - 1 && (
-							<Separator
-								key={`separator-${index}`}
-								orientation="vertical"
-								className="h-full"
-								aria-hidden="true"
-							/>
-						)}
-					</>
-				))}
-			</div>
+				<CarouselContent>
+					{displayPosts.map((post) => (
+						<CarouselItem key={post.slug} className="md:basis-1/2 lg:basis-1/4">
+							<RelatedPostCard key={post.slug} post={post} />
+						</CarouselItem>
+					))}
+				</CarouselContent>
+
+				<div className="flex items-center justify-center gap-2 mt-5">
+					<CarouselPrevious />
+					<CarouselNext />
+				</div>
+			</Carousel>
 		</section>
 	);
 };

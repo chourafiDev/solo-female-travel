@@ -64,7 +64,7 @@ const ArticleHeader = ({ post }: ArticleHeaderProps) => {
 			{/* Main Heading */}
 			<h1
 				itemProp="headline"
-				className="text-foreground font-black text-[40px] leading-12 text-center px-24 my-3.5 max-w-5xl"
+				className="text-foreground font-black md:text-[40px] text-[30px] md:leading-12 leading-10 text-center lg:px-24 my-3.5 lg:max-w-5xl"
 			>
 				{title}
 			</h1>

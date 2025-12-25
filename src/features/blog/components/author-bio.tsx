@@ -27,7 +27,10 @@ const AuthorBio = ({ author }: AuthorBioProps) => {
 	};
 
 	return (
-		<aside aria-labelledby="author-heading" className="w-[80%] mx-auto mb-10">
+		<aside
+			aria-labelledby="author-heading"
+			className="lg:w-[80%] mx-auto mb-10"
+		>
 			<h2
 				id="author-heading"
 				className="text-foreground font-bold text-[22px] mb-5"
@@ -37,7 +40,7 @@ const AuthorBio = ({ author }: AuthorBioProps) => {
 			<div
 				itemScope
 				itemType="https://schema.org/Person"
-				className="flex items-start gap-14"
+				className="flex md:flex-row flex-col items-start lg:gap-14 md:gap-10 gap-5"
 			>
 				<div>
 					<Avatar className="size-20 mx-auto mb-2.5">

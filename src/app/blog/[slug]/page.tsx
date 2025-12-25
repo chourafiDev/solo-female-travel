@@ -149,9 +149,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 						</figure>
 					)}
 
-					<div className="flex items-start gap-5 w-[90%] mx-auto">
+					<div className="flex items-start gap-5 lg:w-[90%] lg:mx-auto">
 						{/* Social Share Buttons */}
-						<aside className="w-[25%] sticky top-24 space-y-5">
+						<aside className="lg:w-[25%] lg:block hidden sticky top-24 space-y-5">
 							<TableOfContent
 								headings={headings}
 								title={post.tableOfContents?.title}
@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 						</aside>
 
 						{/* Article body */}
-						<div className="w-[75%]">
+						<div className="lg:w-[75%] w-full">
 							{/* Affiliate Disclosure */}
 							<div className="bg-soft-linen rounded-md p-4 mb-4">
 								<p className="text-foreground text-[13px] leading-6">

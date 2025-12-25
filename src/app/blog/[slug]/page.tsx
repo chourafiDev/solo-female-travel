@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 						</aside>
 
 						{/* Article body */}
-						<div className="flex-1">
+						<div className="w-[75%]">
 							{/* Affiliate Disclosure */}
 							<div className="bg-soft-linen rounded-md p-4 mb-4">
 								<p className="text-foreground text-[13px] leading-6">

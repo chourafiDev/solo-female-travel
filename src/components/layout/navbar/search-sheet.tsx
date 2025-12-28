@@ -14,7 +14,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Trending from "@/features/search/components/trending";
-import { getAllCategories } from "@/sanity/queries";
+import { getAllCategories, getIsTrendingPosts } from "@/sanity/queries";
+import type { TrendingPost } from "@/types/extended-sanity";
 import { Button } from "../../ui/button";
 
 interface Category {
@@ -32,6 +33,7 @@ const SearchSheet = () => {
 	const router = useRouter();
 	const [open, setOpen] = useState(false);
 	const [categories, setCategories] = useState<Category[]>([]);
+	const [trendingPosts, setTrendingPosts] = useState<TrendingPost[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	const searchParams = useSearchParams();
@@ -47,24 +49,30 @@ const SearchSheet = () => {
 		},
 	});
 
-	// Fetch categories from Sanity
+	// Fetch categories and trending posts from Sanity
 	useEffect(() => {
-		const fetchCategories = async () => {
+		const fetchData = async () => {
 			try {
-				const sanityCategories = await getAllCategories();
+				const [sanityCategories, trending] = await Promise.all([
+					getAllCategories(),
+					getIsTrendingPosts({ quantity: 4 }),
+				]);
+
 				const transformedCategories = sanityCategories.map((cat) => ({
 					title: cat.title ?? "Untitled Category",
 					slug: cat.slug ?? "",
 				}));
+
 				setCategories(transformedCategories);
+				setTrendingPosts(trending || []);
 			} catch (error) {
-				console.error("Failed to fetch categories:", error);
+				console.error("Failed to fetch data:", error);
 			} finally {
 				setLoading(false);
 			}
 		};
 
-		fetchCategories();
+		fetchData();
 	}, []);
 
 	// Update form when URL params change
@@ -249,7 +257,7 @@ const SearchSheet = () => {
 						<h3 className="text-foreground font-extrabold text-[17px] mb-2">
 							Trending Now
 						</h3>
-						<Trending />
+						<Trending posts={trendingPosts} loading={loading} />
 					</div>
 				</div>
 			</SheetContent>

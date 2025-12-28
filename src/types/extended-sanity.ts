@@ -1,6 +1,7 @@
 import type { PortableTextBlock } from "sanity";
 import type {
 	IS_FEATURED_POSTS_QUERYResult,
+	IS_TRENDING_POSTS_QUERYResult,
 	POST_QUERYResult,
 } from "@/sanity/types";
 
@@ -46,6 +47,9 @@ export type ExtendedPost = Omit<NonNullable<POST_QUERYResult>, "body"> & {
 
 // ✅ Featured Post type (for lists/cards)
 export type FeaturedPost = IS_FEATURED_POSTS_QUERYResult[number];
+
+// ✅ Trending Post type (for lists/cards)
+export type TrendingPost = IS_TRENDING_POSTS_QUERYResult[number];
 
 // ✅ Or create a more specific type for BlogCard
 export interface BlogCardPost {

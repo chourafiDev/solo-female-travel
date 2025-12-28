@@ -590,6 +590,104 @@ export type IS_FEATURED_POSTS_QUERYResult = Array<{
     }> | null;
   } | null;
 }>;
+// Variable: IS_TRENDING_POSTS_QUERY
+// Query: *[    _type == "post" &&    isTrending == true  ] | order(publishedAt desc){    title,    "slug": slug.current,    publishedAt,    excerpt,    isTrending,    body,    mainImage{      asset->{        _id,        url      },      alt    },    category->{      title,      "slug": slug.current    },    author->{      name,      image,      "slug": slug.current,      bio    }  }
+export type IS_TRENDING_POSTS_QUERYResult = Array<{
+  title: string | null;
+  slug: string | null;
+  publishedAt: string | null;
+  excerpt: string | null;
+  isTrending: boolean | null;
+  body: Array<
+    | ({
+        _key: string;
+      } & FaqBlock)
+    | ({
+        _key: string;
+      } & Table)
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: 'span';
+          _key: string;
+        }>;
+        style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'normal';
+        listItem?: 'bullet' | 'number';
+        markDefs?: Array<{
+          href?: string;
+          _type: 'link';
+          _key: string;
+        }>;
+        level?: number;
+        _type: 'block';
+        _key: string;
+      }
+    | {
+        enabled?: boolean;
+        _type: 'emailSignup';
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: 'reference';
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: 'image';
+        _key: string;
+      }
+  > | null;
+  mainImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  category: {
+    title: string | null;
+    slug: string | null;
+  } | null;
+  author: {
+    name: string | null;
+    image: {
+      asset?: {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: 'image';
+    } | null;
+    slug: string | null;
+    bio: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: 'span';
+        _key: string;
+      }>;
+      style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'normal';
+      listItem?: 'bullet' | 'number';
+      markDefs?: Array<{
+        href?: string;
+        _type: 'link';
+        _key: string;
+      }>;
+      level?: number;
+      _type: 'block';
+      _key: string;
+    }> | null;
+  } | null;
+}>;
 // Variable: POST_QUERY
 // Query: *[_type=='post' && slug.current == $slug][0]{    _id,    _updatedAt,    title,    "slug": slug.current,    excerpt,    publishedAt,    "author": author->{      name,      "slug": slug.current,      image{        asset->{          _id,          url        },        alt      },      bio    },    "category": category->{      title,      "slug": slug.current    },    mainImage{      asset->{        url,        metadata {          dimensions        }      },      alt    },    body[]{      ...,      _type == "faqBlock" => {        _type,        title,        faqs[]{          question,          answer        }      },      _type == "image" => {        ...,        asset->      }    },    "wordCount": length(pt::text(body)),    "readingTime": round(length(pt::text(body)) / 5 / 180)}
 export type POST_QUERYResult = {
@@ -1055,6 +1153,7 @@ declare module '@sanity/client' {
     '*[\n  _type == "category"\n] | order(publishedAt desc) {\n  _id,\n  title,\n  "slug": slug.current,\n  description,\n  image\n}': ALL_CATEGORIES_QUERYResult;
     '\n  *[\n    _type == "post" &&\n    ($searchTerm == "" || (\n      title match $searchTerm ||\n      excerpt match $searchTerm ||\n      pt::text(body) match $searchTerm\n    )) &&\n    ($categorySlug == "" || category->slug.current == $categorySlug)\n  ] | order(publishedAt desc){\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    isFeatured,\n    body,\n    mainImage{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    category->{\n      title,\n      "slug": slug.current\n    },\n    author->{\n      name,\n      image,\n      "slug": slug.current,\n      bio\n    },\n  }\n': ALL_POSTS_QUERYResult;
     '\n  *[\n    _type == "post" &&\n    isFeatured == true\n  ] | order(publishedAt desc){\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    isFeatured,\n    body,\n    mainImage{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    category->{\n      title,\n      "slug": slug.current\n    },\n    author->{\n      name,\n      image,\n      "slug": slug.current,\n      bio\n    }\n  }\n': IS_FEATURED_POSTS_QUERYResult;
+    '\n  *[\n    _type == "post" &&\n    isTrending == true\n  ] | order(publishedAt desc){\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    isTrending,\n    body,\n    mainImage{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    category->{\n      title,\n      "slug": slug.current\n    },\n    author->{\n      name,\n      image,\n      "slug": slug.current,\n      bio\n    }\n  }\n': IS_TRENDING_POSTS_QUERYResult;
     '*[_type==\'post\' && slug.current == $slug][0]{\n    _id,\n    _updatedAt,\n    title,\n    "slug": slug.current,\n    excerpt,\n    publishedAt,\n    "author": author->{\n      name,\n      "slug": slug.current,\n      image{\n        asset->{\n          _id,\n          url\n        },\n        alt\n      },\n      bio\n    },\n    "category": category->{\n      title,\n      "slug": slug.current\n    },\n    mainImage{\n      asset->{\n        url,\n        metadata {\n          dimensions\n        }\n      },\n      alt\n    },\n    body[]{\n      ...,\n      _type == "faqBlock" => {\n        _type,\n        title,\n        faqs[]{\n          question,\n          answer\n        }\n      },\n      _type == "image" => {\n        ...,\n        asset->\n      }\n    },\n    "wordCount": length(pt::text(body)),\n    "readingTime": round(length(pt::text(body)) / 5 / 180)\n}': POST_QUERYResult;
     '*[\n  _type == "post" && \n  category->slug.current == $category\n] | order(publishedAt desc){\n  title,\n  "slug": slug.current,\n  publishedAt,\n  excerpt,\n  isFeatured,\n  body,\n  mainImage{\n    asset->{\n      _id,\n      url\n    },\n    alt\n  },\n  category->{\n    title,\n    "slug": slug.current\n  },\n  author->{\n      name,\n      image,\n      "slug": slug.current,\n      bio\n    },\n}': POSTS_BY_CATEGORYResult;
     '\n  *[\n    _type == "post" &&\n    slug.current != $slug &&\n    category->slug.current == $categorySlug\n  ] | order(publishedAt desc){\n    title,\n    "slug": slug.current,\n    publishedAt,\n    excerpt,\n    isFeatured,\n    mainImage{\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    category->{\n      title,\n      "slug": slug.current\n    },\n    author->{\n      name,\n      image,\n      "slug": slug.current,\n      bio\n    },\n  }\n': RELATED_POSTS_QUERYResult;

@@ -119,6 +119,50 @@ export const getIsFeaturedPosts = async ({
 	return quantity ? posts.slice(0, quantity) : posts;
 };
 
+/* Get All isTrending Posts */
+export const IS_TRENDING_POSTS_QUERY = defineQuery(`
+  *[
+    _type == "post" &&
+    isTrending == true
+  ] | order(publishedAt desc){
+    title,
+    "slug": slug.current,
+    publishedAt,
+    excerpt,
+    isTrending,
+    body,
+    mainImage{
+      asset->{
+        _id,
+        url
+      },
+      alt
+    },
+    category->{
+      title,
+      "slug": slug.current
+    },
+    author->{
+      name,
+      image,
+      "slug": slug.current,
+      bio
+    }
+  }
+`);
+
+export const getIsTrendingPosts = async ({
+	quantity,
+}: {
+	quantity?: number;
+} = {}) => {
+	const posts = await clientFetch({
+		query: IS_TRENDING_POSTS_QUERY,
+	});
+
+	return quantity ? posts.slice(0, quantity) : posts;
+};
+
 /* Get Post */
 const POST_QUERY = defineQuery(`*[_type=='post' && slug.current == $slug][0]{
     _id,

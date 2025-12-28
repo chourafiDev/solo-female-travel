@@ -16,7 +16,7 @@ export function extractHeadings(
 			block._type === "block" &&
 			"style" in block &&
 			block.style &&
-			["h2", "h3", "h4"].includes(block.style) &&
+			["h2"].includes(block.style) && // you can add "h3", "h4" in the array
 			"children" in block &&
 			Array.isArray(block.children)
 		) {
@@ -38,7 +38,7 @@ export function extractHeadings(
 				headings.push({
 					id,
 					text,
-					level: block.style as "h2" | "h3" | "h4",
+					level: block.style as "h2",
 				});
 			}
 		}

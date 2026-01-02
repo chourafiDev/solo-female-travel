@@ -35,8 +35,8 @@ const MostPopular = async () => {
 
 	return (
 		<section aria-labelledby="most-popular-heading" className="section-bottom">
-			<h2 id="solo-female-trip-ideas" className="title mb-6">
-				Solo Female Trip Ideas
+			<h2 id="solo-female-trip" className="title mb-6">
+				Solo Female Trip
 			</h2>
 
 			<div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-3 gap-10 mb-14">

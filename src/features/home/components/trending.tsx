@@ -15,7 +15,7 @@ const Trending = async () => {
 	return (
 		<section aria-labelledby="trending-heading" className="mb-8">
 			<h2 id="trending-heading" className="sr-only">
-				Trending Posts
+				Solo Female Travel Trending
 			</h2>
 
 			<div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 my-6">

@@ -36,7 +36,7 @@ const Categories = async () => {
 	return (
 		<section aria-labelledby="categories-heading" className="section-bottom">
 			<h2 id="categories-heading" className="title mb-4">
-				Top Categories
+				Women Traveling Alone: Top Categories
 			</h2>
 
 			<div className="flex md:flex-row flex-col gap-4">

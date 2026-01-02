@@ -40,7 +40,7 @@ const Banner = async () => {
 	return (
 		<section aria-labelledby="featured-heading" className="section-bottom">
 			<h2 id="featured-heading" className="sr-only">
-				Featured Articles
+				Solo female destinations Featured Articles
 			</h2>
 
 			<Carousel

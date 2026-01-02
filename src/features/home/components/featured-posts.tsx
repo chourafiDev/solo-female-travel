@@ -20,8 +20,8 @@ const FeaturedPosts = async () => {
 			className="section-bottom"
 		>
 			<div className="flex items-center justify-between">
-				<h2 id="featured-posts-heading" className="title">
-					Featured Posts
+				<h2 id="solo-female-travel-destinations" className="title">
+					Solo Female Travel Destinations
 				</h2>
 				<Link
 					href="/search"

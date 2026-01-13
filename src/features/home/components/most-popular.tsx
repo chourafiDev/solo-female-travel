@@ -31,6 +31,8 @@ const MostPopular = async () => {
 
 	// Get the first post (featured) and the rest
 	const [featuredDestination, ...otherDestinations] = destinationsPosts;
+	const [featuredTravelTip, ...otherTravelTips] = travelTipsPosts;
+	const [featuredBudgetCost, ...otherBudgetCosts] = budgetCostsPosts;
 	const [featuredSafety, ...otherSafety] = safetyPosts;
 
 	return (
@@ -236,184 +238,164 @@ const MostPopular = async () => {
 
 					<div className="bg-foreground h-0.5 rounded-full w-full mb-2" />
 
-					{/* Featured Article with Image */}
-					<article itemScope itemType="https://schema.org/BlogPosting">
-						<Link
-							href="/blog/essential-packing-tips-solo-travelers"
-							itemProp="url"
-							className="w-full h-full"
-						>
-							<figure
-								itemProp="image"
-								itemScope
-								itemType="https://schema.org/ImageObject"
-								className="relative w-full h-[300px] rounded-xl overflow-hidden"
+					{/* Featured Travel Tips Article with Image */}
+					{featuredTravelTip && (
+						<article itemScope itemType="https://schema.org/BlogPosting">
+							<Link
+								href={`/blog/${featuredTravelTip.slug}`}
+								itemProp="url"
+								className="w-full h-full"
 							>
-								<Image
-									src={touristCarryingLuggage}
-									alt="Essential packing tips for solo travelers"
-									fill
-									placeholder="blur"
-									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-									className="absolute object-cover transition-all duration-300 hover:scale-110"
-									itemProp="url"
-									loading="lazy"
+								<figure
+									itemProp="image"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+									className="relative w-full h-[300px] rounded-xl overflow-hidden"
+								>
+									<Image
+										src={
+											featuredTravelTip.mainImage?.asset?.url ||
+											touristCarryingLuggage
+										}
+										alt={
+											featuredTravelTip.mainImage?.alt ||
+											featuredTravelTip.title ||
+											"Featured travel tip"
+										}
+										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										className="absolute object-cover transition-all duration-300 hover:scale-110"
+										itemProp="url"
+										loading="lazy"
+									/>
+								</figure>
+							</Link>
+
+							<div className="flex items-center gap-2 mt-4">
+								<time
+									dateTime={featuredTravelTip.publishedAt || ""}
+									itemProp="datePublished"
+									className="text-[11px] font-semibold text-foreground"
+								>
+									{featuredTravelTip.publishedAt
+										? format(
+												new Date(featuredTravelTip.publishedAt),
+												"MMMM d, yyyy",
+											).toUpperCase()
+										: ""}
+								</time>
+								<RxDividerVertical
+									className="text-foreground font-bold rotate-12"
+									aria-hidden="true"
 								/>
-							</figure>
-						</Link>
-
-						<div className="flex items-center gap-2 mt-4">
-							<time
-								dateTime="2025-02-11T10:00:00Z"
-								itemProp="datePublished"
-								className="text-[11px] font-semibold text-foreground"
-							>
-								{format(new Date("2025-02-11"), "MMMM d, yyyy").toUpperCase()}
-							</time>
-							<RxDividerVertical
-								className="text-foreground font-bold rotate-12"
-								aria-hidden="true"
-							/>
-							<div
-								itemProp="author"
-								itemScope
-								itemType="https://schema.org/Person"
-								className="mb-1"
-							>
-								<Link
-									href="/author/maya-pena"
-									className="text-[11px] text-foreground font-semibold"
+								<div
+									itemProp="author"
+									itemScope
+									itemType="https://schema.org/Person"
+									className="mb-1"
 								>
-									<span className="text-muted-foreground">POST BY</span>{" "}
-									<span itemProp="name">MAYA PENA</span>
+									<Link
+										href={`/author/${featuredTravelTip.author?.slug || "#"}`}
+										className="text-[11px] text-foreground font-semibold"
+									>
+										<span className="text-muted-foreground">POST BY</span>{" "}
+										<span itemProp="name" className="font-bold">
+											{(
+												featuredTravelTip.author?.name || "Unknown Author"
+											).toUpperCase()}
+										</span>
+									</Link>
+								</div>
+							</div>
+
+							<h4 itemProp="headline" className="post-title">
+								<Link href={`/blog/${featuredTravelTip.slug}`}>
+									{featuredTravelTip.title || "Untitled Post"}
 								</Link>
-							</div>
-						</div>
+							</h4>
 
-						<h4 itemProp="headline" className="post-title">
-							<Link href="/blog/essential-packing-tips-solo-travelers">
-								Best places to travel solo female in us
-							</Link>
-						</h4>
-
-						<div
-							itemProp="publisher"
-							itemScope
-							itemType="https://schema.org/Organization"
-							className="hidden"
-						>
-							<meta itemProp="name" content={siteConfig.name} />
+							{/* Hidden Publisher Schema */}
 							<div
-								itemProp="logo"
+								itemProp="publisher"
 								itemScope
-								itemType="https://schema.org/ImageObject"
+								itemType="https://schema.org/Organization"
+								className="hidden"
 							>
-								<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
-							</div>
-						</div>
-					</article>
-
-					<Separator className="my-4" aria-hidden="true" />
-
-					{/* Article 2 */}
-					<article itemScope itemType="https://schema.org/BlogPosting">
-						<div className="flex items-center gap-2">
-							<time
-								dateTime="2025-02-09T10:00:00Z"
-								itemProp="datePublished"
-								className="text-[11px] font-semibold text-foreground"
-							>
-								{format(new Date("2025-02-09"), "MMMM d, yyyy").toUpperCase()}
-							</time>
-							<RxDividerVertical
-								className="text-foreground font-bold rotate-12"
-								aria-hidden="true"
-							/>
-							<div
-								itemProp="author"
-								itemScope
-								itemType="https://schema.org/Person"
-								className="mb-1"
-							>
-								<Link
-									href="/author/maya-pena"
-									className="text-[11px] text-foreground font-semibold"
+								<meta itemProp="name" content={siteConfig.name} />
+								<div
+									itemProp="logo"
+									itemScope
+									itemType="https://schema.org/ImageObject"
 								>
-									<span className="text-muted-foreground">POST BY</span>{" "}
-									<span itemProp="name">MAYA PENA</span>
-								</Link>
+									<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+								</div>
 							</div>
-						</div>
-						<h4 itemProp="headline" className="post-title">
-							<Link href="/blog/stay-safe-traveling-solo" itemProp="url">
-								Best places to travel for solo female travelers
-							</Link>
-						</h4>
+						</article>
+					)}
 
-						<div
-							itemProp="publisher"
-							itemScope
-							itemType="https://schema.org/Organization"
-							className="hidden"
-						>
-							<meta itemProp="name" content={siteConfig.name} />
-						</div>
-						<meta
-							itemProp="image"
-							content={`${siteConfig.url}/default-image.jpg`}
-						/>
-					</article>
+					{/* Other Travel Tips Articles */}
+					{otherTravelTips.map((post, index) => (
+						<div key={post.slug || index}>
+							<Separator className="my-4" aria-hidden="true" />
+							<article itemScope itemType="https://schema.org/BlogPosting">
+								<div className="flex items-center gap-2">
+									<time
+										dateTime={post.publishedAt || ""}
+										itemProp="datePublished"
+										className="text-[11px] font-semibold text-foreground"
+									>
+										{post.publishedAt
+											? format(
+													new Date(post.publishedAt),
+													"MMMM d, yyyy",
+												).toUpperCase()
+											: ""}
+									</time>
+									<RxDividerVertical
+										className="text-foreground font-bold rotate-12"
+										aria-hidden="true"
+									/>
+									<div
+										itemProp="author"
+										itemScope
+										itemType="https://schema.org/Person"
+										className="mb-1"
+									>
+										<Link
+											href={`/author/${post.author?.slug || "#"}`}
+											className="text-[11px] text-foreground font-semibold"
+										>
+											<span className="text-muted-foreground">POST BY</span>{" "}
+											<span itemProp="name" className="font-bold">
+												{(post.author?.name || "Unknown Author").toUpperCase()}
+											</span>
+										</Link>
+									</div>
+								</div>
+								<h4 itemProp="headline" className="post-title">
+									<Link href={`/blog/${post.slug}`} itemProp="url">
+										{post.title || "Untitled Post"}
+									</Link>
+								</h4>
 
-					<Separator className="my-4" aria-hidden="true" />
-
-					{/* Article 3 */}
-					<article itemScope itemType="https://schema.org/BlogPosting">
-						<div className="flex items-center gap-2">
-							<time
-								dateTime="2025-02-07T10:00:00Z"
-								itemProp="datePublished"
-								className="text-[11px] font-semibold text-foreground"
-							>
-								{format(new Date("2025-02-07"), "MMMM d, yyyy").toUpperCase()}
-							</time>
-							<RxDividerVertical
-								className="text-foreground font-bold rotate-12"
-								aria-hidden="true"
-							/>
-							<div
-								itemProp="author"
-								itemScope
-								itemType="https://schema.org/Person"
-								className="mb-1"
-							>
-								<Link
-									href="/author/maya-pena"
-									className="text-[11px] text-foreground font-semibold"
+								<div
+									itemProp="publisher"
+									itemScope
+									itemType="https://schema.org/Organization"
+									className="hidden"
 								>
-									<span className="text-muted-foreground">POST BY</span>{" "}
-									<span itemProp="name">MAYA PENA</span>
-								</Link>
-							</div>
+									<meta itemProp="name" content={siteConfig.name} />
+								</div>
+								<meta
+									itemProp="image"
+									content={
+										post.mainImage?.asset?.url ||
+										`${siteConfig.url}/default-image.jpg`
+									}
+								/>
+							</article>
 						</div>
-						<h4 itemProp="headline" className="post-title">
-							<Link href="/blog/budget-travel-tips-solo" itemProp="url">
-								Best places to travel for solo female travelers
-							</Link>
-						</h4>
-
-						<div
-							itemProp="publisher"
-							itemScope
-							itemType="https://schema.org/Organization"
-							className="hidden"
-						>
-							<meta itemProp="name" content={siteConfig.name} />
-						</div>
-						<meta
-							itemProp="image"
-							content={`${siteConfig.url}/default-image.jpg`}
-						/>
-					</article>
+					))}
 				</div>
 
 				{/* BUDGET & COSTS COLUMN */}
@@ -425,7 +407,7 @@ const MostPopular = async () => {
 						<Link
 							href="/category/budget-costs"
 							className="text-sm text-foreground font-semibold underline flex items-center gap-1"
-							aria-label="View more Safety Guide posts"
+							aria-label="View more Budget and Costs posts"
 						>
 							View More{" "}
 							<ArrowRight className="size-3 mt-1" aria-hidden="true" />
@@ -434,190 +416,164 @@ const MostPopular = async () => {
 
 					<div className="bg-foreground h-0.5 rounded-full w-full mb-2" />
 
-					{/* Featured Article with Image */}
-					<article itemScope itemType="https://schema.org/BlogPosting">
-						<Link
-							href="/blog/solo-female-travel-safety-essentials"
-							itemProp="url"
-							className="w-full h-full"
-						>
-							<figure
-								itemProp="image"
-								itemScope
-								itemType="https://schema.org/ImageObject"
-								className="relative w-full h-[300px] rounded-xl overflow-hidden"
+					{/* Featured Budget & Costs Article with Image */}
+					{featuredBudgetCost && (
+						<article itemScope itemType="https://schema.org/BlogPosting">
+							<Link
+								href={`/blog/${featuredBudgetCost.slug}`}
+								itemProp="url"
+								className="w-full h-full"
 							>
-								<Image
-									src={touristCarryingLuggage}
-									alt="Solo female travel safety essentials"
-									fill
-									placeholder="blur"
-									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-									className="absolute object-cover transition-all duration-300 hover:scale-110"
-									itemProp="url"
-									loading="lazy"
+								<figure
+									itemProp="image"
+									itemScope
+									itemType="https://schema.org/ImageObject"
+									className="relative w-full h-[300px] rounded-xl overflow-hidden"
+								>
+									<Image
+										src={
+											featuredBudgetCost.mainImage?.asset?.url ||
+											touristCarryingLuggage
+										}
+										alt={
+											featuredBudgetCost.mainImage?.alt ||
+											featuredBudgetCost.title ||
+											"Featured budget and costs"
+										}
+										fill
+										sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+										className="absolute object-cover transition-all duration-300 hover:scale-110"
+										itemProp="url"
+										loading="lazy"
+									/>
+								</figure>
+							</Link>
+
+							<div className="flex items-center gap-2 mt-4">
+								<time
+									dateTime={featuredBudgetCost.publishedAt || ""}
+									itemProp="datePublished"
+									className="text-[11px] font-semibold text-foreground"
+								>
+									{featuredBudgetCost.publishedAt
+										? format(
+												new Date(featuredBudgetCost.publishedAt),
+												"MMMM d, yyyy",
+											).toUpperCase()
+										: ""}
+								</time>
+								<RxDividerVertical
+									className="text-foreground font-bold rotate-12"
+									aria-hidden="true"
 								/>
-							</figure>
-						</Link>
-
-						<div className="flex items-center gap-2 mt-4">
-							<time
-								dateTime="2025-02-13T10:00:00Z"
-								itemProp="datePublished"
-								className="text-[11px] font-semibold text-foreground"
-							>
-								{format(new Date("2025-02-13"), "MMMM d, yyyy").toUpperCase()}
-							</time>
-							<RxDividerVertical
-								className="text-foreground font-bold rotate-12"
-								aria-hidden="true"
-							/>
-							<div
-								itemProp="author"
-								itemScope
-								itemType="https://schema.org/Person"
-								className="mb-1"
-							>
-								<Link
-									href="/author/maya-pena"
-									className="text-[11px] text-foreground font-semibold"
+								<div
+									itemProp="author"
+									itemScope
+									itemType="https://schema.org/Person"
+									className="mb-1"
 								>
-									<span className="text-muted-foreground">POST BY</span>{" "}
-									<span itemProp="name">MAYA PENA</span>
+									<Link
+										href={`/author/${featuredBudgetCost.author?.slug || "#"}`}
+										className="text-[11px] text-foreground font-semibold"
+									>
+										<span className="text-muted-foreground">POST BY</span>{" "}
+										<span itemProp="name" className="font-bold">
+											{(
+												featuredBudgetCost.author?.name || "Unknown Author"
+											).toUpperCase()}
+										</span>
+									</Link>
+								</div>
+							</div>
+
+							<h4 itemProp="headline" className="post-title">
+								<Link href={`/blog/${featuredBudgetCost.slug}`}>
+									{featuredBudgetCost.title || "Untitled Post"}
 								</Link>
-							</div>
-						</div>
+							</h4>
 
-						<h4 itemProp="headline" className="post-title">
-							<Link href="/blog/solo-female-travel-safety-essentials">
-								Best places to travel solo female in us
-							</Link>
-						</h4>
-
-						<div
-							itemProp="publisher"
-							itemScope
-							itemType="https://schema.org/Organization"
-							className="hidden"
-						>
-							<meta itemProp="name" content={siteConfig.name} />
+							{/* Hidden Publisher Schema */}
 							<div
-								itemProp="logo"
+								itemProp="publisher"
 								itemScope
-								itemType="https://schema.org/ImageObject"
+								itemType="https://schema.org/Organization"
+								className="hidden"
 							>
-								<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
-							</div>
-						</div>
-					</article>
-
-					<Separator className="my-4" aria-hidden="true" />
-
-					{/* Article 2 */}
-					<article itemScope itemType="https://schema.org/BlogPosting">
-						<div className="flex items-center gap-2">
-							<time
-								dateTime="2025-02-06T10:00:00Z"
-								itemProp="datePublished"
-								className="text-[11px] font-semibold text-foreground"
-							>
-								{format(new Date("2025-02-06"), "MMMM d, yyyy").toUpperCase()}
-							</time>
-							<RxDividerVertical
-								className="text-foreground font-bold rotate-12"
-								aria-hidden="true"
-							/>
-							<div
-								itemProp="author"
-								itemScope
-								itemType="https://schema.org/Person"
-								className="mb-1"
-							>
-								<Link
-									href="/author/maya-pena"
-									className="text-[11px] text-foreground font-semibold"
+								<meta itemProp="name" content={siteConfig.name} />
+								<div
+									itemProp="logo"
+									itemScope
+									itemType="https://schema.org/ImageObject"
 								>
-									<span className="text-muted-foreground">POST BY</span>{" "}
-									<span itemProp="name">MAYA PENA</span>
-								</Link>
+									<meta itemProp="url" content={`${siteConfig.url}/logo.png`} />
+								</div>
 							</div>
-						</div>
-						<h4 itemProp="headline" className="post-title">
-							<Link
-								href="/blog/top-safety-devices-solo-travelers"
-								itemProp="url"
-							>
-								Best places to travel for solo female travelers
-							</Link>
-						</h4>
+						</article>
+					)}
 
-						<div
-							itemProp="publisher"
-							itemScope
-							itemType="https://schema.org/Organization"
-							className="hidden"
-						>
-							<meta itemProp="name" content={siteConfig.name} />
-						</div>
-						<meta
-							itemProp="image"
-							content={`${siteConfig.url}/default-image.jpg`}
-						/>
-					</article>
+					{/* Other Budget & Costs Articles */}
+					{otherBudgetCosts.map((post, index) => (
+						<div key={post.slug || index}>
+							<Separator className="my-4" aria-hidden="true" />
+							<article itemScope itemType="https://schema.org/BlogPosting">
+								<div className="flex items-center gap-2">
+									<time
+										dateTime={post.publishedAt || ""}
+										itemProp="datePublished"
+										className="text-[11px] font-semibold text-foreground"
+									>
+										{post.publishedAt
+											? format(
+													new Date(post.publishedAt),
+													"MMMM d, yyyy",
+												).toUpperCase()
+											: ""}
+									</time>
+									<RxDividerVertical
+										className="text-foreground font-bold rotate-12"
+										aria-hidden="true"
+									/>
+									<div
+										itemProp="author"
+										itemScope
+										itemType="https://schema.org/Person"
+										className="mb-1"
+									>
+										<Link
+											href={`/author/${post.author?.slug || "#"}`}
+											className="text-[11px] text-foreground font-semibold"
+										>
+											<span className="text-muted-foreground">POST BY</span>{" "}
+											<span itemProp="name" className="font-bold">
+												{(post.author?.name || "Unknown Author").toUpperCase()}
+											</span>
+										</Link>
+									</div>
+								</div>
+								<h4 itemProp="headline" className="post-title">
+									<Link href={`/blog/${post.slug}`} itemProp="url">
+										{post.title || "Untitled Post"}
+									</Link>
+								</h4>
 
-					<Separator className="my-4" aria-hidden="true" />
-
-					{/* Article 3 */}
-					<article itemScope itemType="https://schema.org/BlogPosting">
-						<div className="flex items-center gap-2">
-							<time
-								dateTime="2025-02-05T10:00:00Z"
-								itemProp="datePublished"
-								className="text-[11px] font-semibold text-foreground"
-							>
-								{format(new Date("2025-02-05"), "MMMM d, yyyy").toUpperCase()}
-							</time>
-							<RxDividerVertical
-								className="text-foreground font-bold rotate-12"
-								aria-hidden="true"
-							/>
-							<div
-								itemProp="author"
-								itemScope
-								itemType="https://schema.org/Person"
-								className="mb-1"
-							>
-								<Link
-									href="/author/maya-pena"
-									className="text-[11px] text-foreground font-semibold"
+								<div
+									itemProp="publisher"
+									itemScope
+									itemType="https://schema.org/Organization"
+									className="hidden"
 								>
-									<span className="text-muted-foreground">POST BY</span>{" "}
-									<span itemProp="name">MAYA PENA</span>
-								</Link>
-							</div>
+									<meta itemProp="name" content={siteConfig.name} />
+								</div>
+								<meta
+									itemProp="image"
+									content={
+										post.mainImage?.asset?.url ||
+										`${siteConfig.url}/default-image.jpg`
+									}
+								/>
+							</article>
 						</div>
-						<h4 itemProp="headline" className="post-title">
-							<Link
-								href="/blog/emergency-preparedness-women-travelers"
-								itemProp="url"
-							>
-								Best places to travel for solo female travelers
-							</Link>
-						</h4>
-
-						<div
-							itemProp="publisher"
-							itemScope
-							itemType="https://schema.org/Organization"
-							className="hidden"
-						>
-							<meta itemProp="name" content={siteConfig.name} />
-						</div>
-						<meta
-							itemProp="image"
-							content={`${siteConfig.url}/default-image.jpg`}
-						/>
-					</article>
+					))}
 				</div>
 			</div>
 
@@ -852,7 +808,7 @@ const MostPopular = async () => {
 			</div>
 
 			{/* COMPARISONS & REVIEWS COLUMN */}
-			<div className="w-full">
+			{/* 	<div className="w-full">
 				<div className="flex items-center justify-between mb-4">
 					<h3 className="text-foreground font-black uppercase text-lg italic">
 						Comparisons and Reviews
@@ -1122,7 +1078,7 @@ const MostPopular = async () => {
 						</article>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</section>
 	);
 };

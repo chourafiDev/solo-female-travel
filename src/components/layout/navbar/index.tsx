@@ -25,7 +25,7 @@ export default async function NavBar() {
 		{ href: "/", label: "Home" },
 		{ href: "/category/destinations", label: "Destinations" },
 		{ href: "/category/travel-tips", label: "Travel Tips" },
-		{ href: "/category/safety", label: "safety Guide" },
+		{ href: "/category/safety", label: "Safety Guide" },
 		{ href: "/about-us", label: "About Us" },
 		{
 			label: "Discover More",

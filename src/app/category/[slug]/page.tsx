@@ -1,12 +1,12 @@
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import SubscribeVertical from "@/components/subscribe-vertical";
 import { Separator } from "@/components/ui/separator";
 import BlogCard from "@/features/category/components/blog-card";
 import Categories from "@/features/category/components/categories";
 import CategoryHeader from "@/features/category/components/category-header";
 import PaginationPosts from "@/features/category/components/pagination-posts";
-import RelatesPosts from "@/features/category/components/relates-posts";
 import Search from "@/features/category/components/search";
 import {
 	generateBreadcrumbSchema,
@@ -207,7 +207,7 @@ const CategoryPage = async ({ params, searchParams }: PageProps) => {
 							<Search />
 							<Categories />
 							<Separator aria-hidden="true" />
-							<RelatesPosts />
+							<SubscribeVertical />
 						</div>
 					</aside>
 				</section>

@@ -83,22 +83,6 @@ const SubscribeVertical = () => {
 
 	return (
 		<section className="min-h-auto w-full bg-soft-linen rounded-xl overflow-hidden relative">
-			{/* Top Fade Grid Background */}
-			<div
-				className="absolute inset-0 z-0"
-				style={{
-					backgroundImage: `
-        linear-gradient(to right, #eff0f1 1px, transparent 1px),
-        linear-gradient(to bottom, #eff0f1 1px, transparent 1px)
-      `,
-					backgroundSize: "20px 30px",
-					WebkitMaskImage:
-						"radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
-					maskImage:
-						"radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
-				}}
-			/>
-
 			<div className="relative px-5 py-8">
 				<div>
 					<div className="mb-8">
